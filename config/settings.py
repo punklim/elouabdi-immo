@@ -212,3 +212,24 @@ JAZZMIN_UI_TWEAKS = {
     },
     "custom_css": "css/admin-custom.css",
 }
+# Logging pour voir les erreurs en production
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'ERROR',
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+    },
+}
