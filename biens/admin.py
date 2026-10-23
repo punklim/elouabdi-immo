@@ -79,10 +79,15 @@ class ArticleAdmin(admin.ModelAdmin):
 
 @admin.register(Alerte)
 class AlerteAdmin(admin.ModelAdmin):
-    list_display = ("email", "transaction", "ville", "type_bien", "budget_max", "langue", "actif", "cree_le")
+    list_display = ("email", "transaction", "ville_nom", "type_bien", "budget_max", "langue", "actif", "cree_le")
     list_filter = ("actif", "transaction", "langue")
     search_fields = ("email",)
     readonly_fields = ("token", "cree_le")
+
+    def ville_nom(self, obj):
+        """Affiche le nom de la ville ou un tiret si la ville est vide."""
+        return obj.ville.nom if obj.ville else "-"
+    ville_nom.short_description = "Ville"
 
 @admin.register(Ville)
 class VilleAdmin(admin.ModelAdmin):
