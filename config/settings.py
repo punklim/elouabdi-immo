@@ -115,9 +115,7 @@ MEDIA_ROOT = BASE_DIR / "media"
 STORAGES = {
     "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
     "staticfiles": {
-        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage"
-        if DEBUG
-        else "whitenoise.storage.CompressedManifestStaticFilesStorage"
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"
     },
 }
 
@@ -145,6 +143,7 @@ if not DEBUG:
     SECURE_CONTENT_TYPE_NOSNIFF = True
 # --- Configuration Jazzmin pour l'Admin ---
 JAZZMIN_SETTINGS = {
+    "show_ui_builder": False,  # <-- Ajoute cette ligne
     "site_title": "El Ouabdi Admin",
     "site_header": "El Ouabdi Immobilier",
     "site_brand": "El Ouabdi",
