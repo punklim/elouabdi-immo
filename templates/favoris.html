@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<section class="section">
+  <div class="container">
+    <h1 class="section-title">{% trans "Mes biens favoris" %}</h1>
+    
+    {% if biens %}
+      <div class="grid">
+        {% for bien in biens %}
+          {% include "partials/_carte_bien.html" with bien=bien %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="empty">{% trans "Vous n'avez pas encore de biens favoris." %}</p>
+      <p style="text-align: center; margin-top: 20px;">
+        <a href="{% url 'liste' %}" class="btn btn-gold">{% trans "Voir tous les biens" %}</a>
+      </p>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

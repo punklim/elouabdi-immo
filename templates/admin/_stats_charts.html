@@ -1,0 +1,89 @@
+<style>
+  .st-wrap{--st-bg:#fff;--st-border:#E3E7EC;--st-text:#0F2338;--st-muted:#5B6573;--st-grid:rgba(15,35,56,.08);margin:8px 0 28px}
+  body.dark-mode .st-wrap{--st-bg:#1B2029;--st-border:#2A303B;--st-text:#E8ECF1;--st-muted:#AAB4C0;--st-grid:rgba(255,255,255,.09)}
+  .st-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:22px}
+  .st-kpi{background:var(--st-bg);border-left:4px solid #D4A95A;border-radius:8px;padding:14px 16px;box-shadow:0 4px 12px rgba(0,0,0,.05)}
+  .st-kpi:nth-child(even){border-left-color:#1B3A57}
+  .st-kpi span{display:block;font-size:13px;color:var(--st-muted)}
+  .st-kpi strong{display:block;font-size:28px;line-height:1.2;color:var(--st-text)}
+  .st-grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));margin-bottom:20px}
+  .st-card{background:var(--st-bg);border-radius:8px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.05)}
+  .st-card h4{margin:0;padding:12px 18px;font-size:17px;font-weight:600;color:#fff;background:#0F2338}
+  .st-card.alt h4{background:#1B3A57}
+  .st-body{position:relative;height:270px;padding:14px 16px}
+  .st-vide{display:none;position:absolute;inset:0;align-items:center;justify-content:center;color:var(--st-muted);font-size:14px}
+</style>
+
+<div class="st-wrap">
+  {% if kpi %}<div class="st-kpis">
+    <div class="st-kpi"><span>Biens (total)</span><strong>{{ stats.kpi.biens }}</strong></div>
+    <div class="st-kpi"><span>Biens publiés</span><strong>{{ stats.kpi.publies }}</strong></div>
+    <div class="st-kpi"><span>Vendus / loués</span><strong>{{ stats.kpi.conclus }}</strong></div>
+    <div class="st-kpi"><span>Demandes reçues</span><strong>{{ stats.kpi.demandes }}</strong></div>
+    <div class="st-kpi"><span>Demandes à traiter</span><strong>{{ stats.kpi.a_traiter }}</strong></div>
+    <div class="st-kpi"><span>Alertes actives</span><strong>{{ stats.kpi.alertes }}</strong></div>
+  </div>{% endif %}
+
+  <div class="st-grid">
+    <div class="st-card"><h4>Demandes clients par mois</h4><div class="st-body"><canvas id="st-demandes"></canvas></div></div>
+    <div class="st-card alt"><h4>Annonces (biens) ajoutées par mois</h4><div class="st-body"><canvas id="st-biens"></canvas></div></div>
+  </div>
+  <div class="st-grid">
+    <div class="st-card"><h4>Par type de bien</h4><div class="st-body"><canvas id="st-types"></canvas><div class="st-vide">Aucune donnée</div></div></div>
+    <div class="st-card alt"><h4>Vente / Location</h4><div class="st-body"><canvas id="st-transactions"></canvas><div class="st-vide">Aucune donnée</div></div></div>
+    <div class="st-card"><h4>Statut des biens</h4><div class="st-body"><canvas id="st-statuts"></canvas><div class="st-vide">Aucune donnée</div></div></div>
+    <div class="st-card alt"><h4>Origine des demandes</h4><div class="st-body"><canvas id="st-origines"></canvas><div class="st-vide">Aucune donnée</div></div></div>
+  </div>
+  <div class="st-grid">
+    <div class="st-card"><h4>Biens par ville</h4><div class="st-body"><canvas id="st-villes"></canvas><div class="st-vide">Aucune donnée</div></div></div>
+  </div>
+</div>
+
+{{ stats|json_script:"stats-data" }}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+(function () {
+  if (!window.Chart) return;
+  var S = JSON.parse(document.getElementById("stats-data").textContent);
+  var sombre = document.body.classList.contains("dark-mode");
+  var texte = sombre ? "#AAB4C0" : "#5B6573", grille = sombre ? "rgba(255,255,255,.09)" : "rgba(15,35,56,.08)";
+  Chart.defaults.color = texte;
+  Chart.defaults.borderColor = grille;
+  var COULEURS = ["#D4A95A", "#2A506F", "#B3261E", "#3E8E5A", "#7FA3C0", "#8A6420", "#9AA7B5", "#0F2338"];
+  var $ = function (id) { return document.getElementById(id); };
+  var base = { responsive: true, maintainAspectRatio: false };
+  var axeY = { beginAtZero: true, ticks: { precision: 0 }, grid: { color: grille } };
+
+  function vide(id) { var c = $(id), v = c.parentNode.querySelector(".st-vide"); if (v) { c.style.display = "none"; v.style.display = "flex"; } }
+
+  new Chart($("st-demandes"), {
+    type: "line",
+    data: { labels: S.mois, datasets: [{ label: "Demandes", data: S.demandes_par_mois, borderColor: "#D4A95A",
+      backgroundColor: "rgba(212,169,90,.18)", fill: true, tension: .35, pointRadius: 3, pointBackgroundColor: "#D4A95A" }] },
+    options: Object.assign({}, base, { plugins: { legend: { display: false } }, scales: { y: axeY, x: { grid: { color: grille } } } })
+  });
+
+  new Chart($("st-biens"), {
+    type: "bar",
+    data: { labels: S.mois, datasets: [{ label: "Biens ajoutés", data: S.biens_par_mois, backgroundColor: "#3E8E5A", borderRadius: 4 }] },
+    options: Object.assign({}, base, { plugins: { legend: { display: false } }, scales: { y: axeY, x: { grid: { display: false } } } })
+  });
+
+  function camembert(id, d) {
+    if (!d.data.length) return vide(id);
+    new Chart($(id), { type: "doughnut",
+      data: { labels: d.labels, datasets: [{ data: d.data, backgroundColor: COULEURS, borderWidth: 2, borderColor: sombre ? "#1B2029" : "#fff" }] },
+      options: Object.assign({}, base, { plugins: { legend: { position: "bottom" } } }) });
+  }
+  camembert("st-types", S.types);
+  camembert("st-transactions", S.transactions);
+  camembert("st-statuts", S.statuts);
+  camembert("st-origines", S.origines);
+
+  if (!S.villes.data.length) vide("st-villes");
+  else new Chart($("st-villes"), { type: "bar",
+    data: { labels: S.villes.labels, datasets: [{ data: S.villes.data, backgroundColor: "#2A506F", borderRadius: 4 }] },
+    options: Object.assign({}, base, { indexAxis: "y", plugins: { legend: { display: false } },
+      scales: { x: { beginAtZero: true, ticks: { precision: 0 }, grid: { color: grille } }, y: { grid: { display: false } } } }) });
+})();
+</script>

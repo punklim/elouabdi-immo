@@ -1,0 +1,346 @@
+
+/* ==========================================
+   EL OUABDI IMMOBILIER - ADMIN DASHBOARD
+   ========================================== */
+
+:root {
+    --eo-navy: #0F2338;
+    --eo-blue: #1B3A57;
+    --eo-gold: #D4A95A;
+    --eo-bg: #F4F6FA;
+    --eo-muted: #718096;
+    --eo-border: #E5EAF0;
+}
+
+body,
+.content-wrapper {
+    background: var(--eo-bg) !important;
+}
+
+.main-sidebar,
+.main-sidebar .brand-link {
+    background: var(--eo-navy) !important;
+}
+
+.main-sidebar .brand-link {
+    border-bottom: 1px solid var(--eo-blue) !important;
+}
+
+.brand-text,
+.main-sidebar .nav-link {
+    color: #E6EDF5 !important;
+}
+
+.nav-sidebar .nav-link {
+    margin: 3px 8px;
+    border-radius: 8px;
+    transition: background .2s ease, color .2s ease;
+}
+
+.nav-sidebar .nav-link:hover,
+.nav-sidebar .nav-link.active {
+    background: var(--eo-blue) !important;
+    color: var(--eo-gold) !important;
+}
+
+.nav-sidebar .nav-link.active .nav-icon {
+    color: var(--eo-gold) !important;
+}
+
+.main-header {
+    background: #FFFFFF !important;
+    border-bottom: 1px solid var(--eo-border) !important;
+}
+
+.main-header .nav-link {
+    color: var(--eo-navy) !important;
+}
+
+.el-dashboard {
+    padding: 8px 4px 28px;
+}
+
+.dashboard-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 26px;
+}
+
+.dashboard-heading h1 {
+    color: var(--eo-navy);
+    font-size: 28px;
+    font-weight: 750;
+    margin-bottom: 7px;
+}
+
+.dashboard-heading p,
+.panel-heading p {
+    color: var(--eo-muted);
+    margin: 0;
+}
+
+.btn-gold {
+    display: inline-block;
+    padding: 11px 18px;
+    background: var(--eo-gold);
+    color: var(--eo-navy) !important;
+    border-radius: 8px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.btn-gold:hover {
+    background: #C3984C;
+    text-decoration: none;
+}
+
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+    margin-bottom: 26px;
+}
+
+.stat-card {
+    display: block;
+    padding: 22px;
+    background: #FFFFFF;
+    border: 1px solid var(--eo-border);
+    border-radius: 14px;
+    box-shadow: 0 5px 18px rgba(15, 35, 56, .05);
+    color: var(--eo-navy) !important;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 9px 24px rgba(15, 35, 56, .10);
+    text-decoration: none;
+}
+
+.stat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.icon-gold {
+    color: #946A22;
+    background: #FAF1DE;
+}
+
+.icon-blue {
+    color: #1B3A57;
+    background: #EAF0F6;
+}
+
+.icon-orange {
+    color: #A65C13;
+    background: #FFF0E1;
+}
+
+.icon-purple {
+    color: #7351A1;
+    background: #F1EAF9;
+}
+
+.stat-label {
+    color: var(--eo-muted);
+    font-size: 14px;
+}
+
+.stat-number {
+    margin: 8px 0;
+    color: var(--eo-navy);
+    font-size: 34px;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.stat-footer {
+    margin-top: 14px;
+    padding-top: 13px;
+    border-top: 1px solid #EEF1F5;
+    color: var(--eo-blue);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.dashboard-panel {
+    margin-bottom: 24px;
+    padding: 24px;
+    background: #FFFFFF;
+    border: 1px solid var(--eo-border);
+    border-radius: 14px;
+    box-shadow: 0 5px 18px rgba(15, 35, 56, .05);
+}
+
+.panel-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.panel-heading h2 {
+    margin: 0 0 7px;
+    color: var(--eo-navy);
+    font-size: 19px;
+    font-weight: 750;
+}
+
+.panel-heading > a {
+    color: var(--eo-blue);
+    font-weight: 600;
+}
+
+.dashboard-table-wrapper {
+    overflow-x: auto;
+}
+
+.dashboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.dashboard-table th {
+    padding: 14px 12px;
+    background: #F4F6FA;
+    color: var(--eo-navy);
+    text-align: left;
+    white-space: nowrap;
+}
+
+.dashboard-table td {
+    padding: 15px 12px;
+    border-bottom: 1px solid #EDF0F4;
+    color: #475569;
+}
+
+.dashboard-table tbody tr:hover {
+    background: #FAFBFD;
+}
+
+.dashboard-table .client-name {
+    color: var(--eo-navy);
+    font-weight: 700;
+}
+
+.status-pill {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.status-done {
+    background: #E6F5EB;
+    color: #247548;
+}
+
+.status-pending {
+    background: #FFF2D9;
+    color: #94620B;
+}
+
+.table-action {
+    color: #1B5B87;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.empty-state {
+    padding: 28px !important;
+    text-align: center;
+    color: var(--eo-muted) !important;
+}
+
+/* Modules Django Admin */
+.admin-modules .module {
+    margin-bottom: 18px;
+    border: 1px solid var(--eo-border);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: none;
+}
+
+.admin-modules .module caption,
+.admin-modules .module h2 {
+    background: var(--eo-navy) !important;
+    color: #FFFFFF !important;
+    padding: 13px 16px;
+}
+
+.admin-modules .module th,
+.admin-modules .module td {
+    padding: 12px;
+}
+
+.admin-modules .module a {
+    color: var(--eo-blue);
+}
+
+.admin-modules .module a:hover {
+    color: #A77A2F;
+}
+
+/* Boutons et formulaires Django */
+.btn-success,
+.btn-warning {
+    background: var(--eo-gold) !important;
+    border-color: var(--eo-gold) !important;
+    color: var(--eo-navy) !important;
+    font-weight: 700;
+}
+
+.btn-primary,
+.btn-info {
+    background: var(--eo-blue) !important;
+    border-color: var(--eo-blue) !important;
+    color: #FFFFFF !important;
+}
+
+.form-control:focus,
+select:focus {
+    border-color: var(--eo-gold) !important;
+    box-shadow: 0 0 0 3px rgba(212, 169, 90, .18) !important;
+}
+
+@media (max-width: 1100px) {
+    .dashboard-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .dashboard-heading,
+    .panel-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .dashboard-heading h1 {
+        font-size: 23px;
+    }
+
+    .dashboard-stats {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .dashboard-panel {
+        padding: 15px;
+    }
+}

@@ -1,0 +1,174 @@
+{% load static i18n %}<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}{{ AGENCE.nom }} – {% trans "Vente et location immobilière" %}{% endblock %}</title>
+<meta name="description" content="{% block description %}{% blocktrans with nom=AGENCE.nom %}{{ nom }} : vente et location d’appartements, villas, terrains et locaux.{% endblocktrans %}{% endblock %}">
+
+<!-- Open Graph (Partage sur WhatsApp, Facebook, etc.) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ AGENCE.nom }} – Vente et location immobilière au Maroc">
+<meta property="og:description" content="Découvrez notre sélection de biens immobiliers au Maroc : appartements, villas, riads, terrains et locaux.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=630&q=80">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta property="og:site_name" content="{{ AGENCE.nom }}">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ AGENCE.nom }} – Vente et location immobilière au Maroc">
+<meta name="twitter:description" content="Découvrez notre sélection de biens immobiliers au Maroc.">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=630&q=80">
+
+<!-- Permet aux pages enfants (comme detail.html) d'ajouter leurs propres balises OG -->
+{% block extra_head %}{% endblock %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="{% static 'css/site.css' %}">
+<!-- FontAwesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="logo" href="{% url 'accueil' %}">{{ AGENCE.nom }}</a>
+  
+  <div class="header-right" style="display: flex; align-items: center; gap: 15px;">
+    
+    <!-- Bouton Menu Burger (3 barres) -->
+    <button id="menu-toggle" style="background: none; border: none; cursor: pointer; font-size: 24px; color: #0F2338; padding: 5px;">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Bouton WhatsApp (Logo vert) -->
+    <a href="https://wa.me/{{ AGENCE.whatsapp }}" style="background-color: #25D366; color: #fff; font-weight: bold; border-radius: 50px; padding: 8px 16px; display: flex; align-items: center; gap: 8px; text-decoration: none; font-size: 14px; border: none;">
+      <i class="fa-brands fa-whatsapp" style="font-size: 18px;"></i> WhatsApp
+    </a>
+
+    <!-- Sélecteur de Langue -->
+    <div class="lang-dropdown">
+      <button class="lang-btn" style="border: 1px solid #ddd; background: #fff; padding: 8px 12px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+        🌐 <span style="font-size: 14px;">Langue</span> ▼
+      </button>
+      <div class="lang-menu">
+        <form action="{% url 'set_language' %}" method="post" style="margin:0;">{% csrf_token %}
+          <input type="hidden" name="next" value="{{ request.get_full_path }}">
+          <button type="submit" name="language" value="fr" class="lang-item">🇫🇷 Français</button>
+          <button type="submit" name="language" value="en" class="lang-item">🇬🇧 English</button>
+          <button type="submit" name="language" value="ar" class="lang-item">🇲🇦 العربية</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Menu déroulant (caché par défaut) -->
+<div id="mobile-menu" style="display: none; position: fixed; top: 80px; right: 20px; background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-radius: 12px; padding: 20px; z-index: 1000; width: 250px;">
+  <nav style="display: flex; flex-direction: column; gap: 15px;">
+    <a href="{% url 'accueil' %}" style="color: #0F2338; font-weight: 600; text-decoration: none;">Accueil</a>
+    <a href="{% url 'liste' %}?transaction=vente" style="color: #0F2338; font-weight: 600; text-decoration: none;">Acheter</a>
+    <a href="{% url 'liste' %}?transaction=location" style="color: #0F2338; font-weight: 600; text-decoration: none;">Louer</a>
+    <a href="{% url 'estimation' %}" style="color: #0F2338; font-weight: 600; text-decoration: none;">Estimer mon bien</a>
+    <a href="{% url 'agents' %}" style="color: #0F2338; font-weight: 600; text-decoration: none;">Nos agents</a>
+    <a href="{% url 'blog' %}" style="color: #0F2338; font-weight: 600; text-decoration: none;">Blog</a>
+    <a href="{% url 'simulateur' %}" style="color: #0F2338; font-weight: 600; text-decoration: none;">Simulateur de crédit</a>
+    <a href="{% url 'a_propos' %}" style="color: #0F2338; font-weight: 600; text-decoration: none;">À propos</a>
+    <a href="{% url 'contact' %}" style="color: #0F2338; font-weight: 600; text-decoration: none;">Contact</a>
+    <a href="{% url 'mes_favoris' %}" style="color: #D4A95A; font-weight: 600; text-decoration: none;">❤️ Favoris</a>
+  </nav>
+</div>
+
+{% if messages %}<div class="messages">{% for m in messages %}<p class="message {{ m.tags }}" role="status">{{ m }}</p>{% endfor %}</div>{% endif %}
+
+<main>{% block content %}{% endblock %}</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div><span class="logo">{{ AGENCE.nom }}</span><p>{% trans "Vente et location immobilière" %}.<br>{% blocktrans with proprio=AGENCE.proprietaire %}Dirigée par {{ proprio }}.{% endblocktrans %}</p></div>
+    <div><strong>{% trans "Navigation" %}</strong><p><a href="{% url 'liste' %}?transaction=vente">{% trans "Acheter" %}</a> · <a href="{% url 'liste' %}?transaction=location">{% trans "Louer" %}</a><br><a href="{% url 'estimation' %}">{% trans "Estimer mon bien" %}</a> · <a href="{% url 'agents' %}">{% trans "Nos agents" %}</a><br><a href="{% url 'blog' %}">{% trans "Blog" %}</a> · <a href="{% url 'a_propos' %}">{% trans "À propos" %}</a><br><a href="{% url 'mes_favoris' %}">❤️ {% trans "Favoris" %}</a></p></div>
+    <div><strong>{% trans "Contact" %}</strong><p><a href="tel:{{ AGENCE.telephone }}" dir="ltr">{{ AGENCE.telephone }}</a><br>{{ AGENCE.email }}<br>{{ AGENCE.adresse }}</p></div>
+  </div>
+
+  <!-- Section Nous suivre (en dehors de la grille, sur toute la largeur) -->
+  <div style="background-color: #C7B595; padding: 40px 20px; text-align: center; margin-top: 40px;">
+    <h3 style="color: #5B6573; font-size: 18px; font-weight: 600; margin-bottom: 20px;">Nous suivre</h3>
+    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+      
+      <!-- Facebook -->
+      <a href="#" target="_blank" style="background: #fff; color: #C7B595; width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 20px;">
+        <i class="fa-brands fa-facebook-f"></i>
+      </a>
+      
+      <!-- Instagram -->
+      <a href="#" target="_blank" style="background: #fff; color: #C7B595; width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 20px;">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+      
+      <!-- YouTube -->
+      <a href="#" target="_blank" style="background: #fff; color: #C7B595; width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 20px;">
+        <i class="fa-brands fa-youtube"></i>
+      </a>
+      
+      <!-- LinkedIn -->
+      <a href="#" target="_blank" style="background: #fff; color: #C7B595; width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 20px;">
+        <i class="fa-brands fa-linkedin-in"></i>
+      </a>
+      
+      <!-- TikTok -->
+      <a href="#" target="_blank" style="background: #fff; color: #C7B595; width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 20px;">
+        <i class="fa-brands fa-tiktok"></i>
+      </a>
+      
+      <!-- Email -->
+      <a href="mailto:{{ AGENCE.email }}" style="background: #fff; color: #C7B595; width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 20px;">
+        <i class="fa-solid fa-envelope"></i>
+      </a>
+
+    </div>
+  </div>
+
+  <p class="container copy">© {% now "Y" %} {{ AGENCE.nom }} · <a href="{% url 'mentions_legales' %}">{% trans "Mentions légales" %}</a> · <a href="{% url 'confidentialite' %}">{% trans "Confidentialité" %}</a></p>
+</footer>
+
+<!-- Bouton WhatsApp flottant -->
+<a href="https://wa.me/{{ AGENCE.whatsapp }}" target="_blank" style="position: fixed; bottom: 20px; right: 20px; background-color: #25D366; color: #fff; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 1000; text-decoration: none;" aria-label="WhatsApp">
+  <i class="fa-brands fa-whatsapp" style="font-size: 35px;"></i>
+</a>
+
+<!-- Script pour le menu burger -->
+<script>
+  document.getElementById('menu-toggle').addEventListener('click', function() {
+    var menu = document.getElementById('mobile-menu');
+    if (menu.style.display === 'none') {
+      menu.style.display = 'block';
+    } else {
+      menu.style.display = 'none';
+    }
+  });
+</script>
+
+<!-- Bandeau de cookies -->
+<div id="cookie-banner" style="display: none; position: fixed; bottom: 0; left: 0; width: 100%; background: #0F2338; color: #fff; padding: 20px; z-index: 9999; box-shadow: 0 -4px 10px rgba(0,0,0,0.1);">
+  <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px;">
+    <div style="flex: 1; min-width: 300px;">
+      <p style="margin: 0; font-size: 14px; color: #E2E8F0;">
+        🍪 Nous utilisons des cookies pour améliorer votre expérience et analyser notre trafic. 
+        <a href="{% url 'confidentialite' %}" style="color: #D4A95A; text-decoration: underline;">En savoir plus</a>
+      </p>
+    </div>
+    <div style="display: flex; gap: 10px;">
+      <button id="cookie-reject" style="background: transparent; border: 1px solid #fff; color: #fff; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 600;">
+        Refuser
+      </button>
+      <button id="cookie-accept" style="background: #D4A95A; border: none; color: #0F2338; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: bold;">
+        Accepter
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Script des cookies -->
+<script src="{% static 'js/cookies.js' %}"></script>
+</body>
+</html>

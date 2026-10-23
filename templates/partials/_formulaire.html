@@ -1,0 +1,10 @@
+<form method="post" novalidate>
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+  <div class="field">{{ form.nom.label_tag }}{{ form.nom }}{{ form.nom.errors }}</div>
+  <div class="field">{{ form.telephone.label_tag }}{{ form.telephone }}{{ form.telephone.errors }}</div>
+  <div class="field">{{ form.email.label_tag }}{{ form.email }}{{ form.email.errors }}</div>
+  <div class="field">{{ form.message.label_tag }}{{ form.message }}{{ form.message.errors }}</div>
+  <div class="hp" aria-hidden="true">{{ form.site_web }}</div>
+  <button class="btn btn-navy btn-block" type="submit">{{ bouton }}</button>
+</form>

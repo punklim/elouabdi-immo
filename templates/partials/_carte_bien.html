@@ -1,0 +1,20 @@
+{% load humanize i18n %}
+<article class="card fx-card">
+  <a class="card-photo" href="{{ bien.get_absolute_url }}">
+    {% with photo=bien.photos.all.0 %}{% if photo %}<img src="{{ photo.image.url }}" alt="{{ bien.titre_affiche }}" loading="lazy">{% else %}<span class="ph">{% trans "Photo à venir" %}</span>{% endif %}{% endwith %}
+    <span class="badge {% if bien.transaction == 'location' %}badge-gold{% endif %}">{{ bien.get_transaction_display }}</span>
+    {% if bien.statut != 'disponible' %}<span class="badge badge-status">{{ bien.get_statut_display }}</span>{% endif %}
+  </a>
+  <div class="card-body">
+    <p class="price">{{ bien.prix|intcomma }} {% trans "MAD" %}{% if bien.transaction == 'location' %} {% trans "/ mois" %}{% endif %}</p>
+    <h3><a href="{{ bien.get_absolute_url }}">{{ bien.titre_affiche }}</a></h3>
+    <p class="meta">{{ bien.ville.nom_affiche }} · {{ bien.surface }} {% trans "m²" %}{% if bien.chambres %} · {{ bien.chambres }} {% trans "ch." %}{% endif %}{% if bien.salles_de_bain %} · {{ bien.salles_de_bain }} {% trans "sdb" %}{% endif %}</p>
+    
+    <!-- BOUTON FAVORI -->
+    <button class="btn-favori" data-id="{{ bien.id }}" style="background: none; border: none; cursor: pointer; font-size: 20px; float: right; padding: 0;">
+      ❤️
+    </button>
+    
+    <a class="link" href="{{ bien.get_absolute_url }}">{% trans "Voir le bien" %}</a>
+  </div>
+</article>

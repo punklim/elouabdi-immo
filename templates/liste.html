@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Nos biens" %} – {{ AGENCE.nom }}{% endblock %}
+{% block content %}
+<div class="page-head"><div class="container">
+  <h1>{% if sel.transaction == 'vente' %}{% trans "Biens à vendre" %}{% elif sel.transaction == 'location' %}{% trans "Biens à louer" %}{% else %}{% trans "Tous nos biens" %}{% endif %}</h1>
+  <div class="listing-search">{% include "partials/_recherche.html" %}</div>
+</div></div>
+
+<section class="section" style="padding-top:0"><div class="container">
+  <div class="toolbar">
+    <p class="muted"><strong>{% blocktrans with n=total %}Résultats : {{ n }}{% endblocktrans %}</strong></p>
+    <form method="get">
+      {% for k, v in sel.items %}{% if k != 'tri' and k != 'page' %}<input type="hidden" name="{{ k }}" value="{{ v }}">{% endif %}{% endfor %}
+      <label class="muted" for="tri" style="font-size:14px">{% trans "Trier par" %}</label>
+      <select id="tri" name="tri" onchange="this.form.submit()">
+        <option value="">{% trans "Plus récents" %}</option>
+        <option value="prix" {% if sel.tri == 'prix' %}selected{% endif %}>{% trans "Prix croissant" %}</option>
+        <option value="-prix" {% if sel.tri == '-prix' %}selected{% endif %}>{% trans "Prix décroissant" %}</option>
+      </select>
+    </form>
+  </div>
+  {% if page %}<div class="grid">{% for b in page %}{% include "partials/_carte_bien.html" with bien=b %}{% endfor %}</div>
+  {% else %}<p class="empty">{% trans "Aucun bien ne correspond à votre recherche. Essayez d’élargir vos critères." %}</p>{% endif %}
+  {% include "partials/_pagination.html" %}
+
+  <form class="alert-box" method="post" action="{% url 'alerte_creer' %}">
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ request.get_full_path }}">
+    <input type="hidden" name="transaction" value="{{ sel.transaction }}">
+    <input type="hidden" name="ville" value="{{ ville_obj.pk|default:'' }}">
+    <input type="hidden" name="type_bien" value="{{ sel.type }}">
+    <input type="hidden" name="budget_max" value="{{ sel.budget }}">
+    <div><strong>{% trans "Recevoir une alerte e-mail pour cette recherche" %}</strong>
+    <p class="muted" style="font-size:14px">{% trans "Soyez prévenu(e) dès qu’un nouveau bien correspond à vos critères. Désinscription en un clic." %}</p></div>
+    <div class="alert-row">
+      <input type="email" name="email" required placeholder="{% trans 'Votre e-mail' %}" aria-label="{% trans 'Votre e-mail' %}">
+      <div class="hp" aria-hidden="true"><input type="text" name="site_web" tabindex="-1" autocomplete="off"></div>
+      <button class="btn btn-navy" type="submit">{% trans "Activer l’alerte" %}</button>
+    </div>
+  </form>
+</div></section>
+{% endblock %}

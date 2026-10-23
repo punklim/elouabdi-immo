@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "À propos" %} – {{ AGENCE.nom }}{% endblock %}
+{% block content %}
+<section class="section form-page"><div class="narrow" style="max-width:820px">
+  <h1>{% blocktrans with nom=AGENCE.nom %}À propos de {{ nom }}{% endblocktrans %}</h1>
+  <p class="lead">{% blocktrans with nom=AGENCE.nom %}{{ nom }} est une agence immobilière spécialisée dans la vente et la location : appartements, villas, terrains et locaux.{% endblocktrans %}</p>
+  <h2 class="section-title" style="font-size:28px">{% trans "Notre mission" %}</h2>
+  <p class="desc">{% trans "Vous accompagner avec sérieux et transparence, de la recherche du bien jusqu’à la signature." %}</p>
+  <div class="pillars" style="margin:40px 0">
+    <div class="pillar"><h3>{% trans "Écoute" %}</h3><p class="muted">{% trans "Nous prenons le temps de comprendre votre projet et votre budget." %}</p></div>
+    <div class="pillar"><h3>{% trans "Transparence" %}</h3><p class="muted">{% trans "Des informations claires sur chaque bien, sans mauvaise surprise." %}</p></div>
+    <div class="pillar"><h3>{% trans "Réactivité" %}</h3><p class="muted">{% trans "Une réponse rapide à vos demandes, par téléphone ou par WhatsApp." %}</p></div>
+  </div>
+  <p class="desc">{% blocktrans with proprio=AGENCE.proprietaire %}L’agence est dirigée par {{ proprio }}.{% endblocktrans %}</p>
+  <div class="cta-actions"><a class="btn btn-navy" href="{% url 'agents' %}">{% trans "Rencontrer l’équipe" %}</a><a class="btn btn-outline" href="{% url 'contact' %}">{% trans "Nous contacter" %}</a></div>
+</div></section>
+{% endblock %}

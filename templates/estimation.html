@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Estimer mon bien" %} – {{ AGENCE.nom }}{% endblock %}
+{% block content %}
+<section class="section form-page"><div class="narrow">
+  <h1>{% trans "Estimer mon bien" %}</h1>
+  <p class="lead">{% trans "Décrivez votre bien (type, ville, surface, état, prix souhaité) : un conseiller vous recontacte pour une estimation gratuite." %}</p>
+  {% trans "Demander mon estimation" as bouton_estimation %}
+  {% include "partials/_formulaire.html" with bouton=bouton_estimation %}
+</div></section>
+{% endblock %}

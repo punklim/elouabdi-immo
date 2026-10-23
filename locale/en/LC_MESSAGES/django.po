@@ -1,0 +1,546 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: elouabdi_immo\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "À propos"
+msgstr "About us"
+
+msgid "Notre mission"
+msgstr "Our mission"
+
+msgid "Vous accompagner avec sérieux et transparence, de la recherche du bien jusqu’à la signature."
+msgstr "Accompany you with seriousness and transparency, from property search to signing."
+
+msgid "Écoute"
+msgstr "Listening"
+
+msgid "Nous prenons le temps de comprendre votre projet et votre budget."
+msgstr "We take the time to understand your project and your budget."
+
+msgid "Transparence"
+msgstr "Transparency"
+
+msgid "Des informations claires sur chaque bien, sans mauvaise surprise."
+msgstr "Clear information on each property, with no unpleasant surprises."
+
+msgid "Réactivité"
+msgstr "Responsiveness"
+
+msgid "Une réponse rapide à vos demandes, par téléphone ou par WhatsApp."
+msgstr "A quick response to your requests, by phone or WhatsApp."
+
+msgid "Rencontrer l’équipe"
+msgstr "Meet the team"
+
+msgid "Nous contacter"
+msgstr "Contact us"
+
+msgid "À propos de %(nom)s"
+msgstr "About %(nom)s"
+
+msgid "%(nom)s est une agence immobilière spécialisée dans la vente et la location : appartements, villas, terrains et locaux."
+msgstr "%(nom)s is a real estate agency specialising in sales and rentals: apartments, villas, land and commercial premises."
+
+msgid "L’agence est dirigée par %(proprio)s."
+msgstr "The agency is managed by %(proprio)s."
+
+msgid "Vente et location"
+msgstr "Sales and rentals"
+
+msgid "Trouvez le bien qui vous ressemble."
+msgstr "Find the property that suits you."
+
+msgid "Appartements, villas, terrains et locaux : nos conseillers vous accompagnent de la recherche jusqu’aux clés."
+msgstr "Apartments, villas, land and commercial premises: our advisors support you from search to keys."
+
+msgid "Explorer par catégorie"
+msgstr "Explore by category"
+
+msgid "Biens à la une"
+msgstr "Featured properties"
+
+msgid "Voir tous les biens"
+msgstr "View all properties"
+
+msgid "Aucun bien publié pour le moment."
+msgstr "No properties published yet."
+
+msgid "Vous souhaitez vendre ou louer votre bien ?"
+msgstr "Do you want to sell or rent your property?"
+
+msgid "Recevez une estimation gratuite et confiez-nous votre mandat : photos, visites et négociation, nous nous occupons de tout."
+msgstr "Get a free estimate and entrust us with your mandate: photos, visits and negotiation, we take care of everything."
+
+msgid "Estimer mon bien"
+msgstr "Estimate my property"
+
+msgid "Conseils et actualités"
+msgstr "Tips and news"
+
+msgid "Voir tous les articles"
+msgstr "View all articles"
+
+msgid "Pourquoi nous choisir"
+msgstr "Why choose us"
+
+msgid "Conseillers à votre écoute"
+msgstr "Advisors at your service"
+
+msgid "Un accompagnement personnalisé, du premier contact jusqu’à la remise des clés."
+msgstr "Personalised support, from first contact to handing over the keys."
+
+msgid "Biens vérifiés"
+msgstr "Verified properties"
+
+msgid "Chaque annonce est contrôlée : informations claires, photos réelles, prix transparents."
+msgstr "Every listing is checked: clear information, real photos, transparent prices."
+
+msgid "Suivi jusqu’à la signature"
+msgstr "Follow-up until signature"
+
+msgid "Visites, négociation et démarches : nous restons à vos côtés à chaque étape."
+msgstr "Visits, negotiation and procedures: we stay by your side at every step."
+
+msgid "%(n)s annonce(s)"
+msgstr "%(n)s listing(s)"
+
+msgid "Nos agents"
+msgstr "Our agents"
+
+msgid "Notre équipe"
+msgstr "Our team"
+
+msgid "Des conseillers à votre écoute pour vos projets d’achat, de vente et de location."
+msgstr "Advisors at your service for your buying, selling and rental projects."
+
+msgid "Appeler"
+msgstr "Call"
+
+msgid "L’équipe sera bientôt présentée ici."
+msgstr "The team will be presented here soon."
+
+msgid "Vente et location immobilière"
+msgstr "Real estate sales and rentals"
+
+msgid "Navigation principale"
+msgstr "Main navigation"
+
+msgid "Accueil"
+msgstr "Home"
+
+msgid "Acheter"
+msgstr "Buy"
+
+msgid "Louer"
+msgstr "Rent"
+
+msgid "Blog"
+msgstr "Blog"
+
+msgid "Simulateur de crédit"
+msgstr "Loan simulator"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "Navigation"
+msgstr "Navigation"
+
+msgid "Mentions légales"
+msgstr "Legal notice"
+
+msgid "Confidentialité"
+msgstr "Privacy policy"
+
+msgid "Nous écrire sur WhatsApp"
+msgstr "Write to us on WhatsApp"
+
+msgid "%(nom)s : vente et location d’appartements, villas, terrains et locaux."
+msgstr "%(nom)s: sales and rentals of apartments, villas, land and commercial premises."
+
+msgid "Dirigée par %(proprio)s."
+msgstr "Managed by %(proprio)s."
+
+msgid "Retour au blog"
+msgstr "Back to blog"
+
+msgid "Guides pratiques pour acheter, vendre ou louer en toute sérénité."
+msgstr "Practical guides to buy, sell or rent with peace of mind."
+
+msgid "Aucun article pour le moment."
+msgstr "No articles yet."
+
+msgid "Politique de confidentialité"
+msgstr "Privacy policy"
+
+msgid "Cette page explique quelles données personnelles nous collectons et comment nous les utilisons."
+msgstr "This page explains what personal data we collect and how we use it."
+
+msgid "Données collectées"
+msgstr "Data collected"
+
+msgid "Via les formulaires du site : nom, numéro de téléphone, adresse e-mail (facultative) et contenu de votre message ; pour les alertes : adresse e-mail et critères de recherche."
+msgstr "Via the site's forms: name, phone number, email address (optional) and the content of your message; for alerts: email address and search criteria."
+
+msgid "Utilisation des données"
+msgstr "Use of data"
+
+msgid "Ces données servent uniquement à répondre à vos demandes (contact, visite, estimation) et à vous envoyer les alertes que vous avez activées. Elles ne sont ni vendues ni cédées à des tiers à des fins commerciales."
+msgstr "This data is used only to respond to your requests (contact, visit, estimate) and to send you the alerts you have activated. It is neither sold nor transferred to third parties for commercial purposes."
+
+msgid "Durée de conservation"
+msgstr "Retention period"
+
+msgid "Vos données sont conservées le temps nécessaire au traitement de votre demande, puis supprimées ou archivées selon les obligations légales. Vous pouvez supprimer une alerte à tout moment grâce au lien présent dans chaque e-mail."
+msgstr "Your data is kept for the time needed to process your request, then deleted or archived in accordance with legal obligations. You can delete an alert at any time using the link in each email."
+
+msgid "Cookies"
+msgstr "Cookies"
+
+msgid "Ce site utilise uniquement des cookies techniques nécessaires à son fonctionnement (session, sécurité des formulaires, choix de la langue). Il n’utilise pas de cookies publicitaires ni de suivi."
+msgstr "This site uses only technical cookies necessary for its operation (session, form security, language choice). It does not use advertising or tracking cookies."
+
+msgid "Vos droits"
+msgstr "Your rights"
+
+msgid "Conformément à la loi n° 09-08 relative à la protection des personnes physiques à l’égard du traitement des données à caractère personnel, vous disposez d’un droit d’accès, de rectification et d’opposition. Pour l’exercer, écrivez-nous à %(email)s."
+msgstr "In accordance with Law No. 09-08 on the protection of individuals with regard to the processing of personal data, you have the right to access, rectify and object. To exercise this, write to us at %(email)s."
+
+msgid "Déclaration CNDP n° %(num)s"
+msgstr "CNDP declaration No. %(num)s"
+
+msgid "Envoyer le message"
+msgstr "Send message"
+
+msgid "MAD"
+msgstr "MAD"
+
+msgid "par mois"
+msgstr "per month"
+
+msgid "Photo à venir"
+msgstr "Photo coming soon"
+
+msgid "Surface"
+msgstr "Area"
+
+msgid "m²"
+msgstr "m²"
+
+msgid "Chambres"
+msgstr "Bedrooms"
+
+msgid "Salles de bain"
+msgstr "Bathrooms"
+
+msgid "Étage"
+msgstr "Floor"
+
+msgid "Année"
+msgstr "Year"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Équipements"
+msgstr "Amenities"
+
+msgid "Voir la vidéo / visite virtuelle"
+msgstr "View video / virtual tour"
+
+msgid "Localisation"
+msgstr "Location"
+
+msgid "Carte du bien"
+msgstr "Property map"
+
+msgid "Simuler mon crédit"
+msgstr "Simulate my loan"
+
+msgid "Être rappelé(e) / demander une visite"
+msgstr "Request a callback / visit"
+
+msgid "Je suis intéressé(e)"
+msgstr "I am interested"
+
+msgid "Biens similaires"
+msgstr "Similar properties"
+
+msgid "Réf. %(ref)s"
+msgstr "Ref. %(ref)s"
+
+msgid "Bonjour, je suis intéressé(e) par le bien %(ref)s."
+msgstr "Hello, I am interested in property %(ref)s."
+
+msgid "Décrivez votre bien (type, ville, surface, état, prix souhaité) : un conseiller vous recontacte pour une estimation gratuite."
+msgstr "Describe your property (type, city, area, condition, desired price): an advisor will contact you for a free estimate."
+
+msgid "Demander mon estimation"
+msgstr "Request my estimate"
+
+msgid "Nos biens"
+msgstr "Our properties"
+
+msgid "Biens à vendre"
+msgstr "Properties for sale"
+
+msgid "Biens à louer"
+msgstr "Properties for rent"
+
+msgid "Tous nos biens"
+msgstr "All our properties"
+
+msgid "Trier par"
+msgstr "Sort by"
+
+msgid "Plus récents"
+msgstr "Most recent"
+
+msgid "Prix croissant"
+msgstr "Price ascending"
+
+msgid "Prix décroissant"
+msgstr "Price descending"
+
+msgid "Aucun bien ne correspond à votre recherche. Essayez d’élargir vos critères."
+msgstr "No property matches your search. Try broadening your criteria."
+
+msgid "Recevoir une alerte e-mail pour cette recherche"
+msgstr "Receive an email alert for this search"
+
+msgid "Soyez prévenu(e) dès qu’un nouveau bien correspond à vos critères. Désinscription en un clic."
+msgstr "Be notified as soon as a new property matches your criteria. Unsubscribe in one click."
+
+msgid "Votre e-mail"
+msgstr "Your email"
+
+msgid "Activer l’alerte"
+msgstr "Activate alert"
+
+msgid "Résultats : %(n)s"
+msgstr "Results: %(n)s"
+
+msgid "Éditeur du site"
+msgstr "Site publisher"
+
+msgid "Adresse"
+msgstr "Address"
+
+msgid "Téléphone"
+msgstr "Phone"
+
+msgid "E-mail"
+msgstr "Email"
+
+msgid "Directeur de la publication"
+msgstr "Publication director"
+
+msgid "Hébergement"
+msgstr "Hosting"
+
+msgid "Propriété intellectuelle"
+msgstr "Intellectual property"
+
+msgid "Les textes, images et éléments graphiques de ce site sont protégés. Toute reproduction sans autorisation écrite est interdite."
+msgstr "The texts, images and graphic elements of this site are protected. Any reproduction without written authorisation is prohibited."
+
+msgid "Responsabilité"
+msgstr "Liability"
+
+msgid "Les annonces sont présentées à titre indicatif et peuvent être modifiées ou retirées à tout moment. Les informations (prix, surfaces, disponibilité) ne constituent pas une offre contractuelle."
+msgstr "Listings are presented for information purposes only and may be modified or removed at any time. The information (prices, areas, availability) does not constitute a contractual offer."
+
+msgid "Ce site est édité par %(nom)s, dirigée par %(proprio)s."
+msgstr "This site is published by %(nom)s, managed by %(proprio)s."
+
+msgid "Le site est hébergé par : %(h)s."
+msgstr "The site is hosted by: %(h)s."
+
+msgid "Lire l’article"
+msgstr "Read the article"
+
+msgid "/ mois"
+msgstr "/ month"
+
+msgid "ch."
+msgstr "bd."
+
+msgid "sdb"
+msgstr "ba."
+
+msgid "Voir le bien"
+msgstr "View property"
+
+msgid "Précédent"
+msgstr "Previous"
+
+msgid "Suivant"
+msgstr "Next"
+
+msgid "Page %(n)s sur %(total)s"
+msgstr "Page %(n)s of %(total)s"
+
+msgid "Type de transaction"
+msgstr "Transaction type"
+
+msgid "Tous"
+msgstr "All"
+
+msgid "Ville"
+msgstr "City"
+
+msgid "Toutes les villes"
+msgstr "All cities"
+
+msgid "Type de bien"
+msgstr "Property type"
+
+msgid "Tous les types"
+msgstr "All types"
+
+msgid "Budget max (MAD)"
+msgstr "Max budget (MAD)"
+
+msgid "Sans limite"
+msgstr "No limit"
+
+msgid "Chambres (min.)"
+msgstr "Bedrooms (min.)"
+
+msgid "Indifférent"
+msgstr "Any"
+
+msgid "Rechercher"
+msgstr "Search"
+
+msgid "Simulateur de crédit immobilier"
+msgstr "Real estate loan simulator"
+
+msgid "Estimez votre mensualité en quelques secondes."
+msgstr "Estimate your monthly payment in seconds."
+
+msgid "Prix du bien (MAD)"
+msgstr "Property price (MAD)"
+
+msgid "Apport personnel (MAD)"
+msgstr "Down payment (MAD)"
+
+msgid "Durée (années)"
+msgstr "Duration (years)"
+
+msgid "Taux annuel (%)"
+msgstr "Annual rate (%)"
+
+msgid "Mensualité estimée"
+msgstr "Estimated monthly payment"
+
+msgid "Montant à emprunter"
+msgstr "Amount to borrow"
+
+msgid "Coût total du crédit"
+msgstr "Total cost of the loan"
+
+msgid "Dont intérêts"
+msgstr "Including interest"
+
+msgid "Estimation indicative, hors assurance et frais de dossier. Seule votre banque peut confirmer les conditions réelles."
+msgstr "Indicative estimate, excluding insurance and application fees. Only your bank can confirm the actual conditions."
+
+msgid "Parler à un conseiller"
+msgstr "Talk to an advisor"
+
+msgid "Votre alerte immobilière est activée"
+msgstr "Your real estate alert is activated"
+
+msgid "Bonjour,\n\nVotre alerte est bien enregistrée : vous recevrez un e-mail à chaque nouveau bien correspondant à votre recherche.\n\nPour vous désinscrire : %(lien)s"
+msgstr "Hello,\n\nYour alert is registered: you will receive an email for each new property matching your search.\n\nTo unsubscribe: %(lien)s"
+
+msgid "Nouveau bien : %(titre)s"
+msgstr "New property: %(titre)s"
+
+msgid "Un nouveau bien correspond à votre alerte :\n\n%(titre)s\n%(ville)s · %(prix)s MAD\n\n%(lien)s\n\nSe désinscrire : %(stop)s"
+msgstr "A new property matches your alert:\n\n%(titre)s\n%(ville)s · %(prix)s MAD\n\n%(lien)s\n\nUnsubscribe: %(stop)s"
+
+msgid "Nom complet"
+msgstr "Full name"
+
+msgid "E-mail (facultatif)"
+msgstr "Email (optional)"
+
+msgid "Message"
+msgstr "Message"
+
+msgid "À vendre"
+msgstr "For sale"
+
+msgid "À louer"
+msgstr "For rent"
+
+msgid "Appartement"
+msgstr "Apartment"
+
+msgid "Villa"
+msgstr "Villa"
+
+msgid "Riad"
+msgstr "Riad"
+
+msgid "Terrain"
+msgstr "Land"
+
+msgid "Local commercial"
+msgstr "Commercial premises"
+
+msgid "Bureau"
+msgstr "Office"
+
+msgid "Disponible"
+msgstr "Available"
+
+msgid "Réservé"
+msgstr "Reserved"
+
+msgid "Vendu"
+msgstr "Sold"
+
+msgid "Loué"
+msgstr "Rented"
+
+msgid "Merci ! Nous vous contactons rapidement pour estimer votre bien."
+msgstr "Thank you! We will contact you shortly to estimate your property."
+
+msgid "Merci ! Votre message a bien été envoyé."
+msgstr "Thank you! Your message has been sent."
+
+msgid "Vous êtes désinscrit(e) : vous ne recevrez plus d’e-mails pour cette alerte."
+msgstr "You are unsubscribed: you will no longer receive emails for this alert."
+
+msgid "Merci ! Votre demande a bien été envoyée, nous vous rappelons très vite."
+msgstr "Thank you! Your request has been sent, we will call you back shortly."
+
+msgid "Alerte activée ! Vous recevrez un e-mail dès qu’un nouveau bien correspond à votre recherche."
+msgstr "Alert activated! You will receive an email as soon as a new property matches your search."
+
+msgid "Impossible d’activer l’alerte : vérifiez votre adresse e-mail."
+msgstr "Unable to activate the alert: please check your email address."
+msgid "Ils nous font confiance"
+msgstr "They trust us"
+
+msgid "Aucun avis pour le moment."
+msgstr "No reviews at the moment."
+msgid "Trouvez votre logement au Maroc"
+msgstr "Find your accommodation in Morocco"
+
+msgid "Disponible dans toutes les grandes villes"
+msgstr "Available in all major cities"
+
+msgid "Rejoignez notre communauté"
+msgstr "Join our community"
+
+msgid "Offres d'emploi, annonces immobilières et actualités en temps réel"
+msgstr "Job offers, real estate listings and real-time news"

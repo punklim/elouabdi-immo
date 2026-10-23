@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Mentions légales" %} – {{ AGENCE.nom }}{% endblock %}
+{% block content %}
+<section class="section form-page legal"><div class="narrow" style="max-width:820px">
+  <h1>{% trans "Mentions légales" %}</h1>
+
+  <h2>{% trans "Éditeur du site" %}</h2>
+  <p>{% blocktrans with nom=AGENCE.nom proprio=AGENCE.proprietaire %}Ce site est édité par {{ nom }}, dirigée par {{ proprio }}.{% endblocktrans %}</p>
+  <p>{% trans "Adresse" %} : {{ AGENCE.adresse }}<br>{% trans "Téléphone" %} : <span dir="ltr">{{ AGENCE.telephone }}</span><br>{% trans "E-mail" %} : {{ AGENCE.email }}
+  {% if AGENCE.ice %}<br>ICE : {{ AGENCE.ice }}{% endif %}{% if AGENCE.rc %}<br>RC : {{ AGENCE.rc }}{% endif %}{% if AGENCE.if_fiscal %}<br>IF : {{ AGENCE.if_fiscal }}{% endif %}</p>
+
+  <h2>{% trans "Directeur de la publication" %}</h2>
+  <p>{{ AGENCE.proprietaire }}</p>
+
+  {% if AGENCE.hebergeur %}<h2>{% trans "Hébergement" %}</h2>
+  <p>{% blocktrans with h=AGENCE.hebergeur %}Le site est hébergé par : {{ h }}.{% endblocktrans %}</p>{% endif %}
+
+  <h2>{% trans "Propriété intellectuelle" %}</h2>
+  <p>{% trans "Les textes, images et éléments graphiques de ce site sont protégés. Toute reproduction sans autorisation écrite est interdite." %}</p>
+
+  <h2>{% trans "Responsabilité" %}</h2>
+  <p>{% trans "Les annonces sont présentées à titre indicatif et peuvent être modifiées ou retirées à tout moment. Les informations (prix, surfaces, disponibilité) ne constituent pas une offre contractuelle." %}</p>
+</div></section>
+{% endblock %}

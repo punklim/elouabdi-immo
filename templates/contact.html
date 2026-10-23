@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Contact" %} – {{ AGENCE.nom }}{% endblock %}
+{% block content %}
+<section class="section form-page"><div class="narrow">
+  <h1>{% trans "Nous contacter" %}</h1>
+  <p class="lead"><span dir="ltr">{{ AGENCE.telephone }}</span> · {{ AGENCE.email }} · {{ AGENCE.adresse }}</p>
+  {% trans "Envoyer le message" as bouton_envoi %}
+  {% include "partials/_formulaire.html" with bouton=bouton_envoi %}
+</div></section>
+{% endblock %}

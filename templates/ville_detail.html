@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}Immobilier à {{ ville.nom }} – {{ AGENCE.nom }}{% endblock %}
+{% block description %}Découvrez tous nos biens immobiliers à {{ ville.nom }} : appartements, villas, terrains à vendre ou à louer.{% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <h1 class="section-title">{% trans "Immobilier à" %} {{ ville.nom }}</h1>
+    
+    {% if biens %}
+      <div class="grid">
+        {% for bien in biens %}
+          {% include "partials/_carte_bien.html" with bien=bien %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="empty">{% trans "Aucun bien disponible à" %} {{ ville.nom }} {% trans "pour le moment." %}</p>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

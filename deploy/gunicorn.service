@@ -1,0 +1,15 @@
+# À copier dans /etc/systemd/system/elouabdi.service
+[Unit]
+Description=Gunicorn - El Ouabdi Immobilier
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/srv/elouabdi_immo
+EnvironmentFile=/srv/elouabdi_immo/.env
+ExecStart=/srv/elouabdi_immo/.venv/bin/gunicorn config.wsgi:application --bind 127.0.0.1:8001 --workers 3
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

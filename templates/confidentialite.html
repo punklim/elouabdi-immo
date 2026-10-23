@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Politique de confidentialité" %} – {{ AGENCE.nom }}{% endblock %}
+{% block content %}
+<section class="section form-page legal"><div class="narrow" style="max-width:820px">
+  <h1>{% trans "Politique de confidentialité" %}</h1>
+  <p class="lead">{% trans "Cette page explique quelles données personnelles nous collectons et comment nous les utilisons." %}</p>
+
+  <h2>{% trans "Données collectées" %}</h2>
+  <p>{% trans "Via les formulaires du site : nom, numéro de téléphone, adresse e-mail (facultative) et contenu de votre message ; pour les alertes : adresse e-mail et critères de recherche." %}</p>
+
+  <h2>{% trans "Utilisation des données" %}</h2>
+  <p>{% trans "Ces données servent uniquement à répondre à vos demandes (contact, visite, estimation) et à vous envoyer les alertes que vous avez activées. Elles ne sont ni vendues ni cédées à des tiers à des fins commerciales." %}</p>
+
+  <h2>{% trans "Durée de conservation" %}</h2>
+  <p>{% trans "Vos données sont conservées le temps nécessaire au traitement de votre demande, puis supprimées ou archivées selon les obligations légales. Vous pouvez supprimer une alerte à tout moment grâce au lien présent dans chaque e-mail." %}</p>
+
+  <h2>{% trans "Cookies" %}</h2>
+  <p>{% trans "Ce site utilise uniquement des cookies techniques nécessaires à son fonctionnement (session, sécurité des formulaires, choix de la langue). Il n’utilise pas de cookies publicitaires ni de suivi." %}</p>
+
+  <h2>{% trans "Vos droits" %}</h2>
+  <p>{% blocktrans with email=AGENCE.email %}Conformément à la loi n° 09-08 relative à la protection des personnes physiques à l’égard du traitement des données à caractère personnel, vous disposez d’un droit d’accès, de rectification et d’opposition. Pour l’exercer, écrivez-nous à {{ email }}.{% endblocktrans %}</p>
+  {% if AGENCE.cndp %}<p>{% blocktrans with num=AGENCE.cndp %}Déclaration CNDP n° {{ num }}{% endblocktrans %}</p>{% endif %}
+</div></section>
+{% endblock %}

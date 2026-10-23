@@ -1,0 +1,19 @@
+{% load i18n %}
+<form class="search" method="get" action="{% url 'liste' %}">
+  <div class="search-tabs" role="radiogroup" aria-label="{% trans 'Type de transaction' %}">
+    <input type="radio" name="transaction" id="t-all" value="" {% if not sel.transaction %}checked{% endif %}><label for="t-all">{% trans "Tous" %}</label>
+    <input type="radio" name="transaction" id="t-vente" value="vente" {% if sel.transaction == 'vente' %}checked{% endif %}><label for="t-vente">{% trans "Acheter" %}</label>
+    <input type="radio" name="transaction" id="t-loc" value="location" {% if sel.transaction == 'location' %}checked{% endif %}><label for="t-loc">{% trans "Louer" %}</label>
+  </div>
+  <div class="search-grid">
+    <div class="field"><label for="f-ville">{% trans "Ville" %}</label>
+      <select id="f-ville" name="ville"><option value="">{% trans "Toutes les villes" %}</option>{% for v in villes %}<option value="{{ v.slug }}" {% if sel.ville == v.slug %}selected{% endif %}>{{ v.nom_affiche }}</option>{% endfor %}</select></div>
+    <div class="field"><label for="f-type">{% trans "Type de bien" %}</label>
+      <select id="f-type" name="type"><option value="">{% trans "Tous les types" %}</option>{% for code, label in types %}<option value="{{ code }}" {% if sel.type == code %}selected{% endif %}>{{ label }}</option>{% endfor %}</select></div>
+    <div class="field"><label for="f-budget">{% trans "Budget max (MAD)" %}</label>
+      <input id="f-budget" type="number" name="budget" min="0" step="1000" placeholder="{% trans 'Sans limite' %}" value="{{ sel.budget|default:'' }}"></div>
+    <div class="field"><label for="f-ch">{% trans "Chambres (min.)" %}</label>
+      <select id="f-ch" name="chambres"><option value="">{% trans "Indifférent" %}</option>{% for n in "1234" %}<option value="{{ n }}" {% if sel.chambres == n %}selected{% endif %}>{{ n }}+</option>{% endfor %}</select></div>
+    <button class="btn btn-gold" type="submit" style="height:48px">{% trans "Rechercher" %}</button>
+  </div>
+</form>

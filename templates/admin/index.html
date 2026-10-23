@@ -1,0 +1,209 @@
+{% extends "admin/index.html" %}
+{% load i18n %}
+
+{% block content %}
+
+<!-- Message de bienvenue -->
+<div class="row" style="margin-bottom: 20px;">
+    <div class="col-md-12">
+        <h2 style="color: #0F2338; font-weight: bold;">Tableau de bord</h2>
+        <p style="color: #666;">Bienvenue sur votre espace El Ouabdi Immobilier.</p>
+    </div>
+</div>
+
+<!-- Bouton Ajouter un bien (en haut à droite) -->
+<div class="row" style="margin-bottom: 20px;">
+    <div class="col-md-12 text-right">
+        <a href="{% url 'admin:biens_bien_add' %}" class="btn btn-success" style="background-color: #D4A95A !important; color: #0F2338 !important; border-color: #D4A95A !important; font-weight: bold; border-radius: 8px;">
+            + Ajouter un bien
+        </a>
+    </div>
+</div>
+
+<!-- Cartes de Statistiques -->
+<div class="row" style="margin-bottom: 30px;">
+    <div class="col-md-3">
+        <div class="card" style="background: #fff; border-left: 4px solid #D4A95A; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-radius: 8px;">
+            <div class="card-body">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <p style="color: #666; margin: 0; font-size: 14px;">Total des biens</p>
+                        <h3 style="color: #0F2338; font-size: 32px; margin: 5px 0; font-weight: bold;">{{ total_biens }}</h3>
+                    </div>
+                    <div style="background: #FDF6E9; padding: 15px; border-radius: 50%;">
+                        <i class="fas fa-home" style="color: #D4A95A; font-size: 24px;"></i>
+                    </div>
+                </div>
+                <hr style="margin: 10px 0;">
+                <a href="{% url 'admin:biens_bien_changelist' %}" style="color: #0F2338; font-size: 13px; text-decoration: none;">Voir les biens →</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card" style="background: #fff; border-left: 4px solid #1B3A57; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-radius: 8px;">
+            <div class="card-body">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <p style="color: #666; margin: 0; font-size: 14px;">Biens publiés</p>
+                        <h3 style="color: #0F2338; font-size: 32px; margin: 5px 0; font-weight: bold;">{{ biens_publies }}</h3>
+                    </div>
+                    <div style="background: #E8F0F8; padding: 15px; border-radius: 50%;">
+                        <i class="fas fa-check-circle" style="color: #1B3A57; font-size: 24px;"></i>
+                    </div>
+                </div>
+                <hr style="margin: 10px 0;">
+                <a href="{% url 'admin:biens_bien_changelist' %}?publie__exact=1" style="color: #0F2338; font-size: 13px; text-decoration: none;">Annonces en ligne →</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card" style="background: #fff; border-left: 4px solid #D4A95A; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-radius: 8px;">
+            <div class="card-body">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <p style="color: #666; margin: 0; font-size: 14px;">Demandes en attente</p>
+                        <h3 style="color: #0F2338; font-size: 32px; margin: 5px 0; font-weight: bold;">{{ demandes_en_attente }}</h3>
+                    </div>
+                    <div style="background: #FDF6E9; padding: 15px; border-radius: 50%;">
+                        <i class="fas fa-envelope-open-text" style="color: #D4A95A; font-size: 24px;"></i>
+                    </div>
+                </div>
+                <hr style="margin: 10px 0;">
+                <a href="{% url 'admin:biens_demande_changelist' %}?traitee__exact=0" style="color: #0F2338; font-size: 13px; text-decoration: none;">À traiter →</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card" style="background: #fff; border-left: 4px solid #1B3A57; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-radius: 8px;">
+            <div class="card-body">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <p style="color: #666; margin: 0; font-size: 14px;">Avis approuvés</p>
+                        <h3 style="color: #0F2338; font-size: 32px; margin: 5px 0; font-weight: bold;">{{ total_avis }}</h3>
+                    </div>
+                    <div style="background: #E8F0F8; padding: 15px; border-radius: 50%;">
+                        <i class="fas fa-star" style="color: #1B3A57; font-size: 24px;"></i>
+                    </div>
+                </div>
+                <hr style="margin: 10px 0;">
+                <a href="{% url 'admin:biens_avis_changelist' %}" style="color: #0F2338; font-size: 13px; text-decoration: none;">Consulter les avis →</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Section : Statistiques (graphiques) -->
+<div class="row" style="margin-bottom: 15px;">
+    <div class="col-md-12" style="display: flex; justify-content: space-between; align-items: center;">
+        <h4 style="color: #0F2338; font-weight: bold; margin: 0;">Statistiques</h4>
+        <a href="{% url 'admin:statistiques' %}" style="color: #0F2338; font-size: 14px; text-decoration: underline;">Voir la page statistiques →</a>
+    </div>
+</div>
+{% include "admin/_stats_charts.html" with kpi=False %}
+
+<!-- Section : Dernières demandes -->
+<div class="row" style="margin-bottom: 30px;">
+    <div class="col-md-12">
+        <div class="card" style="background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-radius: 8px; border: none;">
+            <div class="card-header" style="background: #0F2338; color: #fff; border-radius: 8px 8px 0 0; display: flex; justify-content: space-between; align-items: center;">
+                <h4 style="margin: 0; font-size: 18px;">Dernières demandes clients</h4>
+                <a href="{% url 'admin:biens_demande_changelist' %}" style="color: #fff; text-decoration: none; font-size: 14px;">Voir toutes les demandes →</a>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Client</th>
+                            <th>Téléphone</th>
+                            <th>Origine</th>
+                            <th>Date de réception</th>
+                            <th>Statut</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for demande in dernieres_demandes %}
+                        <tr>
+                            <td><strong>{{ demande.nom }}</strong></td>
+                            <td>{{ demande.telephone }}</td>
+                            <td>{{ demande.get_origine_display }}</td>
+                            <td>{{ demande.recue_le|date:"d/m/Y H:i" }}</td>
+                            <td>
+                                {% if demande.traitee %}
+                                    <span class="badge bg-success" style="background-color: #1B3A57 !important;">Traitée</span>
+                                {% else %}
+                                    <span class="badge bg-warning" style="background-color: #D4A95A !important; color: #0F2338;">En attente</span>
+                                {% endif %}
+                            </td>
+                            <td><a href="{% url 'admin:biens_demande_change' demande.pk %}" style="color: #0F2338; text-decoration: underline;">Voir</a></td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" style="text-align: center; color: #999;">Aucune demande pour le moment.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Section : Annonces récentes (Biens) -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="card" style="background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-radius: 8px; border: none;">
+            <div class="card-header" style="background: #1B3A57; color: #fff; border-radius: 8px 8px 0 0; display: flex; justify-content: space-between; align-items: center;">
+                <h4 style="margin: 0; font-size: 18px;">Derniers biens ajoutés</h4>
+                <a href="{% url 'admin:biens_bien_changelist' %}" style="color: #fff; text-decoration: none; font-size: 14px;">Voir tous les biens →</a>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Référence</th>
+                            <th>Titre</th>
+                            <th>Ville</th>
+                            <th>Prix</th>
+                            <th>Statut</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for bien in derniers_biens %}
+                        <tr>
+                            <td>{{ bien.reference }}</td>
+                            <td><strong>{{ bien.titre }}</strong></td>
+                            <td>{{ bien.ville.nom }}</td>
+                            <td>{{ bien.prix }} MAD</td>
+                            <td>
+                                {% if bien.publie %}
+                                    <span class="badge bg-success" style="background-color: #1B3A57 !important;">Publié</span>
+                                {% else %}
+                                    <span class="badge bg-secondary">Brouillon</span>
+                                {% endif %}
+                            </td>
+                            <td><a href="{% url 'admin:biens_bien_change' bien.pk %}" style="color: #0F2338; text-decoration: underline;">Modifier</a></td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" style="text-align: center; color: #999;">Aucun bien pour le moment.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<!-- On garde le menu standard en dessous -->
+<div class="row">
+    <div class="col-md-12">
+        {{ block.super }}
+    </div>
+</div>
+
+{% endblock %}

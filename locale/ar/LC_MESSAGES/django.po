@@ -1,0 +1,830 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: elouabdi_immo\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#: templates/a_propos.html templates/base.html
+msgid "À propos"
+msgstr "من نحن"
+
+#: templates/a_propos.html
+msgid "Notre mission"
+msgstr "مهمتنا"
+
+#: templates/a_propos.html
+msgid ""
+"Vous accompagner avec sérieux et transparence, de la recherche du bien "
+"jusqu’à la signature."
+msgstr "مرافقتكم بجدية وشفافية، من البحث عن العقار حتى توقيع العقد."
+
+#: templates/a_propos.html
+msgid "Écoute"
+msgstr "الإنصات"
+
+#: templates/a_propos.html
+msgid "Nous prenons le temps de comprendre votre projet et votre budget."
+msgstr "نأخذ الوقت الكافي لفهم مشروعكم وميزانيتكم."
+
+#: templates/a_propos.html
+msgid "Transparence"
+msgstr "الشفافية"
+
+#: templates/a_propos.html
+msgid "Des informations claires sur chaque bien, sans mauvaise surprise."
+msgstr "معلومات واضحة عن كل عقار، دون مفاجآت."
+
+#: templates/a_propos.html
+msgid "Réactivité"
+msgstr "سرعة الاستجابة"
+
+#: templates/a_propos.html
+msgid "Une réponse rapide à vos demandes, par téléphone ou par WhatsApp."
+msgstr "رد سريع على طلباتكم، عبر الهاتف أو واتساب."
+
+#: templates/a_propos.html
+msgid "Rencontrer l’équipe"
+msgstr "تعرّف على فريقنا"
+
+#: templates/a_propos.html templates/accueil.html templates/blog_detail.html
+msgid "Nous contacter"
+msgstr "اتصلوا بنا"
+
+#: templates/a_propos.html
+msgid "À propos de %(nom)s"
+msgstr "عن %(nom)s"
+
+#: templates/a_propos.html
+msgid ""
+"%(nom)s est une agence immobilière spécialisée dans la vente et la location "
+": appartements, villas, terrains et locaux."
+msgstr ""
+"%(nom)s وكالة عقارية متخصصة في البيع والكراء: شقق، فيلات، أراضٍ ومحلات."
+
+#: templates/a_propos.html
+msgid "L’agence est dirigée par %(proprio)s."
+msgstr "يدير الوكالة %(proprio)s."
+
+#: templates/accueil.html
+msgid "Vente et location"
+msgstr "بيع وكراء"
+
+#: templates/accueil.html
+msgid "Trouvez le bien qui vous ressemble."
+msgstr "اعثر على العقار الذي يناسبك."
+
+#: templates/accueil.html
+msgid ""
+"Appartements, villas, terrains et locaux : nos conseillers vous accompagnent"
+" de la recherche jusqu’aux clés."
+msgstr ""
+"شقق، فيلات، أراضٍ ومحلات: مستشارونا يرافقونكم من البحث حتى تسلّم المفاتيح."
+
+#: templates/accueil.html
+msgid "Explorer par catégorie"
+msgstr "تصفّح حسب الفئة"
+
+#: templates/accueil.html
+msgid "Biens à la une"
+msgstr "عقارات مميزة"
+
+#: templates/accueil.html
+msgid "Voir tous les biens"
+msgstr "عرض جميع العقارات"
+
+#: templates/accueil.html
+msgid "Aucun bien publié pour le moment."
+msgstr "لا توجد عقارات منشورة حاليًا."
+
+#: templates/accueil.html
+msgid "Vous souhaitez vendre ou louer votre bien ?"
+msgstr "هل ترغبون في بيع أو كراء عقاركم؟"
+
+#: templates/accueil.html
+msgid ""
+"Recevez une estimation gratuite et confiez-nous votre mandat : photos, "
+"visites et négociation, nous nous occupons de tout."
+msgstr ""
+"احصلوا على تقدير مجاني وأسندوا إلينا مهمة التسويق: التصوير والزيارات "
+"والتفاوض، نحن نتكفل بكل شيء."
+
+#: templates/accueil.html templates/base.html templates/blog_detail.html
+msgid "Estimer mon bien"
+msgstr "قدّر عقاري"
+
+#: templates/accueil.html templates/blog_liste.html
+msgid "Conseils et actualités"
+msgstr "نصائح وأخبار"
+
+#: templates/accueil.html
+msgid "Voir tous les articles"
+msgstr "عرض جميع المقالات"
+
+#: templates/accueil.html
+msgid "Pourquoi nous choisir"
+msgstr "لماذا تختارنا"
+
+#: templates/accueil.html
+msgid "Conseillers à votre écoute"
+msgstr "مستشارون في خدمتكم"
+
+#: templates/accueil.html
+msgid ""
+"Un accompagnement personnalisé, du premier contact jusqu’à la remise des "
+"clés."
+msgstr "مرافقة شخصية، من أول اتصال حتى تسليم المفاتيح."
+
+#: templates/accueil.html
+msgid "Biens vérifiés"
+msgstr "عقارات موثوقة"
+
+#: templates/accueil.html
+msgid ""
+"Chaque annonce est contrôlée : informations claires, photos réelles, prix "
+"transparents."
+msgstr "كل إعلان يخضع للمراقبة: معلومات واضحة، صور حقيقية وأسعار شفافة."
+
+#: templates/accueil.html
+msgid "Suivi jusqu’à la signature"
+msgstr "متابعة حتى التوقيع"
+
+#: templates/accueil.html
+msgid ""
+"Visites, négociation et démarches : nous restons à vos côtés à chaque étape."
+msgstr "الزيارات والتفاوض والإجراءات: نبقى بجانبكم في كل مرحلة."
+
+#: templates/accueil.html templates/agents.html
+msgid "%(n)s annonce(s)"
+msgstr "%(n)s إعلان(ات)"
+
+#: templates/agents.html templates/base.html
+msgid "Nos agents"
+msgstr "وكلاؤنا"
+
+#: templates/agents.html
+msgid "Notre équipe"
+msgstr "فريقنا"
+
+#: templates/agents.html
+msgid ""
+"Des conseillers à votre écoute pour vos projets d’achat, de vente et de "
+"location."
+msgstr "مستشارون في خدمتكم لمشاريع الشراء والبيع والكراء."
+
+#: templates/agents.html templates/detail.html
+msgid "Appeler"
+msgstr "اتصل"
+
+#: templates/agents.html
+msgid "L’équipe sera bientôt présentée ici."
+msgstr "سيتم تقديم الفريق هنا قريبًا."
+
+#: templates/base.html
+msgid "Vente et location immobilière"
+msgstr "بيع وكراء العقارات"
+
+#: templates/base.html
+msgid "Navigation principale"
+msgstr "التنقل الرئيسي"
+
+#: templates/base.html templates/detail.html
+msgid "Accueil"
+msgstr "الرئيسية"
+
+#: templates/base.html templates/detail.html
+#: templates/partials/_recherche.html
+msgid "Acheter"
+msgstr "شراء"
+
+#: templates/base.html templates/detail.html
+#: templates/partials/_recherche.html
+msgid "Louer"
+msgstr "كراء"
+
+#: templates/base.html templates/blog_liste.html
+msgid "Blog"
+msgstr "المدونة"
+
+#: templates/base.html
+msgid "Simulateur de crédit"
+msgstr "حاسبة القرض"
+
+#: templates/base.html templates/contact.html
+msgid "Contact"
+msgstr "اتصال"
+
+#: templates/base.html
+msgid "Navigation"
+msgstr "التنقل"
+
+#: templates/base.html templates/mentions_legales.html
+msgid "Mentions légales"
+msgstr "الإشعارات القانونية"
+
+#: templates/base.html
+msgid "Confidentialité"
+msgstr "الخصوصية"
+
+#: templates/base.html
+msgid "Nous écrire sur WhatsApp"
+msgstr "راسلنا عبر واتساب"
+
+#: templates/base.html
+msgid ""
+"%(nom)s : vente et location d’appartements, villas, terrains et locaux."
+msgstr "%(nom)s: بيع وكراء الشقق والفيلات والأراضي والمحلات."
+
+#: templates/base.html
+msgid "Dirigée par %(proprio)s."
+msgstr "يديرها %(proprio)s."
+
+#: templates/blog_detail.html
+msgid "Retour au blog"
+msgstr "العودة إلى المدونة"
+
+#: templates/blog_liste.html
+msgid "Guides pratiques pour acheter, vendre ou louer en toute sérénité."
+msgstr "أدلة عملية للشراء والبيع والكراء بكل اطمئنان."
+
+#: templates/blog_liste.html
+msgid "Aucun article pour le moment."
+msgstr "لا توجد مقالات حاليًا."
+
+#: templates/confidentialite.html
+msgid "Politique de confidentialité"
+msgstr "سياسة الخصوصية"
+
+#: templates/confidentialite.html
+msgid ""
+"Cette page explique quelles données personnelles nous collectons et comment "
+"nous les utilisons."
+msgstr "توضح هذه الصفحة ما هي المعطيات الشخصية التي نجمعها وكيف نستخدمها."
+
+#: templates/confidentialite.html
+msgid "Données collectées"
+msgstr "المعطيات التي نجمعها"
+
+#: templates/confidentialite.html
+msgid ""
+"Via les formulaires du site : nom, numéro de téléphone, adresse e-mail "
+"(facultative) et contenu de votre message ; pour les alertes : adresse "
+"e-mail et critères de recherche."
+msgstr ""
+"عبر نماذج الموقع: الاسم، رقم الهاتف، البريد الإلكتروني (اختياري) ومحتوى "
+"رسالتكم؛ وبالنسبة للتنبيهات: البريد الإلكتروني ومعايير البحث."
+
+#: templates/confidentialite.html
+msgid "Utilisation des données"
+msgstr "استخدام المعطيات"
+
+#: templates/confidentialite.html
+msgid ""
+"Ces données servent uniquement à répondre à vos demandes (contact, visite, "
+"estimation) et à vous envoyer les alertes que vous avez activées. Elles ne "
+"sont ni vendues ni cédées à des tiers à des fins commerciales."
+msgstr ""
+"تُستخدم هذه المعطيات فقط للرد على طلباتكم (اتصال، زيارة، تقدير) ولإرسال "
+"التنبيهات التي فعّلتموها. ولا تُباع ولا تُحال إلى أطراف ثالثة لأغراض تجارية."
+
+#: templates/confidentialite.html
+msgid "Durée de conservation"
+msgstr "مدة الاحتفاظ"
+
+#: templates/confidentialite.html
+msgid ""
+"Vos données sont conservées le temps nécessaire au traitement de votre "
+"demande, puis supprimées ou archivées selon les obligations légales. Vous "
+"pouvez supprimer une alerte à tout moment grâce au lien présent dans chaque "
+"e-mail."
+msgstr ""
+"يتم الاحتفاظ بمعطياتكم للمدة اللازمة لمعالجة طلبكم، ثم تُحذف أو تُؤرشف وفق "
+"الالتزامات القانونية. يمكنكم حذف تنبيه في أي وقت عبر الرابط الموجود في كل "
+"رسالة."
+
+#: templates/confidentialite.html
+msgid "Cookies"
+msgstr "ملفات تعريف الارتباط"
+
+#: templates/confidentialite.html
+msgid ""
+"Ce site utilise uniquement des cookies techniques nécessaires à son "
+"fonctionnement (session, sécurité des formulaires, choix de la langue). Il "
+"n’utilise pas de cookies publicitaires ni de suivi."
+msgstr ""
+"يستخدم هذا الموقع فقط ملفات تعريف ارتباط تقنية ضرورية لعمله (الجلسة، أمان "
+"النماذج، اختيار اللغة). ولا يستخدم ملفات إعلانية أو للتتبع."
+
+#: templates/confidentialite.html
+msgid "Vos droits"
+msgstr "حقوقكم"
+
+#: templates/confidentialite.html
+msgid ""
+"Conformément à la loi n° 09-08 relative à la protection des personnes "
+"physiques à l’égard du traitement des données à caractère personnel, vous "
+"disposez d’un droit d’accès, de rectification et d’opposition. Pour "
+"l’exercer, écrivez-nous à %(email)s."
+msgstr ""
+"طبقًا للقانون رقم 09-08 المتعلق بحماية الأشخاص الذاتيين تجاه معالجة المعطيات"
+" ذات الطابع الشخصي، لكم الحق في الولوج والتصحيح والاعتراض. لممارسته، راسلونا"
+" على %(email)s."
+
+#: templates/confidentialite.html
+msgid "Déclaration CNDP n° %(num)s"
+msgstr ""
+"تصريح اللجنة الوطنية لمراقبة حماية المعطيات ذات الطابع الشخصي رقم %(num)s"
+
+#: templates/contact.html
+msgid "Envoyer le message"
+msgstr "إرسال الرسالة"
+
+#: templates/detail.html templates/partials/_carte_bien.html
+#: templates/simulateur.html
+msgid "MAD"
+msgstr "درهم"
+
+#: templates/detail.html
+msgid "par mois"
+msgstr "في الشهر"
+
+#: templates/detail.html templates/partials/_carte_article.html
+#: templates/partials/_carte_bien.html
+msgid "Photo à venir"
+msgstr "الصورة قريبًا"
+
+#: templates/detail.html
+msgid "Surface"
+msgstr "المساحة"
+
+#: templates/detail.html templates/partials/_carte_bien.html
+msgid "m²"
+msgstr "م²"
+
+#: templates/detail.html
+msgid "Chambres"
+msgstr "الغرف"
+
+#: templates/detail.html
+msgid "Salles de bain"
+msgstr "الحمامات"
+
+#: templates/detail.html
+msgid "Étage"
+msgstr "الطابق"
+
+#: templates/detail.html
+msgid "Année"
+msgstr "السنة"
+
+#: templates/detail.html
+msgid "Description"
+msgstr "الوصف"
+
+#: templates/detail.html
+msgid "Équipements"
+msgstr "التجهيزات"
+
+#: templates/detail.html
+msgid "Voir la vidéo / visite virtuelle"
+msgstr "مشاهدة الفيديو / الجولة الافتراضية"
+
+#: templates/detail.html
+msgid "Localisation"
+msgstr "الموقع"
+
+#: templates/detail.html
+msgid "Carte du bien"
+msgstr "خريطة العقار"
+
+#: templates/detail.html
+msgid "Simuler mon crédit"
+msgstr "احسب قرضي"
+
+#: templates/detail.html
+msgid "Être rappelé(e) / demander une visite"
+msgstr "طلب اتصال / طلب زيارة"
+
+#: templates/detail.html
+msgid "Je suis intéressé(e)"
+msgstr "أنا مهتم"
+
+#: templates/detail.html
+msgid "Biens similaires"
+msgstr "عقارات مشابهة"
+
+#: templates/detail.html
+msgid "Réf. %(ref)s"
+msgstr "المرجع %(ref)s"
+
+#: templates/detail.html
+msgid "Bonjour, je suis intéressé(e) par le bien %(ref)s."
+msgstr "مرحبًا، أنا مهتم بالعقار %(ref)s."
+
+#: templates/estimation.html
+msgid ""
+"Décrivez votre bien (type, ville, surface, état, prix souhaité) : un "
+"conseiller vous recontacte pour une estimation gratuite."
+msgstr ""
+"صفوا عقاركم (النوع، المدينة، المساحة، الحالة، السعر المطلوب): سيتصل بكم أحد "
+"مستشارينا لتقدير مجاني."
+
+#: templates/estimation.html
+msgid "Demander mon estimation"
+msgstr "اطلب التقدير"
+
+#: templates/liste.html
+msgid "Nos biens"
+msgstr "عقاراتنا"
+
+#: templates/liste.html
+msgid "Biens à vendre"
+msgstr "عقارات للبيع"
+
+#: templates/liste.html
+msgid "Biens à louer"
+msgstr "عقارات للكراء"
+
+#: templates/liste.html
+msgid "Tous nos biens"
+msgstr "جميع عقاراتنا"
+
+#: templates/liste.html
+msgid "Trier par"
+msgstr "ترتيب حسب"
+
+#: templates/liste.html
+msgid "Plus récents"
+msgstr "الأحدث"
+
+#: templates/liste.html
+msgid "Prix croissant"
+msgstr "السعر تصاعديًا"
+
+#: templates/liste.html
+msgid "Prix décroissant"
+msgstr "السعر تنازليًا"
+
+#: templates/liste.html
+msgid ""
+"Aucun bien ne correspond à votre recherche. Essayez d’élargir vos critères."
+msgstr "لا يوجد عقار يطابق بحثكم. جرّبوا توسيع معاييركم."
+
+#: templates/liste.html
+msgid "Recevoir une alerte e-mail pour cette recherche"
+msgstr "تلقَّ تنبيهًا بالبريد الإلكتروني لهذا البحث"
+
+#: templates/liste.html
+msgid ""
+"Soyez prévenu(e) dès qu’un nouveau bien correspond à vos critères. "
+"Désinscription en un clic."
+msgstr ""
+"سنخبركم فور توفر عقار جديد يطابق معاييركم. يمكنكم إلغاء الاشتراك بنقرة "
+"واحدة."
+
+#: templates/liste.html
+msgid "Votre e-mail"
+msgstr "بريدك الإلكتروني"
+
+#: templates/liste.html
+msgid "Activer l’alerte"
+msgstr "تفعيل التنبيه"
+
+#: templates/liste.html
+msgid "Résultats : %(n)s"
+msgstr "النتائج: %(n)s"
+
+#: templates/mentions_legales.html
+msgid "Éditeur du site"
+msgstr "ناشر الموقع"
+
+#: templates/mentions_legales.html
+msgid "Adresse"
+msgstr "العنوان"
+
+#: biens/forms.py templates/mentions_legales.html
+msgid "Téléphone"
+msgstr "الهاتف"
+
+#: templates/mentions_legales.html
+msgid "E-mail"
+msgstr "البريد الإلكتروني"
+
+#: templates/mentions_legales.html
+msgid "Directeur de la publication"
+msgstr "مدير النشر"
+
+#: templates/mentions_legales.html
+msgid "Hébergement"
+msgstr "الاستضافة"
+
+#: templates/mentions_legales.html
+msgid "Propriété intellectuelle"
+msgstr "الملكية الفكرية"
+
+#: templates/mentions_legales.html
+msgid ""
+"Les textes, images et éléments graphiques de ce site sont protégés. Toute "
+"reproduction sans autorisation écrite est interdite."
+msgstr ""
+"النصوص والصور والعناصر الرسومية لهذا الموقع محمية. يُمنع أي نسخ دون إذن "
+"كتابي."
+
+#: templates/mentions_legales.html
+msgid "Responsabilité"
+msgstr "المسؤولية"
+
+#: templates/mentions_legales.html
+msgid ""
+"Les annonces sont présentées à titre indicatif et peuvent être modifiées ou "
+"retirées à tout moment. Les informations (prix, surfaces, disponibilité) ne "
+"constituent pas une offre contractuelle."
+msgstr ""
+"الإعلانات مقدمة على سبيل الإشارة ويمكن تعديلها أو سحبها في أي وقت. ولا تشكل "
+"المعلومات (الأسعار، المساحات، التوفر) عرضًا تعاقديًا."
+
+#: templates/mentions_legales.html
+msgid "Ce site est édité par %(nom)s, dirigée par %(proprio)s."
+msgstr "يصدر هذا الموقع عن %(nom)s، التي يديرها %(proprio)s."
+
+#: templates/mentions_legales.html
+msgid "Le site est hébergé par : %(h)s."
+msgstr "يتم استضافة الموقع لدى: %(h)s."
+
+#: templates/partials/_carte_article.html
+msgid "Lire l’article"
+msgstr "قراءة المقال"
+
+#: templates/partials/_carte_bien.html
+msgid "/ mois"
+msgstr "/ شهريًا"
+
+#: templates/partials/_carte_bien.html
+msgid "ch."
+msgstr "غرف"
+
+#: templates/partials/_carte_bien.html
+msgid "sdb"
+msgstr "حمام"
+
+#: templates/partials/_carte_bien.html
+msgid "Voir le bien"
+msgstr "عرض العقار"
+
+#: templates/partials/_pagination.html
+msgid "Précédent"
+msgstr "السابق"
+
+#: templates/partials/_pagination.html
+msgid "Suivant"
+msgstr "التالي"
+
+#: templates/partials/_pagination.html
+msgid "Page %(n)s sur %(total)s"
+msgstr "الصفحة %(n)s من %(total)s"
+
+#: templates/partials/_recherche.html
+msgid "Type de transaction"
+msgstr "نوع المعاملة"
+
+#: templates/partials/_recherche.html
+msgid "Tous"
+msgstr "الكل"
+
+#: templates/partials/_recherche.html
+msgid "Ville"
+msgstr "المدينة"
+
+#: templates/partials/_recherche.html
+msgid "Toutes les villes"
+msgstr "جميع المدن"
+
+#: templates/partials/_recherche.html
+msgid "Type de bien"
+msgstr "نوع العقار"
+
+#: templates/partials/_recherche.html
+msgid "Tous les types"
+msgstr "جميع الأنواع"
+
+#: templates/partials/_recherche.html
+msgid "Budget max (MAD)"
+msgstr "الميزانية القصوى (درهم)"
+
+#: templates/partials/_recherche.html
+msgid "Sans limite"
+msgstr "بدون حد"
+
+#: templates/partials/_recherche.html
+msgid "Chambres (min.)"
+msgstr "الغرف (الحد الأدنى)"
+
+#: templates/partials/_recherche.html
+msgid "Indifférent"
+msgstr "غير مهم"
+
+#: templates/partials/_recherche.html
+msgid "Rechercher"
+msgstr "بحث"
+
+#: templates/simulateur.html
+msgid "Simulateur de crédit immobilier"
+msgstr "حاسبة القرض العقاري"
+
+#: templates/simulateur.html
+msgid "Estimez votre mensualité en quelques secondes."
+msgstr "قدّروا قسطكم الشهري في ثوانٍ."
+
+#: templates/simulateur.html
+msgid "Prix du bien (MAD)"
+msgstr "سعر العقار (درهم)"
+
+#: templates/simulateur.html
+msgid "Apport personnel (MAD)"
+msgstr "المساهمة الشخصية (درهم)"
+
+#: templates/simulateur.html
+msgid "Durée (années)"
+msgstr "المدة (بالسنوات)"
+
+#: templates/simulateur.html
+msgid "Taux annuel (%)"
+msgstr "النسبة السنوية (%)"
+
+#: templates/simulateur.html
+msgid "Mensualité estimée"
+msgstr "القسط الشهري التقديري"
+
+#: templates/simulateur.html
+msgid "Montant à emprunter"
+msgstr "المبلغ المقترض"
+
+#: templates/simulateur.html
+msgid "Coût total du crédit"
+msgstr "التكلفة الإجمالية للقرض"
+
+#: templates/simulateur.html
+msgid "Dont intérêts"
+msgstr "منها الفوائد"
+
+#: templates/simulateur.html
+msgid ""
+"Estimation indicative, hors assurance et frais de dossier. Seule votre "
+"banque peut confirmer les conditions réelles."
+msgstr ""
+"تقدير تقريبي، دون احتساب التأمين ومصاريف الملف. لا يمكن إلا لبنككم تأكيد "
+"الشروط الفعلية."
+
+#: templates/simulateur.html
+msgid "Parler à un conseiller"
+msgstr "تحدّث إلى مستشار"
+
+#: biens/alertes.py
+msgid "Votre alerte immobilière est activée"
+msgstr "تم تفعيل تنبيهكم العقاري"
+
+#: biens/alertes.py
+msgid ""
+"Bonjour,\n"
+"\n"
+"Votre alerte est bien enregistrée : vous recevrez un e-mail à chaque nouveau bien correspondant à votre recherche.\n"
+"\n"
+"Pour vous désinscrire : %(lien)s"
+msgstr ""
+"مرحبًا،\n"
+"\n"
+"تم تسجيل تنبيهكم: ستتوصلون ببريد إلكتروني عند كل عقار جديد يطابق بحثكم.\n"
+"\n"
+"لإلغاء الاشتراك: %(lien)s"
+
+#: biens/alertes.py
+msgid "Nouveau bien : %(titre)s"
+msgstr "عقار جديد: %(titre)s"
+
+#: biens/alertes.py
+msgid ""
+"Un nouveau bien correspond à votre alerte :\n"
+"\n"
+"%(titre)s\n"
+"%(ville)s · %(prix)s MAD\n"
+"\n"
+"%(lien)s\n"
+"\n"
+"Se désinscrire : %(stop)s"
+msgstr ""
+"عقار جديد يطابق تنبيهكم:\n"
+"\n"
+"%(titre)s\n"
+"%(ville)s · %(prix)s درهم\n"
+"\n"
+"%(lien)s\n"
+"\n"
+"لإلغاء الاشتراك: %(stop)s"
+
+#: biens/forms.py
+msgid "Nom complet"
+msgstr "الاسم الكامل"
+
+#: biens/forms.py
+msgid "E-mail (facultatif)"
+msgstr "البريد الإلكتروني (اختياري)"
+
+#: biens/forms.py
+msgid "Message"
+msgstr "الرسالة"
+
+#: biens/models.py
+msgid "À vendre"
+msgstr "للبيع"
+
+#: biens/models.py
+msgid "À louer"
+msgstr "للكراء"
+
+#: biens/models.py
+msgid "Appartement"
+msgstr "شقة"
+
+#: biens/models.py
+msgid "Villa"
+msgstr "فيلا"
+
+#: biens/models.py
+msgid "Riad"
+msgstr "رياض"
+
+#: biens/models.py
+msgid "Terrain"
+msgstr "أرض"
+
+#: biens/models.py
+msgid "Local commercial"
+msgstr "محل تجاري"
+
+#: biens/models.py
+msgid "Bureau"
+msgstr "مكتب"
+
+#: biens/models.py
+msgid "Disponible"
+msgstr "متاح"
+
+#: biens/models.py
+msgid "Réservé"
+msgstr "محجوز"
+
+#: biens/models.py
+msgid "Vendu"
+msgstr "مباع"
+
+#: biens/models.py
+msgid "Loué"
+msgstr "مكترى"
+
+#: biens/views.py
+msgid "Merci ! Nous vous contactons rapidement pour estimer votre bien."
+msgstr "شكرًا! سنتصل بكم قريبًا لتقدير عقاركم."
+
+#: biens/views.py
+msgid "Merci ! Votre message a bien été envoyé."
+msgstr "شكرًا! تم إرسال رسالتكم بنجاح."
+
+#: biens/views.py
+msgid ""
+"Vous êtes désinscrit(e) : vous ne recevrez plus d’e-mails pour cette alerte."
+msgstr "تم إلغاء اشتراككم: لن تتوصلوا بعد الآن برسائل هذا التنبيه."
+
+#: biens/views.py
+msgid ""
+"Merci ! Votre demande a bien été envoyée, nous vous rappelons très vite."
+msgstr "شكرًا! تم إرسال طلبكم بنجاح، سنتصل بكم في أقرب وقت."
+
+#: biens/views.py
+msgid ""
+"Alerte activée ! Vous recevrez un e-mail dès qu’un nouveau bien correspond à"
+" votre recherche."
+msgstr ""
+"تم تفعيل التنبيه! ستتوصلون ببريد إلكتروني فور توفر عقار جديد يطابق بحثكم."
+
+#: biens/views.py
+msgid "Impossible d’activer l’alerte : vérifiez votre adresse e-mail."
+msgstr "تعذّر تفعيل التنبيه: تحققوا من عنوان بريدكم الإلكتروني."
+msgid "Ils nous font confiance"
+msgstr "يثقون بنا"
+
+msgid "Aucun avis pour le moment."
+msgstr "لا توجد آراء حاليًا."
+msgid "Trouvez votre logement au Maroc"
+msgstr "اعثر على سكنك في المغرب"
+
+msgid "Disponible dans toutes les grandes villes"
+msgstr "متوفر في جميع المدن الكبرى"
+
+msgid "Rejoignez notre communauté"
+msgstr "انضم إلى مجتمعنا"
+
+msgid "Offres d'emploi, annonces immobilières et actualités en temps réel"
+msgstr "عروض عمل، إعلانات عقارية وأخبار في الوقت الفعلي"

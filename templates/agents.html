@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Nos agents" %} – {{ AGENCE.nom }}{% endblock %}
+{% block content %}
+<section class="section"><div class="container">
+  <h1 class="section-title" style="font-size:40px;margin-bottom:12px">{% trans "Notre équipe" %}</h1>
+  <p class="muted" style="margin-bottom:36px">{% trans "Des conseillers à votre écoute pour vos projets d’achat, de vente et de location." %}</p>
+  {% if equipe %}<div class="grid">{% for ag in equipe %}
+  <article class="card agent-card fx-card">
+    {% if ag.photo %}<img class="agent-photo" src="{{ ag.photo.url }}" alt="{{ ag.nom }}" loading="lazy">{% else %}<div class="agent-photo"></div>{% endif %}
+    <div class="card-body">
+      <h3 style="font-size:20px;font-weight:600">{{ ag.nom }}</h3>
+      {% if ag.fonction %}<p class="meta">{{ ag.fonction }}</p>{% endif %}
+      {% if ag.bio %}<p class="meta">{{ ag.bio }}</p>{% endif %}
+      <p class="meta">{% blocktrans with n=ag.nb %}{{ n }} annonce(s){% endblocktrans %}</p>
+      <div class="cta-actions"><a class="btn btn-gold" href="tel:{{ ag.telephone }}">{% trans "Appeler" %}</a><a class="btn btn-outline" href="https://wa.me/{% if ag.whatsapp %}{{ ag.whatsapp }}{% else %}{{ AGENCE.whatsapp }}{% endif %}">WhatsApp</a></div>
+    </div>
+  </article>{% endfor %}</div>
+  {% else %}<p class="empty">{% trans "L’équipe sera bientôt présentée ici." %}</p>{% endif %}
+</div></section>
+{% endblock %}

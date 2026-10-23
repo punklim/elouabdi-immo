@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load humanize i18n %}
+
+{% block title %}{{ bien.titre_affiche }} – {{ AGENCE.nom }}{% endblock %}
+{% block description %}{{ bien.description_affichee|truncatechars:150 }}{% endblock %}
+
+{% block extra_head %}
+    <meta property="og:title" content="{{ bien.titre_affiche }} – {{ AGENCE.nom }}">
+    <meta property="og:description" content="{{ bien.description_affichee|truncatechars:150 }}">
+    {% if bien.photos.all.0 %}
+        <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ bien.photos.all.0.image.url }}">
+    {% else %}
+        <meta property="og:image" content="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=630&q=80">
+    {% endif %}
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:type" content="article">
+{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top:28px"><div class="container">
+  <p class="crumbs"><a href="{% url 'accueil' %}">{% trans "Accueil" %}</a> / <a href="{% url 'liste' %}?transaction={{ bien.transaction }}">{% if bien.transaction == 'vente' %}{% trans "Acheter" %}{% else %}{% trans "Louer" %}{% endif %}</a> / {{ bien.ville.nom_affiche }} / {{ bien.get_type_bien_display }}</p>
+
+  <div class="detail-head fx-up">
+    <div>
+      <span class="tag">{{ bien.get_transaction_display }}</span>{% if bien.statut != 'disponible' %} <span class="tag" style="background:#B3261E">{{ bien.get_statut_display }}</span>{% endif %}
+      <span class="muted" style="font-size:13px;margin-inline-start:8px">{% blocktrans with ref=bien.reference %}Réf. {{ ref }}{% endblocktrans %}</span>
+      <h1>{{ bien.titre_affiche }}</h1>
+      <p class="muted">{{ bien.ville.nom_affiche }}{% if bien.quartier %} · {{ bien.quartier }}{% endif %}{% if bien.adresse %} · {{ bien.adresse }}{% endif %}</p>
+    </div>
+    <p class="detail-price">{{ bien.prix|intcomma }} {% trans "MAD" %}{% if bien.transaction == 'location' %}<small class="muted" style="display:block;font-size:14px;font-weight:400">{% trans "par mois" %}</small>{% endif %}</p>
+  </div>
+
+  {% with photos=bien.photos.all %}
+  <div class="gallery fx-up fx-d1">
+    <div class="g-main">{% if photos %}<img src="{{ photos.0.image.url }}" alt="{{ bien.titre_affiche }}">{% else %}<span class="ph">{% trans "Photo à venir" %}</span>{% endif %}</div>
+    {% if photos|length > 1 %}<div class="g-side">{% for ph in photos|slice:"1:5" %}<div><img src="{{ ph.image.url }}" alt="{{ ph.legende|default:bien.titre_affiche }}" loading="lazy"></div>{% endfor %}</div>{% endif %}
+  </div>
+  {% endwith %}
+
+  <div class="detail-layout">
+    <div class="detail-main">
+      <div class="facts">
+        <div><small>{% trans "Surface" %}</small><strong>{{ bien.surface }} {% trans "m²" %}</strong></div>
+        {% if bien.chambres %}<div><small>{% trans "Chambres" %}</small><strong>{{ bien.chambres }}</strong></div>{% endif %}
+        {% if bien.salles_de_bain %}<div><small>{% trans "Salles de bain" %}</small><strong>{{ bien.salles_de_bain }}</strong></div>{% endif %}
+        {% if bien.etage is not None %}<div><small>{% trans "Étage" %}</small><strong>{{ bien.etage }}</strong></div>{% endif %}
+        {% if bien.annee_construction %}<div><small>{% trans "Année" %}</small><strong>{{ bien.annee_construction|stringformat:"d" }}</strong></div>{% endif %}
+      </div>
+      {% if bien.description_affichee %}<h2>{% trans "Description" %}</h2><div class="desc">{{ bien.description_affichee|linebreaks }}</div>{% endif %}
+      {% if bien.equipements.all %}<h2>{% trans "Équipements" %}</h2><div class="chips">{% for e in bien.equipements.all %}<span>{{ e.nom_affiche }}</span>{% endfor %}</div>{% endif %}
+      {% if bien.video_url %}<p style="margin-bottom:40px"><a class="btn btn-outline" href="{{ bien.video_url }}" target="_blank" rel="noopener">{% trans "Voir la vidéo / visite virtuelle" %}</a></p>{% endif %}
+      
+              <!-- CARTE INTERACTIVE LEAFLET -->
+      {% if bien.latitude and bien.longitude %}
+        <h2>{% trans "Localisation" %}</h2>
+        <div id="map" style="width: 100%; height: 400px; border-radius: 12px; margin-bottom: 40px; z-index: 1;"></div>
+        
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <script>
+            var lat = parseFloat("{{ bien.latitude|stringformat:'f' }}".replace(',', '.'));
+            var lng = parseFloat("{{ bien.longitude|stringformat:'f' }}".replace(',', '.'));
+            
+            var map = L.map('map').setView([lat, lng], 15);
+            
+            // Serveur OpenStreetMap français (aucune clé API, pas de blocage en local)
+            L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> France',
+                maxZoom: 19
+            }).addTo(map);
+            
+            var marker = L.marker([lat, lng]).addTo(map);
+            marker.bindPopup("<b>{{ bien.titre_affiche }}</b><br>{{ bien.ville.nom }}<br>{{ bien.prix|intcomma }} MAD").openPopup();
+        </script>
+      {% endif %}
+    </div>
+
+    <aside class="aside">
+      {% with ag=bien.agent %}
+      <div class="agent">
+        {% if ag and ag.photo %}<img class="avatar" src="{{ ag.photo.url }}" alt="">{% else %}<span class="avatar"></span>{% endif %}
+        <div><p style="font-weight:600">{% if ag %}{{ ag.nom }}{% else %}{{ AGENCE.nom }}{% endif %}</p><p class="muted" style="font-size:13px">{{ AGENCE.nom }}</p></div>
+      </div>
+      <a class="btn btn-gold btn-block" href="tel:{% if ag %}{{ ag.telephone }}{% else %}{{ AGENCE.telephone }}{% endif %}">{% trans "Appeler" %}</a>
+      {% blocktrans with ref=bien.reference asvar wa_text %}Bonjour, je suis intéressé(e) par le bien {{ ref }}.{% endblocktrans %}
+      <a class="btn btn-outline btn-block" href="https://wa.me/{% if ag and ag.whatsapp %}{{ ag.whatsapp }}{% else %}{{ AGENCE.whatsapp }}{% endif %}?text={{ wa_text|urlencode }}">WhatsApp</a>
+      {% endwith %}
+      {% if bien.transaction == 'vente' %}<a class="btn btn-outline btn-block" href="{% url 'simulateur' %}?prix={{ bien.prix|stringformat:'d' }}">{% trans "Simuler mon crédit" %}</a>{% endif %}
+      <p style="font-weight:600;margin:20px 0 12px">{% trans "Être rappelé(e) / demander une visite" %}</p>
+      {% trans "Je suis intéressé(e)" as bouton_interet %}
+      {% include "partials/_formulaire.html" with bouton=bouton_interet %}
+    </aside>
+  </div>
+</div></section>
+
+{% if similaires %}<section class="section section-bg"><div class="container">
+  <h2 class="section-title">{% trans "Biens similaires" %}</h2>
+  <div class="grid">{% for b in similaires %}{% include "partials/_carte_bien.html" with bien=b %}{% endfor %}</div>
+</div></section>{% endif %}
+{% endblock %}

@@ -1,0 +1,292 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+
+<!-- SECTION HERO (Image de fond) -->
+<section class="hero" style="position: relative; overflow: hidden; background: #0F2338; padding: 120px 48px 140px;">
+  <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
+       alt="Villa moderne au Maroc" 
+       style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+  
+  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, rgba(15,35,56,0.95) 0%, rgba(15,35,56,0.7) 50%, rgba(15,35,56,0.3) 100%); z-index: 1;"></div>
+
+  <div class="container" style="position: relative; z-index: 2;">
+    <p class="hero-eyebrow fx-up" style="color: #D4A95A;">{% trans "Vente et location" %}</p>
+    <h1 class="fx-up fx-d1" style="color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.3);">{% trans "Trouvez le bien qui vous ressemble." %}</h1>
+    <p class="hero-text fx-up fx-d2" style="color: #E2E8F0;">{% trans "Appartements, villas, terrains et locaux : nos conseillers vous accompagnent de la recherche jusqu’aux clés." %}</p>
+    <div class="fx-up fx-d3">{% include "partials/_recherche.html" %}</div>
+  </div>
+</section>
+
+<!-- SECTION EXPLORER PAR CATÉGORIE (Harmonisée) -->
+<section class="section fx-scroll" style="padding: 60px 20px;">
+  <div class="container" style="max-width: 1200px; margin: 0 auto;">
+    
+    <h2 class="section-title" style="text-align: center; margin-bottom: 40px;">{% trans "Explorer par catégorie" %}</h2>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+      
+      <!-- Appartement -->
+      <a href="{% url 'liste' %}?type=appartement" class="property-card" style="text-decoration: none; background: #fff; border-radius: 12px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; overflow: hidden; border-bottom: 4px solid #0F2338; padding: 25px 15px;">
+        <div style="font-size: 40px; margin-bottom: 10px;">🏢</div>
+        <h3 style="color: #0F2338; font-size: 18px; font-weight: 600; margin-bottom: 5px;">Appartement</h3>
+        <p style="color: #666; font-size: 13px;">{{ categories.0.total }} annonce(s)</p>
+      </a>
+
+      <!-- Villa -->
+      <a href="{% url 'liste' %}?type=villa" class="property-card" style="text-decoration: none; background: #fff; border-radius: 12px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; overflow: hidden; border-bottom: 4px solid #d9534f; padding: 25px 15px;">
+        <div style="font-size: 40px; margin-bottom: 10px;">🏡</div>
+        <h3 style="color: #0F2338; font-size: 18px; font-weight: 600; margin-bottom: 5px;">Villa</h3>
+        <p style="color: #666; font-size: 13px;">{{ categories.1.total }} annonce(s)</p>
+      </a>
+
+      <!-- Riad -->
+      <a href="{% url 'liste' %}?type=riad" class="property-card" style="text-decoration: none; background: #fff; border-radius: 12px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; overflow: hidden; border-bottom: 4px solid #f0ad4e; padding: 25px 15px;">
+        <div style="font-size: 40px; margin-bottom: 10px;">🕌</div>
+        <h3 style="color: #0F2338; font-size: 18px; font-weight: 600; margin-bottom: 5px;">Riad</h3>
+        <p style="color: #666; font-size: 13px;">{{ categories.2.total }} annonce(s)</p>
+      </a>
+
+      <!-- Terrain -->
+      <a href="{% url 'liste' %}?type=terrain" class="property-card" style="text-decoration: none; background: #fff; border-radius: 12px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; overflow: hidden; border-bottom: 4px solid #5cb85c; padding: 25px 15px;">
+        <div style="font-size: 40px; margin-bottom: 10px;">🌳</div>
+        <h3 style="color: #0F2338; font-size: 18px; font-weight: 600; margin-bottom: 5px;">Terrain</h3>
+        <p style="color: #666; font-size: 13px;">{{ categories.3.total }} annonce(s)</p>
+      </a>
+
+      <!-- Local commercial -->
+      <a href="{% url 'liste' %}?type=local" class="property-card" style="text-decoration: none; background: #fff; border-radius: 12px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; overflow: hidden; border-bottom: 4px solid #0F2338; padding: 25px 15px;">
+        <div style="font-size: 40px; margin-bottom: 10px;">🏪</div>
+        <h3 style="color: #0F2338; font-size: 18px; font-weight: 600; margin-bottom: 5px;">Local commercial</h3>
+        <p style="color: #666; font-size: 13px;">{{ categories.4.total }} annonce(s)</p>
+      </a>
+
+      <!-- Bureau -->
+      <a href="{% url 'liste' %}?type=bureau" class="property-card" style="text-decoration: none; background: #fff; border-radius: 12px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; overflow: hidden; border-bottom: 4px solid #d9534f; padding: 25px 15px;">
+        <div style="font-size: 40px; margin-bottom: 10px;">🏢</div>
+        <h3 style="color: #0F2338; font-size: 18px; font-weight: 600; margin-bottom: 5px;">Bureau</h3>
+        <p style="color: #666; font-size: 13px;">{{ categories.5.total }} annonce(s)</p>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTION BIENS À LA UNE -->
+<section class="section fx-scroll" style="padding-top:0"><div class="container">
+  <div class="row-between">
+    <h2 class="section-title">{% trans "Biens à la une" %}</h2>
+    <a class="link" href="{% url 'liste' %}">{% trans "Voir tous les biens" %}</a>
+  </div>
+  {% if a_la_une %}
+    <div class="grid">{% for b in a_la_une %}{% include "partials/_carte_bien.html" with bien=b %}{% endfor %}</div>
+  {% else %}
+    <p class="empty">{% trans "Aucun bien publié pour le moment." %}</p>
+  {% endif %}
+</div></section>
+
+<!-- SECTION TROUVEZ VOTRE LOGEMENT -->
+<section class="section section-bg fx-scroll" style="padding: 60px 20px;">
+  <div class="container" style="max-width: 1200px; margin: 0 auto;">
+    
+    <!-- Titre -->
+    <div style="text-align: center; margin-bottom: 50px;">
+      <span style="display: inline-block; border: 1px solid #D4A95A; color: #D4A95A; padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 15px;">
+        Nouveau · Immobilier
+      </span>
+      <h2 style="font-family: var(--serif); font-size: 42px; color: #0F2338; margin-bottom: 15px;">Trouvez votre logement au Maroc</h2>
+      <div style="width: 60px; height: 3px; background-color: #D4A95A; margin: 0 auto 20px auto;"></div>
+      <p style="color: #666; font-size: 18px;">Appartements et chambres disponibles partout au Maroc — vides, meublés ou journaliers</p>
+    </div>
+    
+    <!-- Les 4 Cartes -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px;">
+      
+      <!-- Carte 1 : Appartement vide (Bleu Marine) -->
+      <a href="{% url 'liste' %}?type=appartement" class="property-card" style="text-decoration: none; background: #fff; border-radius: 12px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; overflow: hidden; border-bottom: 4px solid #0F2338; padding: 30px 20px;">
+        <img src="https://img.icons8.com/color/96/000000/apartment.png" alt="Appartement vide" style="width: 70px; height: 70px; margin: 0 auto 15px auto; object-fit: contain;">
+        <h3 style="color: #0F2338; font-size: 18px; font-weight: 600; margin-bottom: 10px;">Appartement vide</h3>
+        <p style="color: #666; font-size: 14px; margin-bottom: 20px;">Prêt à aménager selon vos goûts</p>
+        <span style="color: #0F2338; font-weight: bold; font-size: 14px;">Voir les annonces →</span>
+      </a>
+
+      <!-- Carte 2 : Appartement meublé (Rouge) -->
+      <a href="{% url 'liste' %}?type=appartement" class="property-card" style="text-decoration: none; background: #fff; border-radius: 12px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; overflow: hidden; border-bottom: 4px solid #d9534f; padding: 30px 20px;">
+        <img src="https://img.icons8.com/color/96/000000/sofa.png" alt="Appartement meublé" style="width: 70px; height: 70px; margin: 0 auto 15px auto; object-fit: contain;">
+        <h3 style="color: #0F2338; font-size: 18px; font-weight: 600; margin-bottom: 10px;">Appartement meublé</h3>
+        <p style="color: #666; font-size: 14px; margin-bottom: 20px;">Entrez et vivez, tout est prêt</p>
+        <span style="color: #d9534f; font-weight: bold; font-size: 14px;">Voir les annonces →</span>
+      </a>
+
+      <!-- Carte 3 : Chambre journalière (Jaune) -->
+      <a href="{% url 'liste' %}?type=appartement" class="property-card" style="text-decoration: none; background: #fff; border-radius: 12px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; overflow: hidden; border-bottom: 4px solid #f0ad4e; padding: 30px 20px;">
+        <img src="https://img.icons8.com/color/96/000000/bed.png" alt="Chambre journalière" style="width: 70px; height: 70px; margin: 0 auto 15px auto; object-fit: contain;">
+        <h3 style="color: #0F2338; font-size: 18px; font-weight: 600; margin-bottom: 10px;">Chambre journalière</h3>
+        <p style="color: #666; font-size: 14px; margin-bottom: 20px;">Location à la nuit ou à la semaine</p>
+        <span style="color: #f0ad4e; font-weight: bold; font-size: 14px;">Voir les annonces →</span>
+      </a>
+
+      <!-- Carte 4 : Chambre en location (Vert) -->
+      <a href="{% url 'liste' %}?type=appartement" class="property-card" style="text-decoration: none; background: #fff; border-radius: 12px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; overflow: hidden; border-bottom: 4px solid #5cb85c; padding: 30px 20px;">
+        <img src="https://img.icons8.com/color/96/000000/key.png" alt="Chambre en location" style="width: 70px; height: 70px; margin: 0 auto 15px auto; object-fit: contain;">
+        <h3 style="color: #0F2338; font-size: 18px; font-weight: 600; margin-bottom: 10px;">Chambre en location</h3>
+        <p style="color: #666; font-size: 14px; margin-bottom: 20px;">Location mensuelle dans un appartement</p>
+        <span style="color: #5cb85c; font-weight: bold; font-size: 14px;">Voir les annonces →</span>
+      </a>
+
+    </div>
+
+    <!-- Bouton -->
+    <div style="display: flex; justify-content: center; margin-top: 50px;">
+      <a href="{% url 'liste' %}" style="background-color: #c24a1c; color: #fff; text-decoration: none; padding: 15px 40px; border-radius: 8px; font-weight: bold; font-size: 16px; display: inline-flex; align-items: center; gap: 10px;">
+        🏢 Voir toutes les annonces immobilier
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- SECTION DISPONIBLE DANS TOUTES LES VILLES -->
+<section class="section fx-scroll"><div class="container">
+  <h2 class="section-title" style="text-align:center">{% trans "Disponible dans toutes les grandes villes" %}</h2>
+  
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 30px;">
+    <a href="{% url 'liste' %}?ville=casablanca" class="btn btn-outline" style="border-radius: 50px; padding: 10px 20px;">📍 Casablanca</a>
+    <a href="{% url 'liste' %}?ville=rabat" class="btn btn-outline" style="border-radius: 50px; padding: 10px 20px;">📍 Rabat</a>
+    <a href="{% url 'liste' %}?ville=marrakech" class="btn btn-outline" style="border-radius: 50px; padding: 10px 20px;">📍 Marrakech</a>
+    <a href="{% url 'liste' %}?ville=fes" class="btn btn-outline" style="border-radius: 50px; padding: 10px 20px;">📍 Fès</a>
+    <a href="{% url 'liste' %}?ville=tanger" class="btn btn-outline" style="border-radius: 50px; padding: 10px 20px;">📍 Tanger</a>
+    <a href="{% url 'liste' %}?ville=agadir" class="btn btn-outline" style="border-radius: 50px; padding: 10px 20px;">📍 Agadir</a>
+    <a href="{% url 'liste' %}?ville=meknes" class="btn btn-outline" style="border-radius: 50px; padding: 10px 20px;">📍 Meknès</a>
+    <a href="{% url 'liste' %}?ville=oujda" class="btn btn-outline" style="border-radius: 50px; padding: 10px 20px;">📍 Oujda</a>
+    <a href="{% url 'liste' %}?ville=tetouan" class="btn btn-outline" style="border-radius: 50px; padding: 10px 20px;">📍 Tétouan</a>
+    <a href="{% url 'liste' %}?ville=el-jadida" class="btn btn-outline" style="border-radius: 50px; padding: 10px 20px;">📍 El Jadida</a>
+    <a href="{% url 'liste' %}?ville=kenitra" class="btn btn-outline" style="border-radius: 50px; padding: 10px 20px;">📍 Kénitra</a>
+    <a href="{% url 'liste' %}?ville=beni-mellal" class="btn btn-outline" style="border-radius: 50px; padding: 10px 20px;">📍 Béni Mellal</a>
+  </div>
+</div></section>
+
+<!-- SECTION TÉMOIGNAGES (3 avis fixes) -->
+<section class="section section-bg fx-scroll">
+  <div class="container">
+    <h2 class="section-title" style="text-align:center">{% trans "Ils nous font confiance" %}</h2>
+    <div class="avis-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+      
+      <!-- Témoignage 1 -->
+      <div class="avis-card">
+        <div class="avis-stars">★★★★★</div>
+        <p style="font-style: italic; margin-bottom: 20px;">"J'ai trouvé une excellente villa à Casablanca en 24h. Les photos étaient réelles et l'agent très professionnel. Je recommande vivement !"</p>
+        <strong>Samira K.</strong>
+        <p class="muted" style="font-size: 14px;">Acheteuse · Casablanca</p>
+      </div>
+      
+      <!-- Témoignage 2 -->
+      <div class="avis-card">
+        <div class="avis-stars">★★★★★</div>
+        <p style="font-style: italic; margin-bottom: 20px;">"Grâce à El Ouabdi, j'ai loué mon appartement à Rabat en moins d'une semaine. Le service est rapide et efficace."</p>
+        <strong>Karim B.</strong>
+        <p class="muted" style="font-size: 14px;">Propriétaire · Rabat</p>
+      </div>
+      
+      <!-- Témoignage 3 -->
+      <div class="avis-card">
+        <div class="avis-stars">★★★★☆</div>
+        <p style="font-style: italic; margin-bottom: 20px;">"Très bonne expérience. L'équipe m'a accompagné du début à la fin pour l'achat de mon terrain à Marrakech. Merci !"</p>
+        <strong>Fatima Z.</strong>
+        <p class="muted" style="font-size: 14px;">Acheteuse · Marrakech</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTION REJOIGNEZ NOTRE COMMUNAUTÉ (Style MarocEmploi) -->
+<section class="section fx-scroll" style="background: #0a0f18; color: #fff; padding: 80px 20px;">
+  <div class="container" style="text-align: center;">
+    
+    <!-- Badge "SUIVEZ-NOUS" -->
+    <div style="display: inline-block; border: 1px solid #D4A95A; border-radius: 50px; padding: 6px 20px; margin-bottom: 20px;">
+      <span style="color: #D4A95A; font-size: 13px; letter-spacing: 1px; font-weight: bold;">SUIVEZ-NOUS</span>
+    </div>
+
+    <!-- Titre -->
+    <h2 style="font-family: var(--serif); font-size: 42px; margin-bottom: 15px; color: #fff;">Rejoignez notre communauté</h2>
+    
+    <!-- Petite ligne dorée -->
+    <div style="width: 60px; height: 3px; background-color: #D4A95A; margin: 0 auto 25px auto;"></div>
+
+    <!-- Sous-titre -->
+    <p style="color: #A0B0C0; font-size: 18px; margin-bottom: 50px;">Annonces immobilières et actualités en temps réel</p>
+    
+    <!-- Les 5 médias -->
+    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+      
+      <!-- Facebook -->
+      <a href="#" class="social-card" style="background: #151d29; border-radius: 16px; padding: 25px 20px; width: 140px; text-decoration: none; transition: transform 0.2s; display: flex; flex-direction: column; align-items: center;">
+        <div style="background: #1877F2; width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+          <i class="fa-brands fa-facebook-f" style="color: #fff; font-size: 24px;"></i>
+        </div>
+        <strong style="color: #fff; font-size: 15px;">Facebook</strong>
+        <span style="color: #666; font-size: 12px; margin-top: 5px;">Suivre la page</span>
+      </a>
+
+      <!-- Instagram -->
+      <a href="#" class="social-card" style="background: #151d29; border-radius: 16px; padding: 25px 20px; width: 140px; text-decoration: none; transition: transform 0.2s; display: flex; flex-direction: column; align-items: center;">
+        <div style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+          <i class="fa-brands fa-instagram" style="color: #fff; font-size: 24px;"></i>
+        </div>
+        <strong style="color: #fff; font-size: 15px;">Instagram</strong>
+        <span style="color: #666; font-size: 12px; margin-top: 5px;">Voir les photos</span>
+      </a>
+
+      <!-- TikTok -->
+      <a href="#" class="social-card" style="background: #151d29; border-radius: 16px; padding: 25px 20px; width: 140px; text-decoration: none; transition: transform 0.2s; display: flex; flex-direction: column; align-items: center;">
+        <div style="background: #000; width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; border: 1px solid #333;">
+          <i class="fa-brands fa-tiktok" style="color: #fff; font-size: 24px;"></i>
+        </div>
+        <strong style="color: #fff; font-size: 15px;">TikTok</strong>
+        <span style="color: #666; font-size: 12px; margin-top: 5px;">Voir les vidéos</span>
+      </a>
+
+      <!-- Telegram -->
+      <a href="#" class="social-card" style="background: #151d29; border-radius: 16px; padding: 25px 20px; width: 140px; text-decoration: none; transition: transform 0.2s; display: flex; flex-direction: column; align-items: center;">
+        <div style="background: #26A5E4; width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+          <i class="fa-brands fa-telegram-plane" style="color: #fff; font-size: 24px;"></i>
+        </div>
+        <strong style="color: #fff; font-size: 15px;">Telegram</strong>
+        <span style="color: #666; font-size: 12px; margin-top: 5px;">Rejoindre le canal</span>
+      </a>
+
+      <!-- WhatsApp -->
+      <a href="https://wa.me/{{ AGENCE.whatsapp }}" class="social-card" style="background: #151d29; border-radius: 16px; padding: 25px 20px; width: 140px; text-decoration: none; transition: transform 0.2s; display: flex; flex-direction: column; align-items: center;">
+        <div style="background: #25D366; width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+          <i class="fa-brands fa-whatsapp" style="color: #fff; font-size: 24px;"></i>
+        </div>
+        <strong style="color: #fff; font-size: 15px;">WhatsApp</strong>
+        <span style="color: #666; font-size: 12px; margin-top: 5px;">Nous contacter</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTION POURQUOI NOUS CHOISIR -->
+<section class="section section-bg fx-scroll"><div class="container">
+  <h2 class="section-title" style="text-align:center">{% trans "Pourquoi nous choisir" %}</h2>
+  <div class="pillars">
+    <div class="pillar">
+      <h3>{% trans "Conseillers à votre écoute" %}</h3>
+      <p class="muted">{% trans "Un accompagnement personnalisé, du premier contact jusqu’à la remise des clés." %}</p>
+    </div>
+    <div class="pillar">
+      <h3>{% trans "Biens vérifiés" %}</h3>
+      <p class="muted">{% trans "Chaque annonce est contrôlée : informations claires, photos réelles, prix transparents." %}</p>
+    </div>
+    <div class="pillar">
+      <h3>{% trans "Suivi jusqu’à la signature" %}</h3>
+      <p class="muted">{% trans "Visites, négociation et démarches : nous restons à vos côtés à chaque étape." %}</p>
+    </div>
+  </div>
+</div></section>
+
+{% endblock %}

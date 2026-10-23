@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ article.titre_affiche }} – {{ AGENCE.nom }}{% endblock %}
+{% block description %}{{ article.resume_affiche }}{% endblock %}
+{% block content %}
+<article class="section"><div class="narrow" style="max-width:760px">
+  <p class="crumbs"><a href="{% url 'blog' %}">{% trans "Retour au blog" %}</a></p>
+  <h1 class="serif" style="font-size:40px;line-height:1.15;margin-bottom:10px">{{ article.titre_affiche }}</h1>
+  <p class="muted" style="margin-bottom:28px">{{ article.publie_le|date:"j F Y" }}</p>
+  {% if article.image %}<img src="{{ article.image.url }}" alt="" style="border-radius:12px;margin-bottom:28px">{% endif %}
+  <div class="desc">{{ article.contenu_affiche|linebreaks }}</div>
+  <div class="cta-actions" style="margin-top:40px"><a class="btn btn-gold" href="{% url 'estimation' %}">{% trans "Estimer mon bien" %}</a><a class="btn btn-outline" href="{% url 'contact' %}">{% trans "Nous contacter" %}</a></div>
+</div></article>
+{% endblock %}

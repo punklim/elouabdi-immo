@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static i18n %}
+{% block title %}{% trans "Simulateur de crédit immobilier" %} – {{ AGENCE.nom }}{% endblock %}
+{% block content %}
+<section class="section form-page"><div class="container">
+  <h1>{% trans "Simulateur de crédit immobilier" %}</h1>
+  <p class="lead">{% trans "Estimez votre mensualité en quelques secondes." %}</p>
+  <div class="sim" id="sim" data-devise="{% trans 'MAD' %}">
+    <div class="sim-form">
+      <div class="field"><label for="s-prix">{% trans "Prix du bien (MAD)" %}</label><input id="s-prix" type="number" min="0" step="1000" value="{{ prix|default:'1000000' }}"></div>
+      <div class="field"><label for="s-apport">{% trans "Apport personnel (MAD)" %}</label><input id="s-apport" type="number" min="0" step="1000" value="200000"></div>
+      <div class="field"><label for="s-duree">{% trans "Durée (années)" %}</label><input id="s-duree" type="number" min="1" max="30" step="1" value="20"></div>
+      <div class="field"><label for="s-taux">{% trans "Taux annuel (%)" %}</label><input id="s-taux" type="number" min="0" max="20" step="0.05" value="5"></div>
+    </div>
+    <div class="sim-result" aria-live="polite">
+      <p class="muted">{% trans "Mensualité estimée" %}</p>
+      <p class="sim-big" id="r-mensualite">–</p>
+      <dl>
+        <div><dt>{% trans "Montant à emprunter" %}</dt><dd id="r-emprunt">–</dd></div>
+        <div><dt>{% trans "Coût total du crédit" %}</dt><dd id="r-total">–</dd></div>
+        <div><dt>{% trans "Dont intérêts" %}</dt><dd id="r-interets">–</dd></div>
+      </dl>
+    </div>
+  </div>
+  <p class="muted" style="font-size:14px;margin:20px 0 28px">{% trans "Estimation indicative, hors assurance et frais de dossier. Seule votre banque peut confirmer les conditions réelles." %}</p>
+  <a class="btn btn-gold" href="{% url 'contact' %}">{% trans "Parler à un conseiller" %}</a>
+</div></section>
+<script src="{% static 'js/simulateur.js' %}"></script>
+{% endblock %}

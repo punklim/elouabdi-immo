@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Blog" %} – {{ AGENCE.nom }}{% endblock %}
+{% block content %}
+<section class="section"><div class="container">
+  <h1 class="section-title" style="font-size:40px;margin-bottom:12px">{% trans "Conseils et actualités" %}</h1>
+  <p class="muted" style="margin-bottom:36px">{% trans "Guides pratiques pour acheter, vendre ou louer en toute sérénité." %}</p>
+  {% if page %}<div class="grid">{% for a in page %}{% include "partials/_carte_article.html" with article=a %}{% endfor %}</div>
+  {% else %}<p class="empty">{% trans "Aucun article pour le moment." %}</p>{% endif %}
+  {% include "partials/_pagination.html" %}
+</div></section>
+{% endblock %}
