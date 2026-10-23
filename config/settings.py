@@ -144,6 +144,7 @@ if not DEBUG:
 # --- Configuration Jazzmin pour l'Admin ---
 JAZZMIN_SETTINGS = {
     "show_ui_builder": False,  # <-- Ajoute cette ligne
+    "use_bootswatch": False,
     "site_title": "El Ouabdi Admin",
     "site_header": "El Ouabdi Immobilier",
     "site_brand": "El Ouabdi",
@@ -201,8 +202,8 @@ JAZZMIN_UI_TWEAKS = {
     "sidebar_nav_compact_style": True,
     "sidebar_nav_legacy_style": False,
     "sidebar_nav_flat_style": False,
-    "default_theme_mode": "light",
-    "button_classes": {
+    "theme": "default",
+    "dark_mode_theme": "default",    "button_classes": {
         "primary": "btn-primary",
         "secondary": "btn-secondary",
         "info": "btn-info",
@@ -233,3 +234,4 @@ LOGGING = {
         },
     },
 }
+WHITENOISE_MANIFEST_STRICT = False
