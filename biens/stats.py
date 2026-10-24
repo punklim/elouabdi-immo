@@ -2,13 +2,16 @@
 from datetime import date
 
 from django.contrib import admin
-from django.db.models import Count
+from django.db.models import Avg, Count
 from django.db.models.functions import TruncMonth
 from django.template.response import TemplateResponse
 from django.utils import timezone
 from django.utils.formats import date_format
 
-from .models import Alerte, Bien, Demande, Ville
+from .models import Alerte, Avis, Bien, Demande, Ville
+
+MOIS_COURTS = ["Janv", "Févr", "Mars", "Avr", "Mai", "Juin",
+               "Juil", "Août", "Sept", "Oct", "Nov", "Déc"]
 
 
 def _douze_mois():
@@ -61,6 +64,83 @@ def stats_data():
             "a_traiter": demandes.filter(traitee=False).count(),
             "alertes": Alerte.objects.filter(actif=True).count(),
         },
+    }
+
+
+# ---------------------------------------------------------------------------
+# Page d'accueil de l'administration (maquette « Bonjour … »)
+# ---------------------------------------------------------------------------
+def _initiales(nom):
+    parties = nom.split()
+    if not parties:
+        return "?"
+    if len(parties) == 1:
+        return parties[0][:2].upper()
+    return (parties[0][0] + parties[-1][0]).upper()
+
+
+def _nom_court(nom):
+    """« Samira Khaldi » -> « Samira K. »"""
+    parties = nom.split()
+    if len(parties) <= 1:
+        return nom
+    return f"{parties[0]} {parties[-1][0].upper()}."
+
+
+def _libelle_demande(d):
+    if d.origine == Demande.Origine.VISITE:
+        if d.bien_id:
+            return f"Visite · {d.bien.get_type_bien_display()}"
+        return "Visite"
+    if d.origine == Demande.Origine.ESTIMATION:
+        return "Estimation"
+    return "Contact"
+
+
+def dashboard_data():
+    """Chiffres de la page d'accueil de l'admin (cartes, graphique 6 mois, dernières demandes)."""
+    debut_mois = timezone.localdate().replace(day=1)
+    biens, demandes = Bien.objects.all(), Demande.objects.all()
+    avis = Avis.objects.filter(est_approuve=True)
+
+    total = biens.count()
+    publies = biens.filter(publie=True).count()
+    note = avis.aggregate(m=Avg("note"))["m"]
+
+    mois = _douze_mois()[-6:]
+    valeurs = _par_mois(demandes, "recue_le", mois)
+    maxi = max(valeurs)
+    barres = []
+    for i, (d, n) in enumerate(zip(mois, valeurs)):
+        pct = max(6, round(n * 100 / maxi)) if maxi else 6
+        barres.append({
+            "label": MOIS_COURTS[d.month - 1],
+            "n": n,
+            "pct": pct,
+            "courant": i == len(mois) - 1,
+        })
+
+    dernieres = []
+    for d in demandes.select_related("bien")[:4]:
+        dernieres.append({
+            "id": d.pk,
+            "initiales": _initiales(d.nom),
+            "nom": _nom_court(d.nom),
+            "libelle": _libelle_demande(d),
+            "traitee": d.traitee,
+        })
+
+    return {
+        "biens": total,
+        "biens_mois": biens.filter(cree_le__date__gte=debut_mois).count(),
+        "publies": publies,
+        "pct_en_ligne": round(publies * 100 / total) if total else 0,
+        "demandes": demandes.count(),
+        "a_traiter": demandes.filter(traitee=False).count(),
+        "avis": avis.count(),
+        "note_moyenne": f"{note:.1f}".replace(".", ",") if note is not None else "–",
+        "barres": barres,
+        "dernieres": dernieres,
     }
 
 

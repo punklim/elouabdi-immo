@@ -1,92 +1,10 @@
-/* El Ouabdi Immobilier - habillage global de l'administration (Jazzmin).
-   Le tableau de bord a son propre CSS intégré dans templates/admin/index.html. */
-
-:root {
-    --eo-deep: #0B1B2D;
-    --eo-navy: #0F2338;
-    --eo-blue: #1B3A57;
-    --eo-line: #24405F;
-    --eo-gold: #D4A95A;
-}
-
-/* Barre latérale */
-.main-sidebar,
-.main-sidebar .brand-link {
-    background: var(--eo-deep) !important;
-}
-
-.main-sidebar .brand-link {
-    border-bottom: 1px solid var(--eo-line) !important;
-}
-
-.brand-text {
-    color: #FFFFFF !important;
-    font-weight: 600 !important;
-}
-
-.nav-sidebar .nav-link {
-    margin: 2px 8px;
-    border-radius: 8px;
-    color: #C5D2E0 !important;
-    transition: background .15s ease, color .15s ease;
-}
-
-.nav-sidebar .nav-link:hover {
-    background: #14304A !important;
-    color: #FFFFFF !important;
-}
-
-.nav-sidebar .nav-link.active {
-    background: #1B3652 !important;
-    color: var(--eo-gold) !important;
-    box-shadow: none !important;
-}
-
-.nav-sidebar .nav-link.active .nav-icon {
-    color: var(--eo-gold) !important;
-}
-
-/* En-tête et pied de page */
-.main-header.navbar {
-    background: var(--eo-deep) !important;
-    border-bottom: 1px solid var(--eo-line) !important;
-}
-
-.main-header .navbar-nav .nav-link {
-    color: #C5D2E0 !important;
-}
-
-.main-footer {
-    background: var(--eo-deep) !important;
-    border-top: 1px solid var(--eo-line) !important;
-    color: #8FA3B8 !important;
-}
-
-/* Boutons */
-.btn-success,
-.btn-warning {
-    background: var(--eo-gold) !important;
-    border-color: var(--eo-gold) !important;
-    color: var(--eo-navy) !important;
-    font-weight: 600;
-}
-
-.btn-success:hover,
-.btn-warning:hover {
-    background: #E2BC73 !important;
-    border-color: #E2BC73 !important;
-}
-
-.btn-primary,
-.btn-info {
-    background: var(--eo-blue) !important;
-    border-color: var(--eo-blue) !important;
-    color: #FFFFFF !important;
-}
-
-/* Champs de formulaire */
-.form-control:focus,
-select:focus {
-    border-color: var(--eo-gold) !important;
-    box-shadow: 0 0 0 3px rgba(212, 169, 90, .18) !important;
-}
+/* El Ouabdi Immobilier - barre latérale réduite aux icônes dès l'ouverture de l'admin.
+   Elle s'élargit au survol de la souris, et le bouton « menu » (☰) permet de la déplier. */
+(function () {
+  document.addEventListener("DOMContentLoaded", function () {
+    var b = document.body;
+    if (b.classList.contains("sidebar-mini") && !b.classList.contains("eo-init")) {
+      b.classList.add("sidebar-collapse", "eo-init");
+    }
+  });
+})();

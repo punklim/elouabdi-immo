@@ -158,6 +158,7 @@ JAZZMIN_SETTINGS = {
 
     # Feuille de style personnalisée (doit être ici, pas dans JAZZMIN_UI_TWEAKS)
     "custom_css": "css/admin-custom.css",
+       "custom_js": "js/admin-custom.js",
 
     # Menu de gauche
     "show_sidebar": True,
