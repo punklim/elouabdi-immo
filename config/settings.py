@@ -115,7 +115,7 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 STORAGES = {
-    "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
+    "default": {"BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage"},
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"
     },
@@ -239,7 +239,7 @@ LOGGING = {
 WHITENOISE_MANIFEST_STRICT = False
 # Configuration Cloudinary pour le stockage des médias
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'deqjnufse',
+    'CLOUD_NAME': 'deqjnutse',
     'API_KEY': '836895945435488',
     'API_SECRET': 'O5WTZQSH6ZiyWqfUpDJO3ZYya6E',
 }
