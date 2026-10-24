@@ -1,11 +1,11 @@
+
 """Réglages du site. En local, tout fonctionne sans configuration.
 En production, les valeurs sensibles viennent de variables d'environnement
 (voir .env.example et DEPLOIEMENT.md)."""
 import os
 from pathlib import Path
-
+import dj_database_url
 from django.core.exceptions import ImproperlyConfigured
-
 from .agence import AGENCE  # noqa: F401  (utilisé par biens/context_processors.py)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -82,10 +82,10 @@ TEMPLATES = [
 WSGI_APPLICATION = "config.wsgi.application"
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / env("DB_NAME", "db.sqlite3"),
-    }
+    "default": dj_database_url.config(
+        default=f"sqlite:///{BASE_DIR / env('DB_NAME', 'db.sqlite3')}",
+        conn_max_age=600,
+    )
 }
 
 AUTH_PASSWORD_VALIDATORS = [
