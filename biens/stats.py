@@ -1,5 +1,5 @@
 """Statistiques pour le tableau de bord de l'administration (ne nécessite aucune migration)."""
-from datetime import date
+from datetime import date, timedelta
 
 from django.contrib import admin
 from django.db.models import Avg, Count
@@ -8,7 +8,7 @@ from django.template.response import TemplateResponse
 from django.utils import timezone
 from django.utils.formats import date_format
 
-from .models import Alerte, Avis, Bien, Demande, Ville
+from .models import Agent, Alerte, Avis, Bien, Demande, Ville
 
 MOIS_COURTS = ["Janv", "Févr", "Mars", "Avr", "Mai", "Juin",
                "Juil", "Août", "Sept", "Oct", "Nov", "Déc"]
@@ -130,7 +130,37 @@ def dashboard_data():
             "traitee": d.traitee,
         })
 
+    retard = demandes.filter(traitee=False, recue_le__lt=timezone.now() - timedelta(hours=48)).count()
+
+    en_attente = Avis.objects.filter(est_approuve=False)
+    avis_attente = [{
+        "id": a.pk,
+        "nom": a.nom,
+        "etoiles": "★" * a.note + "☆" * (5 - a.note),
+        "extrait": (a.commentaire[:70] + "…") if len(a.commentaire) > 70 else a.commentaire,
+    } for a in en_attente[:3]]
+
+    villes_qs = list(Ville.objects.annotate(n=Count("biens")).filter(n__gt=0).order_by("-n", "nom")[:5])
+    maxi_ville = villes_qs[0].n if villes_qs else 0
+    villes = [{"nom": v.nom, "n": v.n, "pct": max(6, round(v.n * 100 / maxi_ville))} for v in villes_qs]
+
+    conseillers = [{
+        "initiales": _initiales(a.nom),
+        "nom": a.nom,
+        "nb_biens": a.nb_biens,
+        "nb_demandes": a.nb_demandes,
+    } for a in Agent.objects.filter(actif=True)
+        .annotate(nb_biens=Count("biens", distinct=True), nb_demandes=Count("biens__demandes", distinct=True))
+        .order_by("-nb_biens", "nom")[:4]]
+
     return {
+        "retard": retard,
+        "avis_attente": avis_attente,
+        "avis_attente_total": en_attente.count(),
+        "villes": villes,
+        "nb_vente": biens.filter(transaction=Bien.Transaction.VENTE).count(),
+        "nb_location": biens.filter(transaction=Bien.Transaction.LOCATION).count(),
+        "conseillers": conseillers,
         "biens": total,
         "biens_mois": biens.filter(cree_le__date__gte=debut_mois).count(),
         "publies": publies,

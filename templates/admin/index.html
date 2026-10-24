@@ -57,9 +57,30 @@
   .eo-tout{display:block;margin-top:10px;text-align:right;font-size:12px;color:var(--eo-muted) !important}
   .eo-tout:hover{color:var(--eo-gold) !important}
 
+  .eo-alerte{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding:11px 16px;border-radius:10px;
+    background:rgba(232,137,111,.12);border:1px solid rgba(232,137,111,.4);color:#E8896F !important;font-size:14px;font-weight:600}
+  .eo-alerte:hover{background:rgba(232,137,111,.18)}
+  .eo-alerte span{margin-left:auto;font-weight:500;font-size:12px}
+
+  .eo-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+  .eo-note{font-size:12px;color:var(--eo-muted)}
+  .eo-etoiles{color:var(--eo-gold);font-size:11px;letter-spacing:1px;margin-left:4px}
+  .eo-liste form{margin:0}
+  .eo-liste .eo-ligne{display:flex;align-items:center;gap:12px;padding:10px 0}
+  .eo-ok{flex:none;font-size:11px;font-weight:600;padding:4px 10px;border-radius:6px;cursor:pointer;
+    background:rgba(93,202,165,.14);color:#5DCAA5;border:1px solid rgba(93,202,165,.3)}
+  .eo-ok:hover{background:rgba(93,202,165,.24)}
+  .eo-hbar{display:flex;align-items:center;gap:10px;padding:6px 0;font-size:13px}
+  .eo-hl{flex:none;width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#fff}
+  .eo-ht{flex:1;height:10px;border-radius:5px;background:#0F2338}
+  .eo-hf{height:100%;border-radius:5px;background:#3A5A7A}
+  .eo-hbar.premier .eo-hf{background:var(--eo-gold)}
+  .eo-hn{flex:none;width:26px;text-align:right;color:var(--eo-muted);font-variant-numeric:tabular-nums}
+
   @media (max-width: 992px){
     .eo-kpis{grid-template-columns:repeat(2,1fr)}
     .eo-grid{grid-template-columns:1fr}
+    .eo-grid3{grid-template-columns:1fr}
   }
   @media (max-width: 520px){
     .eo-head{flex-direction:column}
@@ -75,6 +96,14 @@
     </div>
     <a class="eo-btn" href="{% url 'admin:biens_bien_add' %}"><i class="fas fa-plus"></i> Ajouter un bien</a>
   </div>
+
+  {% if d.retard %}
+  <a class="eo-alerte" href="{% url 'admin:biens_demande_changelist' %}?traitee__exact=0">
+    <i class="fas fa-exclamation-triangle"></i>
+    {{ d.retard }} demande{{ d.retard|pluralize }} en attente depuis plus de 48 h
+    <span>Voir les demandes →</span>
+  </a>
+  {% endif %}
 
   <div class="eo-kpis">
     <a class="eo-kpi" href="{% url 'admin:biens_bien_changelist' %}">
@@ -132,6 +161,301 @@
       <a class="eo-tout" href="{% url 'admin:biens_demande_changelist' %}">Toutes les demandes →</a>
       {% else %}
       <div class="eo-vide">Aucune demande pour le moment. Elles apparaîtront ici dès qu'un visiteur remplira un formulaire.</div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="eo-grid3">
+    <div class="eo-card">
+      <div class="eo-card-head"><h4>Avis à valider</h4><span>{{ d.avis_attente_total }} en attente</span></div>
+      {% if d.avis_attente %}
+      <ul class="eo-liste">
+        {% for a in d.avis_attente %}
+        <li>
+          <div class="eo-ligne">
+            <span class="eo-info">
+              <span class="eo-nom">{{ a.nom }}<span class="eo-etoiles">{{ a.etoiles }}</span></span>
+              <span class="eo-type">{{ a.extrait }}</span>
+            </span>
+            {% if perms.biens.change_avis %}
+            <form method="post" action="{% url 'admin:avis_approuver' a.id %}">{% csrf_token %}
+              <button type="submit" class="eo-ok">Approuver</button>
+            </form>
+            {% endif %}
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+      <a class="eo-tout" href="{% url 'admin:biens_avis_changelist' %}?est_approuve__exact=0">Tous les avis en attente →</a>
+      {% else %}
+      <div class="eo-vide">Aucun avis en attente de validation.</div>
+      {% endif %}
+    </div>
+
+    <div class="eo-card">
+      <div class="eo-card-head"><h4>Biens par ville</h4><span>{{ d.nb_vente }} vente · {{ d.nb_location }} location</span></div>
+      {% if d.villes %}
+      {% for v in d.villes %}
+      <div class="eo-hbar{% if forloop.first %} premier{% endif %}">
+        <span class="eo-hl">{{ v.nom }}</span>
+        <div class="eo-ht"><div class="eo-hf" style="width:{{ v.pct }}%"></div></div>
+        <span class="eo-hn">{{ v.n }}</span>
+      </div>
+      {% endfor %}
+      {% else %}
+      <div class="eo-vide">Aucun bien pour le moment.</div>
+      {% endif %}
+    </div>
+
+    <div class="eo-card">
+      <div class="eo-card-head"><h4>Conseillers</h4><span>biens · demandes</span></div>
+      {% if d.conseillers %}
+      <ul class="eo-liste">
+        {% for c in d.conseillers %}
+        <li>
+          <div class="eo-ligne">
+            <span class="eo-av">{{ c.initiales }}</span>
+            <span class="eo-info">
+              <span class="eo-nom">{{ c.nom }}</span>
+              <span class="eo-type">{{ c.nb_biens }} bien{{ c.nb_biens|pluralize }} · {{ c.nb_demandes }} demande{{ c.nb_demandes|pluralize }}</span>
+            </span>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <div class="eo-vide">Aucun conseiller actif.</div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}{% extends "admin/base.html" %}
+{% load i18n stats_tags %}
+
+{% block content_title %}{% endblock %}
+
+{% block content %}
+{% dashboard as d %}
+<style>
+  .eo-dash{--eo-bg:#0D2238;--eo-card:#132C47;--eo-line:#24405F;--eo-muted:#8FA3B8;--eo-gold:#D9AE67;
+    background:var(--eo-bg);border:1px solid #1B3550;border-radius:16px;padding:22px;color:#fff}
+  .eo-dash a{text-decoration:none}
+  .eo-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px}
+  .eo-head h2{margin:0;font-size:22px;font-weight:600;color:#fff}
+  .eo-head p{margin:2px 0 0;font-size:13px;color:var(--eo-muted)}
+  .eo-btn{display:inline-flex;align-items:center;gap:8px;background:var(--eo-gold);color:#0F2338 !important;
+    font-weight:600;font-size:14px;padding:9px 16px;border-radius:9px;white-space:nowrap}
+  .eo-btn:hover{background:#E4BC78}
+
+  .eo-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:14px}
+  .eo-kpi{display:block;background:var(--eo-card);border:1px solid var(--eo-line);border-radius:12px;
+    padding:14px 16px;color:#fff;transition:border-color .15s ease}
+  .eo-kpi:hover{border-color:var(--eo-gold);color:#fff}
+  .eo-kpi-top{display:flex;align-items:center;justify-content:space-between;font-size:13px;color:var(--eo-muted)}
+  .eo-kpi-top i{color:var(--eo-gold);font-size:14px}
+  .eo-kpi strong{display:block;font-size:30px;font-weight:600;line-height:1.25;margin:2px 0;font-variant-numeric:tabular-nums}
+  .eo-sub{font-size:12px;color:var(--eo-muted)}
+  .eo-sub.vert{color:#5DCAA5}
+  .eo-sub.corail{color:#E8896F}
+
+  .eo-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:14px}
+  .eo-card{background:var(--eo-card);border:1px solid var(--eo-line);border-radius:12px;padding:16px 18px}
+  .eo-card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+  .eo-card-head h4{margin:0;font-size:15px;font-weight:600;color:#fff}
+  .eo-card-head span{font-size:12px;color:var(--eo-muted)}
+
+  .eo-bars{display:flex;align-items:flex-end;gap:14px;height:170px}
+  .eo-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+  .eo-bar{width:100%;border-radius:5px 5px 0 0;background:#3A5A7A;transition:background .15s ease}
+  .eo-bar.courant{background:var(--eo-gold)}
+  .eo-col:hover .eo-bar{background:#4F7399}
+  .eo-col:hover .eo-bar.courant{background:#E4BC78}
+  .eo-lbl{margin-top:8px;font-size:11px;font-weight:600;color:var(--eo-muted)}
+
+  .eo-liste{list-style:none;margin:0;padding:0}
+  .eo-liste li{border-top:1px solid var(--eo-line)}
+  .eo-liste a{display:flex;align-items:center;gap:12px;padding:10px 0;color:#fff}
+  .eo-liste a:hover .eo-nom{color:var(--eo-gold)}
+  .eo-av{flex:none;width:34px;height:34px;border-radius:50%;background:#1E3A57;color:var(--eo-gold);
+    font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center}
+  .eo-info{flex:1;min-width:0}
+  .eo-nom{display:block;font-size:14px;font-weight:600;line-height:1.3;transition:color .15s ease}
+  .eo-type{display:block;font-size:12px;color:var(--eo-muted)}
+  .eo-badge{flex:none;font-size:11px;font-weight:600;padding:3px 9px;border-radius:6px;
+    background:rgba(217,174,103,.16);color:var(--eo-gold);border:1px solid rgba(217,174,103,.35)}
+  .eo-badge.ok{background:rgba(93,202,165,.14);color:#5DCAA5;border-color:rgba(93,202,165,.3)}
+  .eo-vide{padding:26px 0;text-align:center;font-size:13px;color:var(--eo-muted)}
+  .eo-tout{display:block;margin-top:10px;text-align:right;font-size:12px;color:var(--eo-muted) !important}
+  .eo-tout:hover{color:var(--eo-gold) !important}
+
+  .eo-alerte{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding:11px 16px;border-radius:10px;
+    background:rgba(232,137,111,.12);border:1px solid rgba(232,137,111,.4);color:#E8896F !important;font-size:14px;font-weight:600}
+  .eo-alerte:hover{background:rgba(232,137,111,.18)}
+  .eo-alerte span{margin-left:auto;font-weight:500;font-size:12px}
+
+  .eo-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+  .eo-note{font-size:12px;color:var(--eo-muted)}
+  .eo-etoiles{color:var(--eo-gold);font-size:11px;letter-spacing:1px;margin-left:4px}
+  .eo-liste form{margin:0}
+  .eo-liste .eo-ligne{display:flex;align-items:center;gap:12px;padding:10px 0}
+  .eo-ok{flex:none;font-size:11px;font-weight:600;padding:4px 10px;border-radius:6px;cursor:pointer;
+    background:rgba(93,202,165,.14);color:#5DCAA5;border:1px solid rgba(93,202,165,.3)}
+  .eo-ok:hover{background:rgba(93,202,165,.24)}
+  .eo-hbar{display:flex;align-items:center;gap:10px;padding:6px 0;font-size:13px}
+  .eo-hl{flex:none;width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#fff}
+  .eo-ht{flex:1;height:10px;border-radius:5px;background:#0F2338}
+  .eo-hf{height:100%;border-radius:5px;background:#3A5A7A}
+  .eo-hbar.premier .eo-hf{background:var(--eo-gold)}
+  .eo-hn{flex:none;width:26px;text-align:right;color:var(--eo-muted);font-variant-numeric:tabular-nums}
+
+  @media (max-width: 992px){
+    .eo-kpis{grid-template-columns:repeat(2,1fr)}
+    .eo-grid{grid-template-columns:1fr}
+    .eo-grid3{grid-template-columns:1fr}
+  }
+  @media (max-width: 520px){
+    .eo-head{flex-direction:column}
+    .eo-kpis{grid-template-columns:1fr}
+  }
+</style>
+
+<div class="eo-dash">
+  <div class="eo-head">
+    <div>
+      <h2>Bonjour {% firstof request.user.first_name request.user.username %}</h2>
+      <p>Voici l'activité de votre agence</p>
+    </div>
+    <a class="eo-btn" href="{% url 'admin:biens_bien_add' %}"><i class="fas fa-plus"></i> Ajouter un bien</a>
+  </div>
+
+  {% if d.retard %}
+  <a class="eo-alerte" href="{% url 'admin:biens_demande_changelist' %}?traitee__exact=0">
+    <i class="fas fa-exclamation-triangle"></i>
+    {{ d.retard }} demande{{ d.retard|pluralize }} en attente depuis plus de 48 h
+    <span>Voir les demandes →</span>
+  </a>
+  {% endif %}
+
+  <div class="eo-kpis">
+    <a class="eo-kpi" href="{% url 'admin:biens_bien_changelist' %}">
+      <div class="eo-kpi-top">Total des biens <i class="fas fa-home"></i></div>
+      <strong>{{ d.biens }}</strong>
+      <div class="eo-sub vert">+{{ d.biens_mois }} ce mois-ci</div>
+    </a>
+    <a class="eo-kpi" href="{% url 'admin:biens_bien_changelist' %}?publie__exact=1">
+      <div class="eo-kpi-top">Publiés <i class="far fa-check-circle"></i></div>
+      <strong>{{ d.publies }}</strong>
+      <div class="eo-sub">{{ d.pct_en_ligne }} % en ligne</div>
+    </a>
+    <a class="eo-kpi" href="{% url 'admin:biens_demande_changelist' %}">
+      <div class="eo-kpi-top">Demandes <i class="far fa-envelope"></i></div>
+      <strong>{{ d.demandes }}</strong>
+      <div class="eo-sub corail">{{ d.a_traiter }} à traiter</div>
+    </a>
+    <a class="eo-kpi" href="{% url 'admin:biens_avis_changelist' %}">
+      <div class="eo-kpi-top">Avis approuvés <i class="far fa-star"></i></div>
+      <strong>{{ d.avis }}</strong>
+      <div class="eo-sub">Note moyenne {{ d.note_moyenne }}</div>
+    </a>
+  </div>
+
+  <div class="eo-grid">
+    <div class="eo-card">
+      <div class="eo-card-head"><h4>Demandes clients par mois</h4><span>6 mois</span></div>
+      <div class="eo-bars">
+        {% for b in d.barres %}
+        <div class="eo-col" title="{{ b.n }} demande{{ b.n|pluralize }}">
+          <div class="eo-bar{% if b.courant %} courant{% endif %}" style="height:{{ b.pct }}%"></div>
+          <div class="eo-lbl">{{ b.label }}</div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="eo-card">
+      <div class="eo-card-head"><h4>Dernières demandes</h4></div>
+      {% if d.dernieres %}
+      <ul class="eo-liste">
+        {% for r in d.dernieres %}
+        <li>
+          <a href="{% url 'admin:biens_demande_change' r.id %}">
+            <span class="eo-av">{{ r.initiales }}</span>
+            <span class="eo-info">
+              <span class="eo-nom">{{ r.nom }}</span>
+              <span class="eo-type">{{ r.libelle }}</span>
+            </span>
+            {% if r.traitee %}<span class="eo-badge ok">Traité</span>{% else %}<span class="eo-badge">Nouveau</span>{% endif %}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+      <a class="eo-tout" href="{% url 'admin:biens_demande_changelist' %}">Toutes les demandes →</a>
+      {% else %}
+      <div class="eo-vide">Aucune demande pour le moment. Elles apparaîtront ici dès qu'un visiteur remplira un formulaire.</div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="eo-grid3">
+    <div class="eo-card">
+      <div class="eo-card-head"><h4>Avis à valider</h4><span>{{ d.avis_attente_total }} en attente</span></div>
+      {% if d.avis_attente %}
+      <ul class="eo-liste">
+        {% for a in d.avis_attente %}
+        <li>
+          <div class="eo-ligne">
+            <span class="eo-info">
+              <span class="eo-nom">{{ a.nom }}<span class="eo-etoiles">{{ a.etoiles }}</span></span>
+              <span class="eo-type">{{ a.extrait }}</span>
+            </span>
+            {% if perms.biens.change_avis %}
+            <form method="post" action="{% url 'admin:avis_approuver' a.id %}">{% csrf_token %}
+              <button type="submit" class="eo-ok">Approuver</button>
+            </form>
+            {% endif %}
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+      <a class="eo-tout" href="{% url 'admin:biens_avis_changelist' %}?est_approuve__exact=0">Tous les avis en attente →</a>
+      {% else %}
+      <div class="eo-vide">Aucun avis en attente de validation.</div>
+      {% endif %}
+    </div>
+
+    <div class="eo-card">
+      <div class="eo-card-head"><h4>Biens par ville</h4><span>{{ d.nb_vente }} vente · {{ d.nb_location }} location</span></div>
+      {% if d.villes %}
+      {% for v in d.villes %}
+      <div class="eo-hbar{% if forloop.first %} premier{% endif %}">
+        <span class="eo-hl">{{ v.nom }}</span>
+        <div class="eo-ht"><div class="eo-hf" style="width:{{ v.pct }}%"></div></div>
+        <span class="eo-hn">{{ v.n }}</span>
+      </div>
+      {% endfor %}
+      {% else %}
+      <div class="eo-vide">Aucun bien pour le moment.</div>
+      {% endif %}
+    </div>
+
+    <div class="eo-card">
+      <div class="eo-card-head"><h4>Conseillers</h4><span>biens · demandes</span></div>
+      {% if d.conseillers %}
+      <ul class="eo-liste">
+        {% for c in d.conseillers %}
+        <li>
+          <div class="eo-ligne">
+            <span class="eo-av">{{ c.initiales }}</span>
+            <span class="eo-info">
+              <span class="eo-nom">{{ c.nom }}</span>
+              <span class="eo-type">{{ c.nb_biens }} bien{{ c.nb_biens|pluralize }} · {{ c.nb_demandes }} demande{{ c.nb_demandes|pluralize }}</span>
+            </span>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <div class="eo-vide">Aucun conseiller actif.</div>
       {% endif %}
     </div>
   </div>

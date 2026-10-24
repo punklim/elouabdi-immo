@@ -163,6 +163,7 @@ class Demande(models.Model):
     email = models.EmailField(blank=True)
     message = models.TextField(blank=True)
     traitee = models.BooleanField("Traitée", default=False)
+    note_interne = models.TextField("Note interne", blank=True, default="")
     recue_le = models.DateTimeField(auto_now_add=True)
 
     class Meta:
