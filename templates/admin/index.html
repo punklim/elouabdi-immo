@@ -99,6 +99,16 @@
         <a href="{% url 'admin:statistiques' %}" style="color: #0F2338; font-size: 14px; text-decoration: underline;">Voir la page statistiques →</a>
     </div>
 </div>
+
+<!-- Les graphiques (inclus avec les données protégées) -->
+{% if stats.mois %}
+    {% include "admin/_stats_charts.html" with kpi=False %}
+{% else %}
+    <div class="alert alert-info" style="background: #E8F0F8; border-color: #1B3A57; color: #0F2338;">
+        Aucune donnée disponible pour le moment. Ajoutez des biens et des demandes pour voir les graphiques.
+    </div>
+{% endif %}
+
 <!-- Section : Dernières demandes -->
 <div class="row" style="margin-bottom: 30px;">
     <div class="col-md-12">
