@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "cloudinary_storage",  # <-- AJOUTE
+    "cloudinary",          # <-- AJOUTE
     "django.contrib.humanize",
     "django.contrib.sitemaps",
     "biens",
@@ -235,3 +237,11 @@ LOGGING = {
     },
 }
 WHITENOISE_MANIFEST_STRICT = False
+# Configuration Cloudinary pour le stockage des médias
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'deqjnufse',
+    'API_KEY': '836895945435488',
+    'API_SECRET': 'O5WTZQSH6ZiyWqfUpDJO3ZYya6E',
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

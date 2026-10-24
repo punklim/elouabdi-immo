@@ -3,3 +3,5 @@ gunicorn
 whitenoise
 django-jazzmin
 Pillow
+cloudinary
+django-cloudinary-storage
