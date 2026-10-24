@@ -1,10 +1,390 @@
-/* El Ouabdi Immobilier - barre latérale réduite aux icônes dès l'ouverture de l'admin.
-   Elle s'élargit au survol de la souris, et le bouton « menu » (☰) permet de la déplier. */
-(function () {
-  document.addEventListener("DOMContentLoaded", function () {
-    var b = document.body;
-    if (b.classList.contains("sidebar-mini") && !b.classList.contains("eo-init")) {
-      b.classList.add("sidebar-collapse", "eo-init");
-    }
-  });
-})();
+/* El Ouabdi Immobilier - habillage global de l'administration (Jazzmin) : thème bleu marine + or.
+   Le tableau de bord (page d'accueil) a son propre CSS intégré dans templates/admin/index.html.
+   Les !important sont voulus : ils imposent le thème quel que soit le mode clair/sombre du navigateur. */
+
+:root {
+    --eo-page: #0A1727;
+    --eo-deep: #0B1B2D;
+    --eo-navy: #0F2338;
+    --eo-card: #132C47;
+    --eo-blue: #1B3A57;
+    --eo-line: #24405F;
+    --eo-gold: #D9AE67;
+    --eo-text: #DCE6F0;
+    --eo-muted: #8FA3B8;
+    --eo-link: #8DB8E3;
+}
+
+/* ---------- Fond de page et texte ---------- */
+html,
+body,
+body.dark-mode,
+.content-wrapper,
+.dark-mode .content-wrapper,
+.content,
+.content-header {
+    background: var(--eo-page) !important;
+    color: var(--eo-text) !important;
+}
+
+h1, h2, h3, h4, h5, h6,
+.content-header h1,
+.card-title,
+label,
+legend {
+    color: #FFFFFF !important;
+}
+
+.text-muted,
+.help,
+.form-text,
+small {
+    color: var(--eo-muted) !important;
+}
+
+.content-wrapper a:not(.btn):not(.nav-link):not(.page-link):not(.dropdown-item):not(.eo-btn):not(.eo-kpi):not(.eo-tout) {
+    color: var(--eo-link);
+}
+
+.content-wrapper a:not(.btn):not(.nav-link):not(.page-link):not(.dropdown-item):not(.eo-btn):not(.eo-kpi):not(.eo-tout):hover {
+    color: var(--eo-gold);
+}
+
+.breadcrumb,
+.breadcrumb-item,
+.breadcrumb-item + .breadcrumb-item::before {
+    background: transparent !important;
+    color: var(--eo-muted) !important;
+}
+
+/* ---------- Barre latérale ---------- */
+.main-sidebar,
+.main-sidebar .brand-link,
+.sidebar,
+.dark-mode .main-sidebar {
+    background: var(--eo-deep) !important;
+}
+
+.main-sidebar .brand-link {
+    border-bottom: 1px solid var(--eo-line) !important;
+}
+
+.brand-text {
+    color: #FFFFFF !important;
+    font-weight: 600 !important;
+}
+
+.sidebar .user-panel,
+.user-panel {
+    border-bottom: 1px solid var(--eo-line) !important;
+}
+
+.nav-sidebar .nav-link {
+    margin: 2px 8px;
+    border-radius: 8px;
+    color: #C5D2E0 !important;
+    transition: background .15s ease, color .15s ease;
+}
+
+.nav-sidebar .nav-link:hover {
+    background: #14304A !important;
+    color: #FFFFFF !important;
+}
+
+.nav-sidebar .nav-link.active {
+    background: #1B3652 !important;
+    color: var(--eo-gold) !important;
+    box-shadow: none !important;
+}
+
+.nav-sidebar .nav-link.active .nav-icon {
+    color: var(--eo-gold) !important;
+}
+
+.nav-treeview > .nav-item > .nav-link {
+    background: transparent !important;
+}
+
+/* ---------- En-tête et pied de page ---------- */
+.main-header.navbar,
+.dark-mode .main-header {
+    background: var(--eo-deep) !important;
+    border-bottom: 1px solid var(--eo-line) !important;
+}
+
+.main-header .navbar-nav .nav-link {
+    color: #C5D2E0 !important;
+}
+
+.main-header .navbar-nav .nav-link:hover {
+    color: var(--eo-gold) !important;
+}
+
+.main-footer,
+.dark-mode .main-footer {
+    background: var(--eo-deep) !important;
+    border-top: 1px solid var(--eo-line) !important;
+    color: var(--eo-muted) !important;
+}
+
+/* ---------- Cartes ---------- */
+.card,
+.dark-mode .card,
+.callout,
+.modal-content,
+.dropdown-menu {
+    background: var(--eo-card) !important;
+    border: 1px solid var(--eo-line) !important;
+    border-radius: 12px;
+    color: var(--eo-text) !important;
+    box-shadow: none !important;
+}
+
+.card-header,
+.card-footer,
+.modal-header,
+.modal-footer {
+    background: transparent !important;
+    border-color: var(--eo-line) !important;
+}
+
+.dropdown-item {
+    color: var(--eo-text) !important;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background: var(--eo-blue) !important;
+    color: var(--eo-gold) !important;
+}
+
+/* ---------- Tableaux (listes Biens, Demandes, Avis...) ---------- */
+.table,
+.dark-mode .table,
+table {
+    color: var(--eo-text) !important;
+    background: transparent !important;
+}
+
+.table thead th,
+.table th,
+table thead th {
+    background: var(--eo-navy) !important;
+    color: var(--eo-muted) !important;
+    border-color: var(--eo-line) !important;
+    font-weight: 600;
+}
+
+.table td,
+.table th,
+table td {
+    border-color: var(--eo-line) !important;
+}
+
+.table-striped tbody tr:nth-of-type(odd),
+.table tbody tr:nth-of-type(odd) {
+    background: rgba(255, 255, 255, .02) !important;
+}
+
+.table tbody tr:hover,
+.table-hover tbody tr:hover {
+    background: rgba(217, 174, 103, .07) !important;
+    color: #FFFFFF !important;
+}
+
+.table .selected,
+tr.selected {
+    background: rgba(217, 174, 103, .14) !important;
+}
+
+/* ---------- Formulaires ---------- */
+.form-control,
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="date"],
+input[type="time"],
+textarea,
+select,
+.select2-container--default .select2-selection--single,
+.select2-container--default .select2-selection--multiple,
+.custom-select {
+    background: var(--eo-navy) !important;
+    border: 1px solid var(--eo-line) !important;
+    color: #FFFFFF !important;
+    border-radius: 8px;
+}
+
+.form-control::placeholder,
+input::placeholder,
+textarea::placeholder {
+    color: var(--eo-muted) !important;
+}
+
+.form-control:focus,
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--eo-gold) !important;
+    box-shadow: 0 0 0 3px rgba(217, 174, 103, .18) !important;
+    outline: none !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered,
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    color: #FFFFFF !important;
+}
+
+.select2-dropdown,
+.select2-container--default .select2-results__option {
+    background: var(--eo-navy) !important;
+    color: var(--eo-text) !important;
+    border-color: var(--eo-line) !important;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected],
+.select2-container--default .select2-results__option--highlighted {
+    background: var(--eo-blue) !important;
+    color: var(--eo-gold) !important;
+}
+
+.input-group-text {
+    background: var(--eo-blue) !important;
+    border-color: var(--eo-line) !important;
+    color: var(--eo-text) !important;
+}
+
+fieldset.module,
+.module,
+.card-primary,
+.card-outline {
+    border-color: var(--eo-line) !important;
+}
+
+/* Onglets des formulaires (fieldsets en onglets Jazzmin) */
+.nav-tabs {
+    border-bottom: 1px solid var(--eo-line) !important;
+}
+
+.nav-tabs .nav-link {
+    color: var(--eo-muted) !important;
+    border-color: transparent !important;
+    background: transparent !important;
+}
+
+.nav-tabs .nav-link.active {
+    color: var(--eo-gold) !important;
+    background: var(--eo-card) !important;
+    border-color: var(--eo-line) var(--eo-line) var(--eo-card) !important;
+}
+
+/* ---------- Filtres, recherche, pagination ---------- */
+#changelist-filter,
+.changelist-filter,
+.list-filter,
+.actions {
+    background: var(--eo-card) !important;
+    border-color: var(--eo-line) !important;
+    color: var(--eo-text) !important;
+}
+
+.paginator,
+.pagination {
+    background: transparent !important;
+    color: var(--eo-muted) !important;
+}
+
+.page-link {
+    background: var(--eo-navy) !important;
+    border-color: var(--eo-line) !important;
+    color: var(--eo-text) !important;
+}
+
+.page-link:hover {
+    background: var(--eo-blue) !important;
+    color: var(--eo-gold) !important;
+}
+
+.page-item.active .page-link {
+    background: var(--eo-gold) !important;
+    border-color: var(--eo-gold) !important;
+    color: var(--eo-navy) !important;
+    font-weight: 600;
+}
+
+/* ---------- Messages Django (succès, erreur) ---------- */
+.alert-success {
+    background: rgba(93, 202, 165, .12) !important;
+    border: 1px solid rgba(93, 202, 165, .35) !important;
+    color: #5DCAA5 !important;
+}
+
+.alert-danger,
+.errornote,
+.errorlist {
+    background: rgba(232, 137, 111, .12) !important;
+    border: 1px solid rgba(232, 137, 111, .35) !important;
+    color: #E8896F !important;
+}
+
+/* ---------- Boutons ---------- */
+.btn-success,
+.btn-warning {
+    background: var(--eo-gold) !important;
+    border-color: var(--eo-gold) !important;
+    color: var(--eo-navy) !important;
+    font-weight: 600;
+}
+
+.btn-success:hover,
+.btn-warning:hover {
+    background: #E4BC78 !important;
+    border-color: #E4BC78 !important;
+}
+
+.btn-primary,
+.btn-info {
+    background: var(--eo-blue) !important;
+    border-color: var(--eo-blue) !important;
+    color: #FFFFFF !important;
+}
+
+.btn-primary:hover,
+.btn-info:hover {
+    background: #25496C !important;
+    border-color: #25496C !important;
+}
+
+.btn-secondary,
+.btn-default {
+    background: var(--eo-navy) !important;
+    border-color: var(--eo-line) !important;
+    color: var(--eo-text) !important;
+}
+
+.btn-danger {
+    background: #C0563F !important;
+    border-color: #C0563F !important;
+}
+
+/* ---------- Barres de défilement ---------- */
+* {
+    scrollbar-color: var(--eo-line) var(--eo-page);
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--eo-page);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--eo-line);
+    border-radius: 8px;
+}
