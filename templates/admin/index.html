@@ -5,8 +5,9 @@
 {% firstof user.first_name user.get_username as nom_affiche %}
 
 <style>
-  .content-wrapper { background: #0F2338 !important; }
-  .content-header { display: none !important; }
+  body:has(.eo-dash) .content-wrapper,
+  body:has(.eo-dash) .content-wrapper > .content { background: #0F2338 !important; }
+  body:has(.eo-dash) .content-header { display: none !important; }
 
   .eo-dash {
     --eo-card: #162F4A;
@@ -15,7 +16,10 @@
     --eo-gold: #D4A95A;
     --eo-ink: #0F2338;
     color: #FFFFFF;
-    padding: 6px 4px 30px;
+    background: #0F2338;
+    border-radius: 14px;
+    padding: 22px;
+    padding-bottom: 30px;
   }
   .eo-dash a { text-decoration: none; }
 

@@ -1,11 +1,12 @@
-
 """Réglages du site. En local, tout fonctionne sans configuration.
 En production, les valeurs sensibles viennent de variables d'environnement
 (voir .env.example et DEPLOIEMENT.md)."""
 import os
 from pathlib import Path
+
 import dj_database_url
 from django.core.exceptions import ImproperlyConfigured
+
 from .agence import AGENCE  # noqa: F401  (utilisé par biens/context_processors.py)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,8 +41,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "cloudinary_storage",  # <-- AJOUTE
-    "cloudinary",          # <-- AJOUTE
+    "cloudinary_storage",
+    "cloudinary",
     "django.contrib.humanize",
     "django.contrib.sitemaps",
     "biens",
@@ -98,9 +99,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Langues : français par défaut, arabe sous /ar/
 LANGUAGE_CODE = "fr"
 LANGUAGES = [
-    ('fr', 'Français'),
-    ('en', 'English'),
-    ('ar', 'العربية'),
+    ("fr", "Français"),
+    ("en", "English"),
+    ("ar", "العربية"),
 ]
 LOCALE_PATHS = [BASE_DIR / "locale"]
 TIME_ZONE = "Africa/Casablanca"
@@ -143,9 +144,10 @@ if not DEBUG:
     CSRF_COOKIE_SECURE = True
     SECURE_HSTS_SECONDS = 31536000
     SECURE_CONTENT_TYPE_NOSNIFF = True
+
 # --- Configuration Jazzmin pour l'Admin ---
 JAZZMIN_SETTINGS = {
-    "show_ui_builder": False,  # <-- Ajoute cette ligne
+    "show_ui_builder": False,
     "use_bootswatch": False,
     "site_title": "El Ouabdi Admin",
     "site_header": "El Ouabdi Immobilier",
@@ -153,11 +155,14 @@ JAZZMIN_SETTINGS = {
     "welcome_sign": "Bienvenue sur l'administration",
     "copyright": "El Ouabdi Immobilier",
     "search_model": ["biens.Bien"],
-    
+
+    # Feuille de style personnalisée (doit être ici, pas dans JAZZMIN_UI_TWEAKS)
+    "custom_css": "css/admin-custom.css",
+
     # Menu de gauche
     "show_sidebar": True,
     "navigation_expanded": False,
-    
+
     # Icônes
     "icons": {
         "auth": "fas fa-users-cog",
@@ -170,9 +175,9 @@ JAZZMIN_SETTINGS = {
         "biens.Avis": "fas fa-star",
         "biens.Article": "fas fa-newspaper",
     },
-    
+
     "order_with_respect_to": ["biens", "auth"],
-    
+
     # Lien personnalisé vers la page Statistiques
     "custom_links": {
         "biens": [{
@@ -205,43 +210,45 @@ JAZZMIN_UI_TWEAKS = {
     "sidebar_nav_legacy_style": False,
     "sidebar_nav_flat_style": False,
     "theme": "default",
-    "dark_mode_theme": "default",    "button_classes": {
+    "dark_mode_theme": "default",
+    "button_classes": {
         "primary": "btn-primary",
         "secondary": "btn-secondary",
         "info": "btn-info",
         "warning": "btn-warning",
         "danger": "btn-danger",
-        "success": "btn-success"
+        "success": "btn-success",
     },
-    "custom_css": "css/admin-custom.css",
 }
+
 # Logging pour voir les erreurs en production
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
         },
     },
-    'root': {
-        'handlers': ['console'],
-        'level': 'ERROR',
+    "root": {
+        "handlers": ["console"],
+        "level": "ERROR",
     },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'level': 'ERROR',
-            'propagate': False,
+    "loggers": {
+        "django": {
+            "handlers": ["console"],
+            "level": "ERROR",
+            "propagate": False,
         },
     },
 }
 WHITENOISE_MANIFEST_STRICT = False
-# Configuration Cloudinary pour le stockage des médias
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'deqjnutse',
-    'API_KEY': '836895945435488',
-    'API_SECRET': 'O5WTZQSH6ZiyWqfUpDJO3ZYya6E',
-}
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# Configuration Cloudinary pour le stockage des médias.
+# ATTENTION : à remplacer par env("CLOUDINARY_...") dès que les nouvelles
+# clés sont enregistrées sur Render (voir les explications).
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": "deqjnutse",
+    "API_KEY": "836895945435488",
+    "API_SECRET": "O5WTZQSH6ZiyWqfUpDJO3ZYya6E",
+}
