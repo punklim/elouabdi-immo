@@ -388,3 +388,59 @@ fieldset.module,
     background: var(--eo-line);
     border-radius: 8px;
 }
+
+/* ====================================================================
+   RENFORT : sélecteurs plus précis pour passer devant les styles de
+   Jazzmin / AdminLTE (mode sombre, thèmes de barre latérale et d'en-tête).
+   Le liseré doré en haut de page sert de témoin : s'il est visible,
+   ce fichier est bien chargé (on pourra le supprimer ensuite).
+   ==================================================================== */
+html body {
+    background-color: var(--eo-page) !important;
+    border-top: 4px solid var(--eo-gold) !important;
+}
+
+html body .wrapper,
+html body .content-wrapper,
+html body.dark-mode .content-wrapper,
+html body.layout-fixed .content-wrapper {
+    background-color: var(--eo-page) !important;
+    background-image: none !important;
+}
+
+html body .main-sidebar,
+html body .main-sidebar .sidebar,
+html body .main-sidebar .brand-link,
+html body.dark-mode .main-sidebar,
+html body .main-sidebar.sidebar-dark-primary,
+html body .main-sidebar.sidebar-dark-warning,
+html body .main-sidebar.sidebar-dark-info {
+    background-color: var(--eo-deep) !important;
+    background-image: none !important;
+}
+
+html body .main-header,
+html body .main-header.navbar,
+html body .main-header.navbar-dark,
+html body .main-header.navbar-white,
+html body.dark-mode .main-header {
+    background-color: var(--eo-deep) !important;
+    background-image: none !important;
+    border-bottom: 1px solid var(--eo-line) !important;
+}
+
+html body .main-footer,
+html body.dark-mode .main-footer {
+    background-color: var(--eo-deep) !important;
+    border-top: 1px solid var(--eo-line) !important;
+}
+
+html body .nav-sidebar > .nav-item > .nav-link.active,
+html body .nav-sidebar .nav-link.active {
+    background-color: #1B3652 !important;
+    color: var(--eo-gold) !important;
+}
+
+html body .nav-sidebar .nav-link:hover {
+    background-color: #14304A !important;
+}

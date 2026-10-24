@@ -1,10 +1,15 @@
 /* El Ouabdi Immobilier - barre latérale réduite aux icônes dès l'ouverture de l'admin.
    Elle s'élargit au survol de la souris, et le bouton « menu » (☰) permet de la déplier. */
 (function () {
-  document.addEventListener("DOMContentLoaded", function () {
+  function reduireMenu() {
     var b = document.body;
-    if (b.classList.contains("sidebar-mini") && !b.classList.contains("eo-init")) {
-      b.classList.add("sidebar-collapse", "eo-init");
-    }
-  });
+    if (!b || b.classList.contains("eo-init")) return;
+    if (!document.querySelector(".main-sidebar")) return;
+    b.classList.add("sidebar-mini", "sidebar-collapse", "eo-init");
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", reduireMenu);
+  } else {
+    reduireMenu();
+  }
 })();
