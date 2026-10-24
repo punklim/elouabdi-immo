@@ -1,6 +1,7 @@
-/* El Ouabdi Immobilier - habillage global de l'administration (Jazzmin) : thème bleu marine + or.
-   Le tableau de bord (page d'accueil) a son propre CSS intégré dans templates/admin/index.html.
-   Les !important sont voulus : ils imposent le thème quel que soit le mode clair/sombre du navigateur. */
+/* El Ouabdi Immobilier - thème bleu marine + or pour l'administration (Jazzmin 3 / Bootstrap 5).
+   Principe : on redéfinit les variables de couleur de Bootstrap, ce qui recolore toute l'interface
+   (fond, cartes, tableaux, formulaires, menus...). Quelques règles ciblées complètent le tout.
+   Le tableau de bord (page d'accueil) a son propre CSS intégré dans templates/admin/index.html. */
 
 :root {
     --eo-page: #0A1727;
@@ -15,190 +16,178 @@
     --eo-link: #8DB8E3;
 }
 
-/* ---------- Fond de page et texte ---------- */
-html,
-body,
-body.dark-mode,
-.content-wrapper,
-.dark-mode .content-wrapper,
-.content,
-.content-header {
-    background: var(--eo-page) !important;
-    color: var(--eo-text) !important;
+/* ---------- Variables Bootstrap : couleurs de toute l'interface ---------- */
+:root,
+[data-bs-theme="light"],
+[data-bs-theme="dark"] {
+    color-scheme: dark;
+
+    --bs-body-color: #DCE6F0;
+    --bs-body-color-rgb: 220, 230, 240;
+    --bs-emphasis-color: #FFFFFF;
+    --bs-emphasis-color-rgb: 255, 255, 255;
+    --bs-heading-color: #FFFFFF;
+    --bs-secondary-color: rgba(143, 163, 184, .9);
+    --bs-secondary-color-rgb: 143, 163, 184;
+    --bs-tertiary-color: rgba(143, 163, 184, .65);
+    --bs-tertiary-color-rgb: 143, 163, 184;
+
+    /* fond de la page */
+    --bs-body-bg: #0A1727;
+    --bs-body-bg-rgb: 10, 23, 39;
+    --bs-tertiary-bg: #0A1727;
+    --bs-tertiary-bg-rgb: 10, 23, 39;
+    /* surfaces (cartes, panneaux) */
+    --bs-secondary-bg: #132C47;
+    --bs-secondary-bg-rgb: 19, 44, 71;
+
+    --bs-border-color: #24405F;
+    --bs-border-color-translucent: rgba(36, 64, 95, .7);
+
+    --bs-link-color: #8DB8E3;
+    --bs-link-color-rgb: 141, 184, 227;
+    --bs-link-hover-color: #D9AE67;
+    --bs-link-hover-color-rgb: 217, 174, 103;
+
+    --bs-primary: #D9AE67;
+    --bs-primary-rgb: 217, 174, 103;
 }
 
-h1, h2, h3, h4, h5, h6,
-.content-header h1,
-.card-title,
-label,
-legend {
-    color: #FFFFFF !important;
-}
-
-.text-muted,
-.help,
-.form-text,
-small {
-    color: var(--eo-muted) !important;
-}
-
-.content-wrapper a:not(.btn):not(.nav-link):not(.page-link):not(.dropdown-item):not(.eo-btn):not(.eo-kpi):not(.eo-tout) {
-    color: var(--eo-link);
-}
-
-.content-wrapper a:not(.btn):not(.nav-link):not(.page-link):not(.dropdown-item):not(.eo-btn):not(.eo-kpi):not(.eo-tout):hover {
-    color: var(--eo-gold);
-}
-
-.breadcrumb,
-.breadcrumb-item,
-.breadcrumb-item + .breadcrumb-item::before {
-    background: transparent !important;
-    color: var(--eo-muted) !important;
+body {
+    background-color: var(--eo-page) !important;
+    color: var(--eo-text);
 }
 
 /* ---------- Barre latérale ---------- */
-.main-sidebar,
-.main-sidebar .brand-link,
-.sidebar,
-.dark-mode .main-sidebar {
-    background: var(--eo-deep) !important;
+#jazzy-sidebar {
+    --bs-secondary-bg: #0B1B2D;
+    --bs-secondary-bg-rgb: 11, 27, 45;
+    --lte-sidebar-color: #C5D2E0;
+    --lte-sidebar-hover-color: #FFFFFF;
+    --lte-sidebar-hover-bg: #14304A;
+    --lte-sidebar-active-color: #D9AE67;
+    --lte-sidebar-menu-active-bg: #1B3652;
+    --lte-sidebar-menu-active-color: #D9AE67;
+    --lte-sidebar-submenu-color: #9FB1C4;
+    --lte-sidebar-submenu-hover-color: #FFFFFF;
+    --lte-sidebar-submenu-hover-bg: #14304A;
+    --lte-sidebar-submenu-active-color: #D9AE67;
+    --lte-sidebar-submenu-active-bg: #1B3652;
+    background-color: #0B1B2D !important;
+    border-right: 1px solid var(--eo-line);
 }
 
-.main-sidebar .brand-link {
-    border-bottom: 1px solid var(--eo-line) !important;
+#jazzy-sidebar .sidebar-brand {
+    background: #0B1B2D;
+    border-bottom: 1px solid var(--eo-line);
 }
 
-.brand-text {
-    color: #FFFFFF !important;
+#jazzy-sidebar .brand-text {
+    color: #FFFFFF;
     font-weight: 600 !important;
 }
 
-.sidebar .user-panel,
-.user-panel {
-    border-bottom: 1px solid var(--eo-line) !important;
+#jazzy-sidebar .user-panel {
+    border-bottom: 1px solid var(--eo-line);
 }
 
-.nav-sidebar .nav-link {
-    margin: 2px 8px;
+#jazzy-sidebar .sidebar-menu .nav-link {
+    color: #C5D2E0;
     border-radius: 8px;
-    color: #C5D2E0 !important;
-    transition: background .15s ease, color .15s ease;
+    transition: background-color .15s ease, color .15s ease;
 }
 
-.nav-sidebar .nav-link:hover {
-    background: #14304A !important;
+#jazzy-sidebar .sidebar-menu .nav-link:hover {
+    background-color: #14304A !important;
     color: #FFFFFF !important;
 }
 
-.nav-sidebar .nav-link.active {
-    background: #1B3652 !important;
-    color: var(--eo-gold) !important;
+#jazzy-sidebar .sidebar-menu .nav-link.active {
+    background-color: #1B3652 !important;
+    color: #D9AE67 !important;
     box-shadow: none !important;
 }
 
-.nav-sidebar .nav-link.active .nav-icon {
-    color: var(--eo-gold) !important;
-}
-
-.nav-treeview > .nav-item > .nav-link {
-    background: transparent !important;
+#jazzy-sidebar .sidebar-menu .nav-link.active .nav-icon {
+    color: #D9AE67 !important;
 }
 
 /* ---------- En-tête et pied de page ---------- */
-.main-header.navbar,
-.dark-mode .main-header {
-    background: var(--eo-deep) !important;
+#jazzy-navbar {
+    --bs-body-bg: #0B1B2D;
+    --bs-body-bg-rgb: 11, 27, 45;
+    background-color: #0B1B2D !important;
     border-bottom: 1px solid var(--eo-line) !important;
 }
 
-.main-header .navbar-nav .nav-link {
-    color: #C5D2E0 !important;
+#jazzy-navbar .nav-link {
+    color: #C5D2E0;
 }
 
-.main-header .navbar-nav .nav-link:hover {
-    color: var(--eo-gold) !important;
+#jazzy-navbar .nav-link:hover {
+    color: var(--eo-gold);
 }
 
-.main-footer,
-.dark-mode .main-footer {
-    background: var(--eo-deep) !important;
+.app-footer {
+    background-color: #0B1B2D !important;
     border-top: 1px solid var(--eo-line) !important;
     color: var(--eo-muted) !important;
 }
 
-/* ---------- Cartes ---------- */
+/* ---------- Cartes, menus, fenêtres ---------- */
 .card,
-.dark-mode .card,
-.callout,
 .modal-content,
 .dropdown-menu {
-    background: var(--eo-card) !important;
-    border: 1px solid var(--eo-line) !important;
+    --bs-card-bg: #132C47;
+    --bs-card-cap-bg: transparent;
+    --bs-card-border-color: #24405F;
+    background-color: #132C47;
+    border: 1px solid var(--eo-line);
     border-radius: 12px;
-    color: var(--eo-text) !important;
-    box-shadow: none !important;
+    box-shadow: none;
+    color: var(--eo-text);
 }
 
 .card-header,
 .card-footer,
 .modal-header,
 .modal-footer {
-    background: transparent !important;
-    border-color: var(--eo-line) !important;
+    background-color: transparent;
+    border-color: var(--eo-line);
 }
 
 .dropdown-item {
-    color: var(--eo-text) !important;
+    color: var(--eo-text);
 }
 
 .dropdown-item:hover,
 .dropdown-item:focus {
-    background: var(--eo-blue) !important;
-    color: var(--eo-gold) !important;
+    background-color: var(--eo-blue);
+    color: var(--eo-gold);
 }
 
 /* ---------- Tableaux (listes Biens, Demandes, Avis...) ---------- */
-.table,
-.dark-mode .table,
-table {
-    color: var(--eo-text) !important;
-    background: transparent !important;
+.table {
+    --bs-table-bg: transparent;
+    --bs-table-color: #DCE6F0;
+    --bs-table-border-color: #24405F;
+    --bs-table-striped-bg: rgba(255, 255, 255, .03);
+    --bs-table-striped-color: #DCE6F0;
+    --bs-table-hover-bg: rgba(217, 174, 103, .08);
+    --bs-table-hover-color: #FFFFFF;
+    color: var(--eo-text);
 }
 
-.table thead th,
-.table th,
-table thead th {
-    background: var(--eo-navy) !important;
-    color: var(--eo-muted) !important;
-    border-color: var(--eo-line) !important;
+.table thead th {
+    background-color: var(--eo-navy);
+    color: var(--eo-muted);
+    border-color: var(--eo-line);
     font-weight: 600;
-}
-
-.table td,
-.table th,
-table td {
-    border-color: var(--eo-line) !important;
-}
-
-.table-striped tbody tr:nth-of-type(odd),
-.table tbody tr:nth-of-type(odd) {
-    background: rgba(255, 255, 255, .02) !important;
-}
-
-.table tbody tr:hover,
-.table-hover tbody tr:hover {
-    background: rgba(217, 174, 103, .07) !important;
-    color: #FFFFFF !important;
-}
-
-.table .selected,
-tr.selected {
-    background: rgba(217, 174, 103, .14) !important;
 }
 
 /* ---------- Formulaires ---------- */
 .form-control,
+.form-select,
 input[type="text"],
 input[type="number"],
 input[type="email"],
@@ -210,164 +199,172 @@ input[type="time"],
 textarea,
 select,
 .select2-container--default .select2-selection--single,
-.select2-container--default .select2-selection--multiple,
-.custom-select {
-    background: var(--eo-navy) !important;
-    border: 1px solid var(--eo-line) !important;
-    color: #FFFFFF !important;
+.select2-container--default .select2-selection--multiple {
+    background-color: var(--eo-navy);
+    border: 1px solid var(--eo-line);
+    color: #FFFFFF;
     border-radius: 8px;
 }
 
 .form-control::placeholder,
 input::placeholder,
 textarea::placeholder {
-    color: var(--eo-muted) !important;
+    color: var(--eo-muted);
 }
 
 .form-control:focus,
+.form-select:focus,
 input:focus,
 textarea:focus,
 select:focus {
-    border-color: var(--eo-gold) !important;
-    box-shadow: 0 0 0 3px rgba(217, 174, 103, .18) !important;
-    outline: none !important;
+    background-color: var(--eo-navy);
+    border-color: var(--eo-gold);
+    box-shadow: 0 0 0 3px rgba(217, 174, 103, .18);
+    color: #FFFFFF;
+    outline: none;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__rendered,
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
-    color: #FFFFFF !important;
+    color: #FFFFFF;
 }
 
 .select2-dropdown,
 .select2-container--default .select2-results__option {
-    background: var(--eo-navy) !important;
-    color: var(--eo-text) !important;
-    border-color: var(--eo-line) !important;
+    background-color: var(--eo-navy);
+    color: var(--eo-text);
+    border-color: var(--eo-line);
 }
 
 .select2-container--default .select2-results__option--highlighted[aria-selected],
 .select2-container--default .select2-results__option--highlighted {
-    background: var(--eo-blue) !important;
-    color: var(--eo-gold) !important;
+    background-color: var(--eo-blue);
+    color: var(--eo-gold);
 }
 
 .input-group-text {
-    background: var(--eo-blue) !important;
-    border-color: var(--eo-line) !important;
-    color: var(--eo-text) !important;
+    background-color: var(--eo-blue);
+    border-color: var(--eo-line);
+    color: var(--eo-text);
 }
 
-fieldset.module,
-.module,
-.card-primary,
-.card-outline {
-    border-color: var(--eo-line) !important;
+label,
+legend {
+    color: #FFFFFF;
 }
 
-/* Onglets des formulaires (fieldsets en onglets Jazzmin) */
+.form-text,
+.help,
+.text-muted,
+small {
+    color: var(--eo-muted) !important;
+}
+
+/* Onglets des formulaires */
 .nav-tabs {
-    border-bottom: 1px solid var(--eo-line) !important;
+    border-bottom: 1px solid var(--eo-line);
 }
 
 .nav-tabs .nav-link {
-    color: var(--eo-muted) !important;
-    border-color: transparent !important;
-    background: transparent !important;
+    color: var(--eo-muted);
+    border-color: transparent;
+    background: transparent;
 }
 
 .nav-tabs .nav-link.active {
-    color: var(--eo-gold) !important;
-    background: var(--eo-card) !important;
-    border-color: var(--eo-line) var(--eo-line) var(--eo-card) !important;
+    color: var(--eo-gold);
+    background-color: var(--eo-card);
+    border-color: var(--eo-line) var(--eo-line) var(--eo-card);
 }
 
-/* ---------- Filtres, recherche, pagination ---------- */
+/* ---------- Filtres, actions, pagination ---------- */
 #changelist-filter,
 .changelist-filter,
 .list-filter,
 .actions {
-    background: var(--eo-card) !important;
-    border-color: var(--eo-line) !important;
-    color: var(--eo-text) !important;
+    background-color: var(--eo-card);
+    border-color: var(--eo-line);
+    color: var(--eo-text);
 }
 
-.paginator,
 .pagination {
-    background: transparent !important;
-    color: var(--eo-muted) !important;
+    --bs-pagination-bg: #0F2338;
+    --bs-pagination-color: #DCE6F0;
+    --bs-pagination-border-color: #24405F;
+    --bs-pagination-hover-bg: #1B3A57;
+    --bs-pagination-hover-color: #D9AE67;
+    --bs-pagination-hover-border-color: #24405F;
+    --bs-pagination-active-bg: #D9AE67;
+    --bs-pagination-active-color: #0F2338;
+    --bs-pagination-active-border-color: #D9AE67;
+    --bs-pagination-disabled-bg: #0F2338;
+    --bs-pagination-disabled-color: #5F7690;
+    --bs-pagination-disabled-border-color: #24405F;
 }
 
-.page-link {
-    background: var(--eo-navy) !important;
-    border-color: var(--eo-line) !important;
-    color: var(--eo-text) !important;
+.breadcrumb {
+    --bs-breadcrumb-divider-color: #8FA3B8;
+    --bs-breadcrumb-item-active-color: #8FA3B8;
 }
 
-.page-link:hover {
-    background: var(--eo-blue) !important;
-    color: var(--eo-gold) !important;
-}
-
-.page-item.active .page-link {
-    background: var(--eo-gold) !important;
-    border-color: var(--eo-gold) !important;
-    color: var(--eo-navy) !important;
-    font-weight: 600;
-}
-
-/* ---------- Messages Django (succès, erreur) ---------- */
+/* ---------- Messages Django ---------- */
 .alert-success {
-    background: rgba(93, 202, 165, .12) !important;
-    border: 1px solid rgba(93, 202, 165, .35) !important;
-    color: #5DCAA5 !important;
+    background-color: rgba(93, 202, 165, .12);
+    border: 1px solid rgba(93, 202, 165, .35);
+    color: #5DCAA5;
 }
 
 .alert-danger,
 .errornote,
 .errorlist {
-    background: rgba(232, 137, 111, .12) !important;
-    border: 1px solid rgba(232, 137, 111, .35) !important;
-    color: #E8896F !important;
+    background-color: rgba(232, 137, 111, .12);
+    border: 1px solid rgba(232, 137, 111, .35);
+    color: #E8896F;
 }
 
 /* ---------- Boutons ---------- */
 .btn-success,
 .btn-warning {
-    background: var(--eo-gold) !important;
-    border-color: var(--eo-gold) !important;
-    color: var(--eo-navy) !important;
+    --bs-btn-bg: #D9AE67;
+    --bs-btn-border-color: #D9AE67;
+    --bs-btn-color: #0F2338;
+    --bs-btn-hover-bg: #E4BC78;
+    --bs-btn-hover-border-color: #E4BC78;
+    --bs-btn-hover-color: #0F2338;
+    --bs-btn-active-bg: #E4BC78;
+    --bs-btn-active-border-color: #E4BC78;
+    --bs-btn-active-color: #0F2338;
     font-weight: 600;
-}
-
-.btn-success:hover,
-.btn-warning:hover {
-    background: #E4BC78 !important;
-    border-color: #E4BC78 !important;
 }
 
 .btn-primary,
 .btn-info {
-    background: var(--eo-blue) !important;
-    border-color: var(--eo-blue) !important;
-    color: #FFFFFF !important;
-}
-
-.btn-primary:hover,
-.btn-info:hover {
-    background: #25496C !important;
-    border-color: #25496C !important;
+    --bs-btn-bg: #1B3A57;
+    --bs-btn-border-color: #1B3A57;
+    --bs-btn-color: #FFFFFF;
+    --bs-btn-hover-bg: #25496C;
+    --bs-btn-hover-border-color: #25496C;
+    --bs-btn-hover-color: #FFFFFF;
+    --bs-btn-active-bg: #25496C;
+    --bs-btn-active-border-color: #25496C;
+    --bs-btn-active-color: #FFFFFF;
 }
 
 .btn-secondary,
 .btn-default {
-    background: var(--eo-navy) !important;
-    border-color: var(--eo-line) !important;
-    color: var(--eo-text) !important;
+    --bs-btn-bg: #0F2338;
+    --bs-btn-border-color: #24405F;
+    --bs-btn-color: #DCE6F0;
+    --bs-btn-hover-bg: #1B3A57;
+    --bs-btn-hover-border-color: #24405F;
+    --bs-btn-hover-color: #FFFFFF;
 }
 
 .btn-danger {
-    background: #C0563F !important;
-    border-color: #C0563F !important;
+    --bs-btn-bg: #C0563F;
+    --bs-btn-border-color: #C0563F;
+    --bs-btn-hover-bg: #D0644C;
+    --bs-btn-hover-border-color: #D0644C;
 }
 
 /* ---------- Barres de défilement ---------- */
@@ -387,60 +384,4 @@ fieldset.module,
 ::-webkit-scrollbar-thumb {
     background: var(--eo-line);
     border-radius: 8px;
-}
-
-/* ====================================================================
-   RENFORT : sélecteurs plus précis pour passer devant les styles de
-   Jazzmin / AdminLTE (mode sombre, thèmes de barre latérale et d'en-tête).
-   Le liseré doré en haut de page sert de témoin : s'il est visible,
-   ce fichier est bien chargé (on pourra le supprimer ensuite).
-   ==================================================================== */
-html body {
-    background-color: var(--eo-page) !important;
-    border-top: 4px solid var(--eo-gold) !important;
-}
-
-html body .wrapper,
-html body .content-wrapper,
-html body.dark-mode .content-wrapper,
-html body.layout-fixed .content-wrapper {
-    background-color: var(--eo-page) !important;
-    background-image: none !important;
-}
-
-html body .main-sidebar,
-html body .main-sidebar .sidebar,
-html body .main-sidebar .brand-link,
-html body.dark-mode .main-sidebar,
-html body .main-sidebar.sidebar-dark-primary,
-html body .main-sidebar.sidebar-dark-warning,
-html body .main-sidebar.sidebar-dark-info {
-    background-color: var(--eo-deep) !important;
-    background-image: none !important;
-}
-
-html body .main-header,
-html body .main-header.navbar,
-html body .main-header.navbar-dark,
-html body .main-header.navbar-white,
-html body.dark-mode .main-header {
-    background-color: var(--eo-deep) !important;
-    background-image: none !important;
-    border-bottom: 1px solid var(--eo-line) !important;
-}
-
-html body .main-footer,
-html body.dark-mode .main-footer {
-    background-color: var(--eo-deep) !important;
-    border-top: 1px solid var(--eo-line) !important;
-}
-
-html body .nav-sidebar > .nav-item > .nav-link.active,
-html body .nav-sidebar .nav-link.active {
-    background-color: #1B3652 !important;
-    color: var(--eo-gold) !important;
-}
-
-html body .nav-sidebar .nav-link:hover {
-    background-color: #14304A !important;
 }
