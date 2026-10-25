@@ -197,54 +197,90 @@
   </div>
 </section>
 
-<!-- SECTION 3 : VILLES -->
+<!-- SECTION DISPONIBLE DANS TOUTES LES VILLES (Style compact) -->
 <section class="section" style="padding: 60px 0; background: #FAF8F5;">
   <div class="container" style="max-width: 1240px; margin: 0 auto; padding: 0 24px; text-align: center;">
     <span style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: #D4A95A; font-weight: 700; margin-bottom: 8px; display: block;">{% trans "Réseau Géographique" %}</span>
-    <h2 style="font-family: var(--serif); font-size: 38px; color: #0F2338; margin-bottom: 30px;">{% trans "Présents dans toutes les grandes villes" %}</h2>
+    <h2 style="font-family: var(--serif); font-size: 38px; color: #0F2338; margin-bottom: 30px;">{% trans "Disponible dans toutes les grandes villes" %}</h2>
+    
+    <!-- Les petits badges -->
     <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;">
-      {% for v in villes %}
-        <a href="{% url 'liste' %}?ville={{ v.slug }}" style="background: #fff; border: 1px solid #E8E3D9; border-radius: 50px; padding: 10px 20px; font-size: 14px; font-weight: 600; color: #0F2338; text-decoration: none; display: flex; align-items: center; gap: 8px; transition: all 0.2s;">
-          📍 {{ v.nom_affiche }}
-        </a>
-      {% endfor %}
+      <a href="{% url 'liste' %}?ville=casablanca" style="background: #fff; border: 1px solid #E8E3D9; border-radius: 50px; padding: 8px 18px; font-size: 14px; font-weight: 600; color: #0F2338; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+        📍 Casablanca
+      </a>
+      <a href="{% url 'liste' %}?ville=rabat" style="background: #fff; border: 1px solid #E8E3D9; border-radius: 50px; padding: 8px 18px; font-size: 14px; font-weight: 600; color: #0F2338; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+        📍 Rabat
+      </a>
+      <a href="{% url 'liste' %}?ville=marrakech" style="background: #fff; border: 1px solid #E8E3D9; border-radius: 50px; padding: 8px 18px; font-size: 14px; font-weight: 600; color: #0F2338; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+        📍 Marrakech
+      </a>
+      <a href="{% url 'liste' %}?ville=fes" style="background: #fff; border: 1px solid #E8E3D9; border-radius: 50px; padding: 8px 18px; font-size: 14px; font-weight: 600; color: #0F2338; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+        📍 Fès
+      </a>
+      <a href="{% url 'liste' %}?ville=tanger" style="background: #fff; border: 1px solid #E8E3D9; border-radius: 50px; padding: 8px 18px; font-size: 14px; font-weight: 600; color: #0F2338; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+        📍 Tanger
+      </a>
+      <a href="{% url 'liste' %}?ville=agadir" style="background: #fff; border: 1px solid #E8E3D9; border-radius: 50px; padding: 8px 18px; font-size: 14px; font-weight: 600; color: #0F2338; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+        📍 Agadir
+      </a>
+      <a href="{% url 'liste' %}?ville=meknes" style="background: #fff; border: 1px solid #E8E3D9; border-radius: 50px; padding: 8px 18px; font-size: 14px; font-weight: 600; color: #0F2338; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+        📍 Meknès
+      </a>
+      <a href="{% url 'liste' %}?ville=oujda" style="background: #fff; border: 1px solid #E8E3D9; border-radius: 50px; padding: 8px 18px; font-size: 14px; font-weight: 600; color: #0F2338; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+        📍 Oujda
+      </a>
+      <a href="{% url 'liste' %}?ville=tetouan" style="background: #fff; border: 1px solid #E8E3D9; border-radius: 50px; padding: 8px 18px; font-size: 14px; font-weight: 600; color: #0F2338; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+        📍 Tétouan
+      </a>
+      <a href="{% url 'liste' %}?ville=el-jadida" style="background: #fff; border: 1px solid #E8E3D9; border-radius: 50px; padding: 8px 18px; font-size: 14px; font-weight: 600; color: #0F2338; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+        📍 El Jadida
+      </a>
+      <a href="{% url 'liste' %}?ville=kenitra" style="background: #fff; border: 1px solid #E8E3D9; border-radius: 50px; padding: 8px 18px; font-size: 14px; font-weight: 600; color: #0F2338; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+        📍 Kénitra
+      </a>
+      <a href="{% url 'liste' %}?ville=beni-mellal" style="background: #fff; border: 1px solid #E8E3D9; border-radius: 50px; padding: 8px 18px; font-size: 14px; font-weight: 600; color: #0F2338; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+        📍 Mohammédia
+      </a>
     </div>
   </div>
 </section>
-
-<!-- SECTION 4 : TÉMOIGNAGES -->
-<section class="section" style="padding: 80px 0; background: #FFFFFF;">
+<!-- SECTION TÉMOIGNAGES (Compact) -->
+<section class="section" style="padding: 60px 0; background: #FFFFFF;">
   <div class="container" style="max-width: 1240px; margin: 0 auto; padding: 0 24px;">
-    <div style="text-align: center; margin-bottom: 48px;">
+    <div style="text-align: center; margin-bottom: 36px;">
       <span style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: #D4A95A; font-weight: 700; margin-bottom: 8px; display: block;">{% trans "Excellence & Confiance" %}</span>
-      <h2 style="font-family: var(--serif); font-size: 38px; color: #0F2338;">{% trans "Ils nous font confiance" %}</h2>
+      <h2 style="font-family: var(--serif); font-size: 34px; color: #0F2338;">{% trans "Ils nous font confiance" %}</h2>
     </div>
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+    
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
       
-      <div style="background: #fff; padding: 28px; border-radius: 14px; border: 1px solid #E8E3D9; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
-        <div style="color: #D4A95A; font-size: 18px; margin-bottom: 12px;">★★★★★</div>
-        <p style="font-style: italic; color: #334155; font-size: 14px; line-height: 1.6; margin-bottom: 20px;">"{% trans "J'ai trouvé une excellente villa à Casablanca en 24h. Les photos étaient réelles et l'agent très professionnel." %}"</p>
-        <div style="display: flex; align-items: center; gap: 12px;">
-          <div style="width: 40px; height: 40px; border-radius: 50%; background: #FAF3E0; color: #0F2338; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 14px;">SK</div>
-          <div><strong>Samira K.</strong><p style="font-size: 12px; color: #64748B;">{% trans "Acheteuse" %} · Casablanca</p></div>
+      <!-- Témoignage 1 -->
+      <div style="background: #fff; padding: 24px; border-radius: 12px; border: 1px solid #E8E3D9; box-shadow: 0 4px 15px rgba(0,0,0,0.02);">
+        <div style="color: #D4A95A; font-size: 16px; margin-bottom: 10px;">★★★★★</div>
+        <p style="font-style: italic; color: #334155; font-size: 13px; line-height: 1.5; margin-bottom: 16px;">"{% trans "J'ai trouvé une excellente villa à Casablanca en 24h. Les photos étaient réelles et l'agent très professionnel. Je recommande vivement !" %}"</p>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #FAF3E0; color: #0F2338; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 12px;">SK</div>
+          <div><strong style="font-size: 13px; color: #0F2338;">Samira K.</strong><p style="font-size: 11px; color: #64748B; margin: 0;">{% trans "Acheteuse" %} · Casablanca</p></div>
         </div>
       </div>
 
-      <div style="background: #fff; padding: 28px; border-radius: 14px; border: 1px solid #E8E3D9; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
-        <div style="color: #D4A95A; font-size: 18px; margin-bottom: 12px;">★★★★★</div>
-        <p style="font-style: italic; color: #334155; font-size: 14px; line-height: 1.6; margin-bottom: 20px;">"{% trans "Grâce à El Ouabdi, j'ai loué mon appartement à Rabat en moins d'une semaine. Le service est rapide et efficace." %}"</p>
-        <div style="display: flex; align-items: center; gap: 12px;">
-          <div style="width: 40px; height: 40px; border-radius: 50%; background: #FAF3E0; color: #0F2338; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 14px;">KB</div>
-          <div><strong>Karim B.</strong><p style="font-size: 12px; color: #64748B;">{% trans "Propriétaire" %} · Rabat</p></div>
+      <!-- Témoignage 2 -->
+      <div style="background: #fff; padding: 24px; border-radius: 12px; border: 1px solid #E8E3D9; box-shadow: 0 4px 15px rgba(0,0,0,0.02);">
+        <div style="color: #D4A95A; font-size: 16px; margin-bottom: 10px;">★★★★★</div>
+        <p style="font-style: italic; color: #334155; font-size: 13px; line-height: 1.5; margin-bottom: 16px;">"{% trans "Grâce à El Ouabdi, j'ai loué mon appartement à Rabat en moins d'une semaine. Le service est rapide et efficace." %}"</p>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #FAF3E0; color: #0F2338; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 12px;">KB</div>
+          <div><strong style="font-size: 13px; color: #0F2338;">Karim B.</strong><p style="font-size: 11px; color: #64748B; margin: 0;">{% trans "Propriétaire" %} · Rabat</p></div>
         </div>
       </div>
 
-      <div style="background: #fff; padding: 28px; border-radius: 14px; border: 1px solid #E8E3D9; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
-        <div style="color: #D4A95A; font-size: 18px; margin-bottom: 12px;">★★★★☆</div>
-        <p style="font-style: italic; color: #334155; font-size: 14px; line-height: 1.6; margin-bottom: 20px;">"{% trans "Très bonne expérience. L'équipe m'a accompagné du début à la fin pour l'achat de mon terrain à Marrakech." %}"</p>
-        <div style="display: flex; align-items: center; gap: 12px;">
-          <div style="width: 40px; height: 40px; border-radius: 50%; background: #FAF3E0; color: #0F2338; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 14px;">FZ</div>
-          <div><strong>Fatima Z.</strong><p style="font-size: 12px; color: #64748B;">{% trans "Acheteuse" %} · Marrakech</p></div>
+      <!-- Témoignage 3 -->
+      <div style="background: #fff; padding: 24px; border-radius: 12px; border: 1px solid #E8E3D9; box-shadow: 0 4px 15px rgba(0,0,0,0.02);">
+        <div style="color: #D4A95A; font-size: 16px; margin-bottom: 10px;">★★★★☆</div>
+        <p style="font-style: italic; color: #334155; font-size: 13px; line-height: 1.5; margin-bottom: 16px;">"{% trans "Très bonne expérience. L'équipe m'a accompagné du début à la fin pour l'achat de mon terrain à Marrakech. Merci !" %}"</p>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #FAF3E0; color: #0F2338; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 12px;">FZ</div>
+          <div><strong style="font-size: 13px; color: #0F2338;">Fatima Z.</strong><p style="font-size: 11px; color: #64748B; margin: 0;">{% trans "Acheteuse" %} · Marrakech</p></div>
         </div>
       </div>
 
@@ -252,62 +288,62 @@
   </div>
 </section>
 
-<!-- SECTION 5 : RÉSEAUX SOCIAUX -->
-<section class="section" style="background: #0a0f18; color: #fff; padding: 80px 20px;">
+<!-- SECTION RÉSEAUX SOCIAUX (Compact) -->
+<section class="section" style="background: #0a0f18; color: #fff; padding: 60px 20px;">
   <div class="container" style="text-align: center; max-width: 1240px; margin: 0 auto;">
     <div style="display: inline-block; border: 1px solid #D4A95A; border-radius: 50px; padding: 6px 20px; margin-bottom: 20px;">
-      <span style="color: #D4A95A; font-size: 13px; letter-spacing: 1px; font-weight: bold;">{% trans "SUIVEZ-NOUS" %}</span>
+      <span style="color: #D4A95A; font-size: 12px; letter-spacing: 1px; font-weight: bold;">{% trans "SUIVEZ-NOUS" %}</span>
     </div>
-    <h2 style="font-family: var(--serif); font-size: 42px; margin-bottom: 15px; color: #fff;">{% trans "Rejoignez notre communauté" %}</h2>
-    <div style="width: 60px; height: 3px; background-color: #D4A95A; margin: 0 auto 25px auto;"></div>
-    <p style="color: #A0B0C0; font-size: 18px; margin-bottom: 50px;">{% trans "Annonces immobilières et actualités en temps réel" %}</p>
+    <h2 style="font-family: var(--serif); font-size: 36px; margin-bottom: 15px; color: #fff;">{% trans "Rejoignez notre communauté" %}</h2>
+    <div style="width: 50px; height: 3px; background-color: #D4A95A; margin: 0 auto 20px auto;"></div>
+    <p style="color: #A0B0C0; font-size: 16px; margin-bottom: 40px;">{% trans "Annonces immobilières et actualités en temps réel" %}</p>
     
-    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-      <a href="#" class="social-card" style="background: #151d29; border-radius: 16px; padding: 25px 20px; width: 140px; text-decoration: none; display: flex; flex-direction: column; align-items: center;">
-        <div style="background: #1877F2; width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;"><i class="fa-brands fa-facebook-f" style="color: #fff; font-size: 24px;"></i></div>
-        <strong style="color: #fff; font-size: 15px;">Facebook</strong>
+    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+      <a href="#" class="social-card" style="background: #151d29; border-radius: 12px; padding: 20px 15px; width: 120px; text-decoration: none; display: flex; flex-direction: column; align-items: center;">
+        <div style="background: #1877F2; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px;"><i class="fa-brands fa-facebook-f" style="color: #fff; font-size: 20px;"></i></div>
+        <strong style="color: #fff; font-size: 13px;">Facebook</strong>
       </a>
-      <a href="#" class="social-card" style="background: #151d29; border-radius: 16px; padding: 25px 20px; width: 140px; text-decoration: none; display: flex; flex-direction: column; align-items: center;">
-        <div style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;"><i class="fa-brands fa-instagram" style="color: #fff; font-size: 24px;"></i></div>
-        <strong style="color: #fff; font-size: 15px;">Instagram</strong>
+      <a href="#" class="social-card" style="background: #151d29; border-radius: 12px; padding: 20px 15px; width: 120px; text-decoration: none; display: flex; flex-direction: column; align-items: center;">
+        <div style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px;"><i class="fa-brands fa-instagram" style="color: #fff; font-size: 20px;"></i></div>
+        <strong style="color: #fff; font-size: 13px;">Instagram</strong>
       </a>
-      <a href="#" class="social-card" style="background: #151d29; border-radius: 16px; padding: 25px 20px; width: 140px; text-decoration: none; display: flex; flex-direction: column; align-items: center;">
-        <div style="background: #000; width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;"><i class="fa-brands fa-tiktok" style="color: #fff; font-size: 24px;"></i></div>
-        <strong style="color: #fff; font-size: 15px;">TikTok</strong>
+      <a href="#" class="social-card" style="background: #151d29; border-radius: 12px; padding: 20px 15px; width: 120px; text-decoration: none; display: flex; flex-direction: column; align-items: center;">
+        <div style="background: #000; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px;"><i class="fa-brands fa-tiktok" style="color: #fff; font-size: 20px;"></i></div>
+        <strong style="color: #fff; font-size: 13px;">TikTok</strong>
       </a>
-      <a href="#" class="social-card" style="background: #151d29; border-radius: 16px; padding: 25px 20px; width: 140px; text-decoration: none; display: flex; flex-direction: column; align-items: center;">
-        <div style="background: #26A5E4; width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;"><i class="fa-brands fa-telegram-plane" style="color: #fff; font-size: 24px;"></i></div>
-        <strong style="color: #fff; font-size: 15px;">Telegram</strong>
+      <a href="#" class="social-card" style="background: #151d29; border-radius: 12px; padding: 20px 15px; width: 120px; text-decoration: none; display: flex; flex-direction: column; align-items: center;">
+        <div style="background: #26A5E4; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px;"><i class="fa-brands fa-telegram-plane" style="color: #fff; font-size: 20px;"></i></div>
+        <strong style="color: #fff; font-size: 13px;">Telegram</strong>
       </a>
-      <a href="https://wa.me/{{ AGENCE.whatsapp }}" class="social-card" style="background: #151d29; border-radius: 16px; padding: 25px 20px; width: 140px; text-decoration: none; display: flex; flex-direction: column; align-items: center;">
-        <div style="background: #25D366; width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;"><i class="fa-brands fa-whatsapp" style="color: #fff; font-size: 24px;"></i></div>
-        <strong style="color: #fff; font-size: 15px;">WhatsApp</strong>
+      <a href="https://wa.me/{{ AGENCE.whatsapp }}" class="social-card" style="background: #151d29; border-radius: 12px; padding: 20px 15px; width: 120px; text-decoration: none; display: flex; flex-direction: column; align-items: center;">
+        <div style="background: #25D366; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px;"><i class="fa-brands fa-whatsapp" style="color: #fff; font-size: 20px;"></i></div>
+        <strong style="color: #fff; font-size: 13px;">WhatsApp</strong>
       </a>
     </div>
   </div>
 </section>
 
-<!-- SECTION 6 : POURQUOI NOUS CHOISIR -->
-<section class="section" style="padding: 80px 0; background: #FAF8F5;">
+<!-- SECTION POURQUOI NOUS CHOISIR (Compact) -->
+<section class="section" style="padding: 60px 0; background: #FAF8F5;">
   <div class="container" style="max-width: 1240px; margin: 0 auto; padding: 0 24px;">
-    <div style="text-align: center; margin-bottom: 48px;">
-      <h2 style="font-family: var(--serif); font-size: 38px; color: #0F2338;">{% trans "Pourquoi nous choisir" %}</h2>
+    <div style="text-align: center; margin-bottom: 36px;">
+      <h2 style="font-family: var(--serif); font-size: 34px; color: #0F2338;">{% trans "Pourquoi nous choisir" %}</h2>
     </div>
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
       <div>
-        <div style="width: 48px; height: 4px; background: #D4A95A; margin-bottom: 16px;"></div>
-        <h3 style="font-size: 20px; margin-bottom: 8px;">{% trans "Conseillers à votre écoute" %}</h3>
-        <p style="color: #64748B;">{% trans "Un accompagnement personnalisé, du premier contact jusqu’à la remise des clés." %}</p>
+        <div style="width: 40px; height: 3px; background: #D4A95A; margin-bottom: 12px;"></div>
+        <h3 style="font-size: 18px; margin-bottom: 6px; color: #0F2338;">{% trans "Conseillers à votre écoute" %}</h3>
+        <p style="color: #64748B; font-size: 14px;">{% trans "Un accompagnement personnalisé, du premier contact jusqu’à la remise des clés." %}</p>
       </div>
       <div>
-        <div style="width: 48px; height: 4px; background: #D4A95A; margin-bottom: 16px;"></div>
-        <h3 style="font-size: 20px; margin-bottom: 8px;">{% trans "Biens vérifiés" %}</h3>
-        <p style="color: #64748B;">{% trans "Chaque annonce est contrôlée : informations claires, photos réelles, prix transparents." %}</p>
+        <div style="width: 40px; height: 3px; background: #D4A95A; margin-bottom: 12px;"></div>
+        <h3 style="font-size: 18px; margin-bottom: 6px; color: #0F2338;">{% trans "Biens vérifiés" %}</h3>
+        <p style="color: #64748B; font-size: 14px;">{% trans "Chaque annonce est contrôlée : informations claires, photos réelles, prix transparents." %}</p>
       </div>
       <div>
-        <div style="width: 48px; height: 4px; background: #D4A95A; margin-bottom: 16px;"></div>
-        <h3 style="font-size: 20px; margin-bottom: 8px;">{% trans "Suivi jusqu’à la signature" %}</h3>
-        <p style="color: #64748B;">{% trans "Visites, négociation et démarches : nous restons à vos côtés à chaque étape." %}</p>
+        <div style="width: 40px; height: 3px; background: #D4A95A; margin-bottom: 12px;"></div>
+        <h3 style="font-size: 18px; margin-bottom: 6px; color: #0F2338;">{% trans "Suivi jusqu’à la signature" %}</h3>
+        <p style="color: #64748B; font-size: 14px;">{% trans "Visites, négociation et démarches : nous restons à vos côtés à chaque étape." %}</p>
       </div>
     </div>
   </div>
