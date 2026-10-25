@@ -156,6 +156,11 @@ class Demande(models.Model):
         VISITE = "visite", "Demande de visite"
         ESTIMATION = "estimation", "Estimation de bien"
 
+    class Statut(models.TextChoices):
+        NOUVEAU = "nouveau", "Nouveau"
+        EN_COURS = "en_cours", "En cours"
+        TRAITEE = "traitee", "Traité"
+
     origine = models.CharField(max_length=12, choices=Origine.choices, default=Origine.CONTACT)
     bien = models.ForeignKey(Bien, on_delete=models.SET_NULL, null=True, blank=True, related_name="demandes")
     nom = models.CharField(max_length=120)
@@ -163,6 +168,7 @@ class Demande(models.Model):
     email = models.EmailField(blank=True)
     message = models.TextField(blank=True)
     traitee = models.BooleanField("Traitée", default=False)
+    statut = models.CharField("Statut", max_length=10, choices=Statut.choices, default=Statut.NOUVEAU)
     note_interne = models.TextField("Note interne", blank=True, default="")
     recue_le = models.DateTimeField(auto_now_add=True)
 
@@ -170,6 +176,14 @@ class Demande(models.Model):
         ordering = ["-recue_le"]
         verbose_name = "demande client"
         verbose_name_plural = "demandes clients"
+
+    def save(self, *args, **kwargs):
+        # « traitee » reste toujours cohérent avec le statut (utilisé par les statistiques et le site)
+        self.traitee = self.statut == self.Statut.TRAITEE
+        update_fields = kwargs.get("update_fields")
+        if update_fields is not None and "statut" in update_fields:
+            kwargs["update_fields"] = set(update_fields) | {"traitee"}
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.nom} – {self.get_origine_display()}"

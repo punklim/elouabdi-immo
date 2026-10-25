@@ -53,6 +53,7 @@
   .eo-badge{flex:none;font-size:11px;font-weight:600;padding:3px 9px;border-radius:6px;
     background:rgba(217,174,103,.16);color:var(--eo-gold);border:1px solid rgba(217,174,103,.35)}
   .eo-badge.ok{background:rgba(93,202,165,.14);color:#5DCAA5;border-color:rgba(93,202,165,.3)}
+  .eo-badge.cours{background:rgba(79,131,179,.18);color:#8DB8E3;border-color:rgba(79,131,179,.4)}
   .eo-vide{padding:26px 0;text-align:center;font-size:13px;color:var(--eo-muted)}
   .eo-tout{display:block;margin-top:10px;text-align:right;font-size:12px;color:var(--eo-muted) !important}
   .eo-tout:hover{color:var(--eo-gold) !important}
@@ -98,7 +99,7 @@
   </div>
 
   {% if d.retard %}
-  <a class="eo-alerte" href="{% url 'admin:biens_demande_changelist' %}?traitee__exact=0">
+  <a class="eo-alerte" href="{% url 'admin:biens_demande_changelist' %}?statut__in=nouveau,en_cours">
     <i class="fas fa-exclamation-triangle"></i>
     {{ d.retard }} demande{{ d.retard|pluralize }} en attente depuis plus de 48 h
     <span>Voir les demandes →</span>
@@ -153,7 +154,7 @@
               <span class="eo-nom">{{ r.nom }}</span>
               <span class="eo-type">{{ r.libelle }}</span>
             </span>
-            {% if r.traitee %}<span class="eo-badge ok">Traité</span>{% else %}<span class="eo-badge">Nouveau</span>{% endif %}
+            {% if r.statut == "traitee" %}<span class="eo-badge ok">Traité</span>{% elif r.statut == "en_cours" %}<span class="eo-badge cours">En cours</span>{% else %}<span class="eo-badge">Nouveau</span>{% endif %}
           </a>
         </li>
         {% endfor %}

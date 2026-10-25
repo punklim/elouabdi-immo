@@ -128,6 +128,7 @@ def dashboard_data():
             "nom": _nom_court(d.nom),
             "libelle": _libelle_demande(d),
             "traitee": d.traitee,
+            "statut": d.statut,
         })
 
     retard = demandes.filter(traitee=False, recue_le__lt=timezone.now() - timedelta(hours=48)).count()

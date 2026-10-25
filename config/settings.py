@@ -248,8 +248,13 @@ WHITENOISE_MANIFEST_STRICT = False
 # Configuration Cloudinary pour le stockage des médias.
 # ATTENTION : à remplacer par env("CLOUDINARY_...") dès que les nouvelles
 # clés sont enregistrées sur Render (voir les explications).
-CLOUDINARY_STORAGE = {
-    "CLOUD_NAME": "deqjnutse",
-    "API_KEY": "836895945435488",
-    "API_SECRET": "O5WTZQSH6ZiyWqfUpDJO3ZYya6E",
-}
+if env("CLOUDINARY_API_SECRET"):
+    CLOUDINARY_STORAGE = {
+        "CLOUD_NAME": env("deqjnutse"),
+        "API_KEY": env("836895945435488"),
+        "API_SECRET": env("O5WTZQSH6ZiyWqfUpDJO3ZYya6E"),
+    }
+elif DEBUG:
+    STORAGES["default"] = {"BACKEND": "django.core.files.storage.FileSystemStorage"}
+else:
+    raise ImproperlyConfigured("Les variables CLOUDINARY_* sont obligatoires en production.")

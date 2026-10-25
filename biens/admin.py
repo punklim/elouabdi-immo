@@ -1,7 +1,10 @@
+import csv
+import re
+
 from django.contrib import admin, messages
 from django.contrib.admin import AdminSite
 from django.core.exceptions import PermissionDenied
-from django.http import HttpResponseNotAllowed
+from django.http import HttpResponse, HttpResponseNotAllowed
 from django.shortcuts import redirect
 from django.utils import timezone
 from django.utils.html import format_html
@@ -62,6 +65,34 @@ def _numero_whatsapp(telephone):
     if chiffres.startswith("0") and len(chiffres) == 10:
         return "212" + chiffres[1:]
     return chiffres
+
+
+def _cellule(valeur):
+    """Valeur sûre pour Excel : une saisie visiteur comme « =1+1 » ne doit jamais devenir une formule."""
+    texte = "" if valeur is None else str(valeur)
+    if texte[:1] in ("=", "+", "-", "@", "\t", "\r") and not re.fullmatch(r"[+\-]?[\d\s().\-]+", texte):
+        texte = "'" + texte
+    return texte
+
+
+def _telephone_csv(telephone):
+    """Garde le 0 initial dans Excel (0612345678) : seul un numéro formé de chiffres est écrit ainsi."""
+    brut = re.sub(r"[\s.\-()]", "", telephone or "")
+    if re.fullmatch(r"\+?\d{6,15}", brut):
+        return f'="{brut}"'
+    return _cellule(telephone)
+
+
+def _reponse_csv(nom_fichier, entetes, lignes):
+    """CSV lisible directement par Excel en français (séparateur « ; », UTF-8 avec BOM)."""
+    reponse = HttpResponse(content_type="text/csv; charset=utf-8")
+    reponse["Content-Disposition"] = f'attachment; filename="{nom_fichier}"'
+    reponse.write("\ufeff")
+    ecrivain = csv.writer(reponse, delimiter=";")
+    ecrivain.writerow(entetes)
+    for ligne in lignes:
+        ecrivain.writerow(ligne)
+    return reponse
 
 
 # --- Les autres admins ---
@@ -166,13 +197,14 @@ class BienAdmin(admin.ModelAdmin):
 
 @admin.register(Demande)
 class DemandeAdmin(admin.ModelAdmin):
-    list_display = ("nom", "contact", "origine", "bien", "recue_le", "depuis", "traitee")
-    list_filter = ("origine", "traitee")
-    list_editable = ("traitee",)
+    list_display = ("nom", "contact", "origine", "bien", "recue_le", "depuis", "statut")
+    list_filter = ("statut", "origine")
+    list_editable = ("statut",)
     search_fields = ("nom", "telephone", "email")
     readonly_fields = ("recue_le",)
+    exclude = ("traitee",)  # déduit automatiquement du statut
     list_select_related = ("bien",)
-    actions = ["marquer_traitees", "marquer_non_traitees"]
+    actions = ["marquer_traitees", "marquer_en_cours", "marquer_non_traitees", "exporter_csv"]
 
     @admin.display(description="Contact")
     def contact(self, obj):
@@ -193,13 +225,33 @@ class DemandeAdmin(admin.ModelAdmin):
 
     @admin.action(description="Marquer comme traitées")
     def marquer_traitees(self, request, queryset):
-        n = queryset.update(traitee=True)
+        n = queryset.update(statut=Demande.Statut.TRAITEE, traitee=True)
         self.message_user(request, f"{n} demande(s) marquée(s) comme traitée(s).", messages.SUCCESS)
 
-    @admin.action(description="Marquer comme non traitées")
+    @admin.action(description="Marquer « En cours »")
+    def marquer_en_cours(self, request, queryset):
+        n = queryset.update(statut=Demande.Statut.EN_COURS, traitee=False)
+        self.message_user(request, f"{n} demande(s) passée(s) « En cours ».", messages.SUCCESS)
+
+    @admin.action(description="Remettre à « Nouveau »")
     def marquer_non_traitees(self, request, queryset):
-        n = queryset.update(traitee=False)
-        self.message_user(request, f"{n} demande(s) remise(s) à traiter.", messages.SUCCESS)
+        n = queryset.update(statut=Demande.Statut.NOUVEAU, traitee=False)
+        self.message_user(request, f"{n} demande(s) remise(s) à « Nouveau ».", messages.SUCCESS)
+
+    @admin.action(description="Exporter en CSV (Excel)")
+    def exporter_csv(self, request, queryset):
+        lignes = []
+        for d in queryset.select_related("bien").order_by("-recue_le"):
+            lignes.append([
+                timezone.localtime(d.recue_le).strftime("%d/%m/%Y %H:%M"),
+                _cellule(d.nom), _telephone_csv(d.telephone), _cellule(d.email),
+                d.get_origine_display(), _cellule(d.bien.reference if d.bien_id else ""),
+                d.get_statut_display(), _cellule(d.message), _cellule(d.note_interne),
+            ])
+        return _reponse_csv(
+            f"demandes-{timezone.localdate():%Y-%m-%d}.csv",
+            ["Reçue le", "Nom", "Téléphone", "E-mail", "Origine", "Bien (réf.)", "Statut", "Message", "Note interne"],
+            lignes)
 
 
 @admin.register(Article)
@@ -219,6 +271,19 @@ class AlerteAdmin(admin.ModelAdmin):
     list_filter = ("actif", "transaction", "langue")
     search_fields = ("email",)
     readonly_fields = ("token", "cree_le")
+    actions = ["exporter_csv"]
+
+    @admin.action(description="Exporter en CSV (Excel)")
+    def exporter_csv(self, request, queryset):
+        lignes = [[
+            timezone.localtime(a.cree_le).strftime("%d/%m/%Y %H:%M"),
+            _cellule(a.email), a.get_transaction_display(), a.ville.nom if a.ville_id else "",
+            a.get_type_bien_display(), a.budget_max or "", a.langue, "Oui" if a.actif else "Non",
+        ] for a in queryset.select_related("ville").order_by("-cree_le")]
+        return _reponse_csv(
+            f"alertes-{timezone.localdate():%Y-%m-%d}.csv",
+            ["Créée le", "E-mail", "Transaction", "Ville", "Type de bien", "Budget max (MAD)", "Langue", "Active"],
+            lignes)
 
     def ville_nom(self, obj):
         """Affiche le nom de la ville ou un tiret si la ville est vide."""
