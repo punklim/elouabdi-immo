@@ -27,6 +27,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="{% static 'css/site.css' %}">
+<link rel="stylesheet" href="{% static 'css/footer.css' %}">
 <!-- FontAwesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -83,52 +84,78 @@
 
 <main>{% block content %}{% endblock %}</main>
 
-<footer class="footer">
-  <div class="container footer-grid">
-    <div><span class="logo">{{ AGENCE.nom }}</span><p>{% trans "Vente et location immobilière" %}.<br>{% blocktrans with proprio=AGENCE.proprietaire %}Dirigée par {{ proprio }}.{% endblocktrans %}</p></div>
-    <div><strong>{% trans "Navigation" %}</strong><p><a href="{% url 'liste' %}?transaction=vente">{% trans "Acheter" %}</a> · <a href="{% url 'liste' %}?transaction=location">{% trans "Louer" %}</a><br><a href="{% url 'estimation' %}">{% trans "Estimer mon bien" %}</a> · <a href="{% url 'agents' %}">{% trans "Nos agents" %}</a><br><a href="{% url 'blog' %}">{% trans "Blog" %}</a> · <a href="{% url 'a_propos' %}">{% trans "À propos" %}</a><br><a href="{% url 'mes_favoris' %}">❤️ {% trans "Favoris" %}</a></p></div>
-    <div><strong>{% trans "Contact" %}</strong><p><a href="tel:{{ AGENCE.telephone }}" dir="ltr">{{ AGENCE.telephone }}</a><br>{{ AGENCE.email }}<br>{{ AGENCE.adresse }}</p></div>
-  </div>
-
-  <!-- Section Nous suivre (en dehors de la grille, sur toute la largeur) -->
-  <div style="background-color: #C7B595; padding: 40px 20px; text-align: center; margin-top: 40px;">
-    <h3 style="color: #5B6573; font-size: 18px; font-weight: 600; margin-bottom: 20px;">Nous suivre</h3>
-    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-      
-      <!-- Facebook -->
-      <a href="#" target="_blank" style="background: #fff; color: #C7B595; width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 20px;">
-        <i class="fa-brands fa-facebook-f"></i>
-      </a>
-      
-      <!-- Instagram -->
-      <a href="#" target="_blank" style="background: #fff; color: #C7B595; width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 20px;">
-        <i class="fa-brands fa-instagram"></i>
-      </a>
-      
-      <!-- YouTube -->
-      <a href="#" target="_blank" style="background: #fff; color: #C7B595; width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 20px;">
-        <i class="fa-brands fa-youtube"></i>
-      </a>
-      
-      <!-- LinkedIn -->
-      <a href="#" target="_blank" style="background: #fff; color: #C7B595; width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 20px;">
-        <i class="fa-brands fa-linkedin-in"></i>
-      </a>
-      
-      <!-- TikTok -->
-      <a href="#" target="_blank" style="background: #fff; color: #C7B595; width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 20px;">
-        <i class="fa-brands fa-tiktok"></i>
-      </a>
-      
-      <!-- Email -->
-      <a href="mailto:{{ AGENCE.email }}" style="background: #fff; color: #C7B595; width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 20px;">
-        <i class="fa-solid fa-envelope"></i>
-      </a>
-
+<footer class="ft">
+  <!-- Bandeau d'appel -->
+  <div class="ft-cta">
+    <div class="ft-wrap ft-cta-inner">
+      <div>
+        <h2>{% trans "Un projet immobilier ? Parlons-en." %}</h2>
+        <p>{% trans "Nos conseillers vous répondent rapidement et sans engagement." %}</p>
+      </div>
+      <div class="ft-cta-actions">
+        <a class="ft-btn ft-btn-gold" href="{% url 'contact' %}">{% trans "Nous contacter" %}</a>
+        <a class="ft-btn ft-btn-line" href="https://wa.me/{{ AGENCE.whatsapp }}" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp</a>
+      </div>
     </div>
   </div>
 
-  <p class="container copy">© {% now "Y" %} {{ AGENCE.nom }} · <a href="{% url 'mentions_legales' %}">{% trans "Mentions légales" %}</a> · <a href="{% url 'confidentialite' %}">{% trans "Confidentialité" %}</a></p>
+  <!-- Colonnes -->
+  <div class="ft-main">
+    <div class="ft-wrap ft-grid">
+      <div class="ft-brand">
+        <span class="ft-logo">{{ AGENCE.nom }}</span>
+        <p>{% trans "Vente et location immobilière" %}.<br>{% blocktrans with proprio=AGENCE.proprietaire %}Dirigée par {{ proprio }}.{% endblocktrans %}</p>
+        <div class="ft-social">
+          {% if AGENCE.facebook %}<a href="{{ AGENCE.facebook }}" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>{% endif %}
+          {% if AGENCE.instagram %}<a href="{{ AGENCE.instagram }}" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>{% endif %}
+          {% if AGENCE.tiktok %}<a href="{{ AGENCE.tiktok }}" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>{% endif %}
+          {% if AGENCE.telegram %}<a href="{{ AGENCE.telegram }}" target="_blank" rel="noopener" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>{% endif %}
+          {% if AGENCE.youtube %}<a href="{{ AGENCE.youtube }}" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>{% endif %}
+          {% if AGENCE.linkedin %}<a href="{{ AGENCE.linkedin }}" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>{% endif %}
+          <a href="mailto:{{ AGENCE.email }}" aria-label="E-mail"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+      </div>
+
+      <nav class="ft-col" aria-label="{% trans 'Navigation' %}">
+        <h3>{% trans "Navigation" %}</h3>
+        <ul>
+          <li><a href="{% url 'liste' %}?transaction=vente">{% trans "Acheter" %}</a></li>
+          <li><a href="{% url 'liste' %}?transaction=location">{% trans "Louer" %}</a></li>
+          <li><a href="{% url 'agents' %}">{% trans "Nos agents" %}</a></li>
+          <li><a href="{% url 'a_propos' %}">{% trans "À propos" %}</a></li>
+          <li><a href="{% url 'mes_favoris' %}">{% trans "Favoris" %}</a></li>
+        </ul>
+      </nav>
+
+      <div class="ft-col">
+        <h3>{% trans "Services" %}</h3>
+        <ul>
+          <li><a href="{% url 'estimation' %}">{% trans "Estimer mon bien" %}</a></li>
+          <li><a href="{% url 'simulateur' %}">{% trans "Simulateur de crédit" %}</a></li>
+          <li><a href="{% url 'blog' %}">{% trans "Blog" %}</a></li>
+          <li><a href="{% url 'contact' %}">{% trans "Contact" %}</a></li>
+        </ul>
+      </div>
+
+      <div class="ft-col">
+        <h3>{% trans "Contact" %}</h3>
+        <ul class="ft-contact">
+          <li><i class="fa-solid fa-phone" aria-hidden="true"></i><a href="tel:{{ AGENCE.telephone }}" dir="ltr">{{ AGENCE.telephone }}</a></li>
+          <li><i class="fa-brands fa-whatsapp" aria-hidden="true"></i><a href="https://wa.me/{{ AGENCE.whatsapp }}" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><i class="fa-solid fa-envelope" aria-hidden="true"></i><a href="mailto:{{ AGENCE.email }}">{{ AGENCE.email }}</a></li>
+          <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>{{ AGENCE.adresse }}</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bas de page -->
+  <div class="ft-bottom">
+    <div class="ft-wrap ft-bottom-inner">
+      <span>© {% now "Y" %} {{ AGENCE.nom }}</span>
+      <span><a href="{% url 'mentions_legales' %}">{% trans "Mentions légales" %}</a><a href="{% url 'confidentialite' %}">{% trans "Confidentialité" %}</a></span>
+    </div>
+  </div>
 </footer>
 
 <!-- Bouton WhatsApp flottant -->

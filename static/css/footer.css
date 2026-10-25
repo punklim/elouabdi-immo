@@ -1,0 +1,51 @@
+/* El Ouabdi Immobilier - pied de page uniquement. Aucune règle ne touche au reste du site (tout est préfixé « ft »). */
+.ft{margin:0;padding:0;background:#0A1A2B;color:#C9D4E0;font-family:var(--sans,'Inter',system-ui,sans-serif);font-size:15px;line-height:1.6}
+.ft *,.ft *::before,.ft *::after{box-sizing:border-box}
+.ft a{color:#C9D4E0;text-decoration:none;transition:color .2s ease}
+.ft a:hover{color:#D4A95A}
+.ft ul{margin:0;padding:0;list-style:none}
+.ft h2,.ft h3,.ft p{margin:0}
+.ft-wrap{width:100%;max-width:1180px;margin-inline:auto;padding-inline:24px}
+
+/* bandeau d'appel */
+.ft-cta{background:linear-gradient(120deg,#071320 0%,#0F2338 60%,#1B3A57 100%);border-bottom:1px solid rgba(212,169,90,.35)}
+.ft-cta-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;padding-block:44px}
+.ft-cta h2{font-family:var(--serif,'Playfair Display',Georgia,serif);font-size:clamp(1.5rem,3vw,2.1rem);font-weight:600;line-height:1.2;color:#fff;margin-bottom:8px;text-wrap:balance}
+.ft-cta p{color:#B7C4D2}
+.ft-cta-actions{display:flex;flex-wrap:wrap;gap:12px}
+.ft-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 24px;border-radius:10px;font-weight:600;font-size:15px;border:1px solid transparent}
+.ft a.ft-btn-gold{background:#D4A95A;color:#0F2338}
+.ft a.ft-btn-gold:hover{background:#E2BC74;color:#0F2338}
+.ft a.ft-btn-line{border-color:rgba(255,255,255,.4);color:#fff}
+.ft a.ft-btn-line:hover{border-color:#D4A95A;color:#D4A95A}
+
+/* colonnes */
+.ft-main{padding-block:56px 40px}
+.ft-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.3fr;gap:40px}
+.ft-logo{display:block;margin-bottom:14px;font-family:var(--serif,'Playfair Display',Georgia,serif);font-size:1.5rem;font-weight:700;color:#fff}
+.ft-brand p{max-width:34ch;color:#9FB0C1}
+.ft-social{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.ft .ft-social a{display:grid;place-items:center;width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.08);color:#fff;font-size:16px}
+.ft .ft-social a:hover{background:#D4A95A;color:#0F2338}
+.ft-col h3{margin-bottom:18px;font-size:15px;font-weight:600;color:#fff}
+.ft-col li+li{margin-top:11px}
+.ft-contact li{display:flex;align-items:flex-start;gap:12px}
+.ft-contact i{flex:none;width:16px;margin-top:5px;text-align:center;color:#D4A95A}
+.ft-contact span,.ft-contact a{overflow-wrap:anywhere}
+
+/* bas */
+.ft-bottom{border-top:1px solid rgba(255,255,255,.1);font-size:14px;color:#8496A9}
+.ft-bottom-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px 24px;padding-block:20px}
+.ft-bottom a{color:#8496A9;text-decoration:underline;text-underline-offset:3px}
+.ft-bottom a+a{margin-inline-start:20px}
+
+@media (max-width:960px){
+  .ft-grid{grid-template-columns:1fr 1fr}
+  .ft-brand{grid-column:1/-1}
+}
+@media (max-width:560px){
+  .ft-grid{grid-template-columns:1fr;gap:32px}
+  .ft-main{padding-block:44px 28px}
+  .ft-cta-actions,.ft-cta-actions .ft-btn{width:100%}
+  .ft-bottom-inner{flex-direction:column;align-items:flex-start}
+}
