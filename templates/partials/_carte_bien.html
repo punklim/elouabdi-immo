@@ -1,20 +1,24 @@
 {% load humanize i18n %}
-<article class="card fx-card">
-  <a class="card-photo" href="{{ bien.get_absolute_url }}">
-    {% with photo=bien.photos.all.0 %}{% if photo %}<img src="{{ photo.image.url }}" alt="{{ bien.titre_affiche }}" loading="lazy">{% else %}<span class="ph">{% trans "Photo à venir" %}</span>{% endif %}{% endwith %}
-    <span class="badge {% if bien.transaction == 'location' %}badge-gold{% endif %}">{{ bien.get_transaction_display }}</span>
-    {% if bien.statut != 'disponible' %}<span class="badge badge-status">{{ bien.get_statut_display }}</span>{% endif %}
-  </a>
-  <div class="card-body">
-    <p class="price">{{ bien.prix|intcomma }} {% trans "MAD" %}{% if bien.transaction == 'location' %} {% trans "/ mois" %}{% endif %}</p>
-    <h3><a href="{{ bien.get_absolute_url }}">{{ bien.titre_affiche }}</a></h3>
-    <p class="meta">{{ bien.ville.nom_affiche }} · {{ bien.surface }} {% trans "m²" %}{% if bien.chambres %} · {{ bien.chambres }} {% trans "ch." %}{% endif %}{% if bien.salles_de_bain %} · {{ bien.salles_de_bain }} {% trans "sdb" %}{% endif %}</p>
-    
-    <!-- BOUTON FAVORI -->
-    <button class="btn-favori" data-id="{{ bien.id }}" style="background: none; border: none; cursor: pointer; font-size: 20px; float: right; padding: 0;">
-      ❤️
-    </button>
-    
-    <a class="link" href="{{ bien.get_absolute_url }}">{% trans "Voir le bien" %}</a>
+<article class="luxury-card" style="background: #fff; border-radius: 14px; overflow: hidden; border: 1px solid #E8E3D9; box-shadow: 0 10px 30px rgba(15,35,56,0.04); display: flex; flex-direction: column; transition: all 0.3s ease;">
+  <div style="position: relative; height: 210px; overflow: hidden;">
+    <a href="{{ bien.get_absolute_url }}">
+      {% with photo=bien.photos.all.0 %}
+        {% if photo %}<img src="{{ photo.image.url }}" alt="{{ bien.titre_affiche }}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
+        {% else %}<div style="display:flex;align-items:center;justify-content:center;height:100%;background:#E2E8F0;color:#64748B;">{% trans "Photo à venir" %}</div>{% endif %}
+      {% endwith %}
+    </a>
+    <span style="position: absolute; top: 12px; left: 12px; background: #0F2338; color: #fff; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 4px; text-transform: uppercase;">{{ bien.get_transaction_display }}</span>
+    <button class="btn-favori" data-id="{{ bien.id }}" style="position: absolute; top: 12px; right: 12px; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.9); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; color: #0F2338;">❤️</button>
+  </div>
+  <div style="padding: 20px; flex: 1; display: flex; flex-direction: column;">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px;">
+      <div style="font-size: 20px; font-weight: 700; color: #0F2338;">{{ bien.prix|intcomma }} MAD</div>
+    </div>
+    <a href="{{ bien.get_absolute_url }}" style="font-family: var(--serif); font-size: 17px; font-weight: 600; margin-bottom: 8px; color: #0F2338; text-decoration: none;">{{ bien.titre_affiche }}</a>
+    <p style="font-size: 13px; color: #64748B; margin-bottom: 16px;">{{ bien.ville.nom_affiche }}</p>
+    <div style="display: flex; gap: 14px; padding-top: 14px; border-top: 1px solid #E8E3D9; font-size: 13px; color: #0F2338; font-weight: 600; margin-top: auto;">
+      <span>{{ bien.surface }} m²</span>
+      {% if bien.chambres %}<span>{{ bien.chambres }} ch.</span>{% endif %}
+    </div>
   </div>
 </article>

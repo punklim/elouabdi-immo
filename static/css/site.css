@@ -319,3 +319,17 @@ body {
     transform: translateY(-5px);
     background-color: #1e293b !important;
 }
+
+/* Effets de survol pour le design Luxe */
+.property-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+.property-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
+}
+
+.social-card:hover {
+    transform: translateY(-5px);
+    background-color: #1e293b !important;
+}
