@@ -244,15 +244,14 @@ LOGGING = {
     },
 }
 WHITENOISE_MANIFEST_STRICT = False
-
 # Configuration Cloudinary pour le stockage des médias.
-# ATTENTION : à remplacer par env("CLOUDINARY_...") dès que les nouvelles
-# clés sont enregistrées sur Render (voir les explications).
+# Les valeurs viennent des variables d'environnement de Render
+# (CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET).
 if env("CLOUDINARY_API_SECRET"):
     CLOUDINARY_STORAGE = {
-        "CLOUD_NAME": env("deqjnutse"),
-        "API_KEY": env("836895945435488"),
-        "API_SECRET": env("O5WTZQSH6ZiyWqfUpDJO3ZYya6E"),
+        "CLOUD_NAME": env("CLOUDINARY_CLOUD_NAME"),
+        "API_KEY": env("CLOUDINARY_API_KEY"),
+        "API_SECRET": env("CLOUDINARY_API_SECRET"),
     }
 elif DEBUG:
     STORAGES["default"] = {"BACKEND": "django.core.files.storage.FileSystemStorage"}
