@@ -1,0 +1,27 @@
+/* El Ouabdi Immobilier - pages « liste des biens » et « fiche d'un bien ».
+   Chargé seulement par liste.html et detail.html. */
+
+/* ---------- Liste : bandeau + recherche qui chevauche ---------- */
+.page-head.page-head--liste{position:relative;z-index:2;padding:52px 0 0;background:linear-gradient(120deg,#071320 0%,#0F2338 55%,#1B3A57 100%)}
+.page-head--liste h1{margin:0;color:#fff;font-family:var(--serif);font-size:clamp(1.9rem,3.6vw,2.7rem);line-height:1.15}
+.page-head--liste .listing-search{margin:26px 0 -52px;padding:22px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 50px -18px rgba(7,19,32,.45)}
+.page-head--liste + .section .toolbar{margin-top:92px}
+
+/* ---------- Fiche : partage ---------- */
+.share{margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+.share p{margin:0 0 10px;font-size:14px;font-weight:600;color:var(--navy)}
+.share-row{display:flex;gap:10px}
+.share-btn{display:grid;place-items:center;width:42px;height:42px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--navy);font-size:16px;cursor:pointer;transition:background-color .2s ease,color .2s ease,border-color .2s ease}
+.share-btn:hover{background:var(--navy);border-color:var(--navy);color:#fff}
+.share p.share-ok{min-height:1.2em;margin:10px 0 0;font-size:13px;font-weight:500;color:#1B7F4B}
+
+/* ---------- Fiche : barre de contact fixe (téléphone) ---------- */
+.mbar{display:none}
+@media (max-width:860px){
+  .aside{position:static;flex-basis:100%}
+  .mbar{position:fixed;inset-inline:0;bottom:0;z-index:2000;display:flex;gap:10px;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--line);box-shadow:0 -10px 28px rgba(7,19,32,.12)}
+  .mbar .btn{flex:1;justify-content:center;min-height:46px;gap:8px}
+  body{padding-bottom:72px}
+  /* le bouton WhatsApp rond du site est remplacé par la barre ci-dessus */
+  a[aria-label="WhatsApp"][style*="position: fixed"]{display:none !important}
+}

@@ -1,8 +1,9 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n static %}
 {% block title %}{% trans "Nos biens" %} – {{ AGENCE.nom }}{% endblock %}
+{% block extra_head %}<link rel="stylesheet" href="{% static 'css/pages.css' %}">{% endblock %}
 {% block content %}
-<div class="page-head"><div class="container">
+<div class="page-head page-head--liste"><div class="container">
   <h1>{% if sel.transaction == 'vente' %}{% trans "Biens à vendre" %}{% elif sel.transaction == 'location' %}{% trans "Biens à louer" %}{% else %}{% trans "Tous nos biens" %}{% endif %}</h1>
   <div class="listing-search">{% include "partials/_recherche.html" %}</div>
 </div></div>

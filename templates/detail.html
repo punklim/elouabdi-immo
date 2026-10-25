@@ -1,10 +1,11 @@
 {% extends "base.html" %}
-{% load humanize i18n %}
+{% load humanize i18n static %}
 
 {% block title %}{{ bien.titre_affiche }} – {{ AGENCE.nom }}{% endblock %}
 {% block description %}{{ bien.description_affichee|truncatechars:150 }}{% endblock %}
 
 {% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/pages.css' %}">
     <meta property="og:title" content="{{ bien.titre_affiche }} – {{ AGENCE.nom }}">
     <meta property="og:description" content="{{ bien.description_affichee|truncatechars:150 }}">
     {% if bien.photos.all.0 %}
@@ -17,6 +18,7 @@
 {% endblock %}
 
 {% block content %}
+{% blocktrans with titre=bien.titre_affiche ref=bien.reference lien=request.build_absolute_uri asvar wa_text %}Bonjour, je suis intéressé(e) par « {{ titre }} » (réf. {{ ref }}) : {{ lien }}{% endblocktrans %}
 <section class="section" style="padding-top:28px"><div class="container">
   <p class="crumbs"><a href="{% url 'accueil' %}">{% trans "Accueil" %}</a> / <a href="{% url 'liste' %}?transaction={{ bien.transaction }}">{% if bien.transaction == 'vente' %}{% trans "Acheter" %}{% else %}{% trans "Louer" %}{% endif %}</a> / {{ bien.ville.nom_affiche }} / {{ bien.get_type_bien_display }}</p>
 
@@ -70,7 +72,7 @@
             }).addTo(map);
             
             var marker = L.marker([lat, lng]).addTo(map);
-            marker.bindPopup("<b>{{ bien.titre_affiche }}</b><br>{{ bien.ville.nom }}<br>{{ bien.prix|intcomma }} MAD").openPopup();
+            marker.bindPopup("<b>{{ bien.titre_affiche|escapejs }}</b><br>{{ bien.ville.nom_affiche|escapejs }}<br>{{ bien.prix|intcomma }} MAD").openPopup();
         </script>
       {% endif %}
     </div>
@@ -82,16 +84,44 @@
         <div><p style="font-weight:600">{% if ag %}{{ ag.nom }}{% else %}{{ AGENCE.nom }}{% endif %}</p><p class="muted" style="font-size:13px">{{ AGENCE.nom }}</p></div>
       </div>
       <a class="btn btn-gold btn-block" href="tel:{% if ag %}{{ ag.telephone }}{% else %}{{ AGENCE.telephone }}{% endif %}">{% trans "Appeler" %}</a>
-      {% blocktrans with ref=bien.reference asvar wa_text %}Bonjour, je suis intéressé(e) par le bien {{ ref }}.{% endblocktrans %}
-      <a class="btn btn-outline btn-block" href="https://wa.me/{% if ag and ag.whatsapp %}{{ ag.whatsapp }}{% else %}{{ AGENCE.whatsapp }}{% endif %}?text={{ wa_text|urlencode }}">WhatsApp</a>
+      <a class="btn btn-outline btn-block" href="https://wa.me/{% if ag and ag.whatsapp %}{{ ag.whatsapp }}{% else %}{{ AGENCE.whatsapp }}{% endif %}?text={{ wa_text|urlencode:'' }}"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp</a>
       {% endwith %}
       {% if bien.transaction == 'vente' %}<a class="btn btn-outline btn-block" href="{% url 'simulateur' %}?prix={{ bien.prix|stringformat:'d' }}">{% trans "Simuler mon crédit" %}</a>{% endif %}
       <p style="font-weight:600;margin:20px 0 12px">{% trans "Être rappelé(e) / demander une visite" %}</p>
       {% trans "Je suis intéressé(e)" as bouton_interet %}
       {% include "partials/_formulaire.html" with bouton=bouton_interet %}
+
+      <div class="share">
+        <p>{% trans "Partager ce bien" %}</p>
+        <div class="share-row">
+          <a class="share-btn" href="https://wa.me/?text={{ bien.titre_affiche|add:' – '|add:request.build_absolute_uri|urlencode:'' }}" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode:'' }}" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <button type="button" class="share-btn" data-copy="{{ request.build_absolute_uri }}" data-ok="{% trans 'Lien copié' %}" aria-label="{% trans 'Copier le lien' %}"><i class="fa-solid fa-link"></i></button>
+        </div>
+        <p class="share-ok" role="status" aria-live="polite"></p>
+      </div>
     </aside>
   </div>
 </div></section>
+
+<!-- Barre de contact fixe (téléphone uniquement) -->
+{% with ag=bien.agent %}
+<div class="mbar">
+  <a class="btn btn-gold" href="tel:{% if ag %}{{ ag.telephone }}{% else %}{{ AGENCE.telephone }}{% endif %}"><i class="fa-solid fa-phone" aria-hidden="true"></i> {% trans "Appeler" %}</a>
+  <a class="btn btn-outline" href="https://wa.me/{% if ag and ag.whatsapp %}{{ ag.whatsapp }}{% else %}{{ AGENCE.whatsapp }}{% endif %}?text={{ wa_text|urlencode:'' }}"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp</a>
+</div>
+{% endwith %}
+
+<script>
+document.querySelectorAll("[data-copy]").forEach(function (b) {
+  b.addEventListener("click", function () {
+    var msg = document.querySelector(".share-ok");
+    function ok() { if (msg) { msg.textContent = b.dataset.ok; setTimeout(function () { msg.textContent = ""; }, 2500); } }
+    if (navigator.clipboard) { navigator.clipboard.writeText(b.dataset.copy).then(ok, function () { window.prompt("", b.dataset.copy); }); }
+    else { window.prompt("", b.dataset.copy); }
+  });
+});
+</script>
 
 {% if similaires %}<section class="section section-bg"><div class="container">
   <h2 class="section-title">{% trans "Biens similaires" %}</h2>
